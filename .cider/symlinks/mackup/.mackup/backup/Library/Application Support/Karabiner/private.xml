@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<root>
+	<devicevendordef>
+		<vendorname>FILCO</vendorname>
+		<vendorid>0x0a5c</vendorid>
+	</devicevendordef>
+
+  	<deviceproductdef>
+    	<productname>MinilaAirBluetooth</productname>
+    	<productid>0x8502</productid>
+  	</deviceproductdef>
+
+  	<item>
+		<name>FILCO Bluetooth Keyboard exchange option key and command key</name>
+		<identifier>private.filco.minila.67bt.option_and_command</identifier>
+		<device_only>DeviceVendor::FILCO, DeviceProduct::MinilaAirBluetooth</device_only>
+		<autogen>__KeyOverlaidModifier__ KeyCode::OPTION_L, KeyCode::COMMAND_L, KeyCode::JIS_EISUU</autogen>
+		<autogen>__KeyOverlaidModifier__ KeyCode::OPTION_R, KeyCode::COMMAND_R, KeyCode::JIS_KANA</autogen>
+		<autogen>__KeyToKey__ KeyCode::OPTION_L, KeyCode::COMMAND_L</autogen>
+		<autogen>__KeyToKey__ KeyCode::COMMAND_L, KeyCode::OPTION_L</autogen>
+		<autogen>__KeyToKey__ KeyCode::OPTION_R, KeyCode::COMMAND_R</autogen>
+		<autogen>__KeyToKey__ KeyCode::PC_APPLICATION, KeyCode::OPTION_R</autogen>
+	</item>
+
+	<item>
+		<name>FILCO Bluetooth Keyboard exchange 左右のコマンドキーを「英数／かな」としても使う</name>
+		<identifier>private.filco.minila.67bt.eisu_kana</identifier>
+		<device_only>DeviceVendor::FILCO, DeviceProduct::MinilaAirBluetooth</device_only>
+		<autogen>__KeyOverlaidModifier__ KeyCode::OPTION_L, KeyCode::COMMAND_L, KeyCode::JIS_EISUU</autogen>
+		<autogen>__KeyOverlaidModifier__ KeyCode::OPTION_R, KeyCode::COMMAND_R, KeyCode::JIS_KANA</autogen>
+	</item>
+</root>

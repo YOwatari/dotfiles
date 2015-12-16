@@ -1,0 +1,22 @@
+{
+    "after-scripts": [
+        "brew update",
+        "brew bundle --global --verbose"
+    ],
+    "symlinks": {
+        ".Brewfile": "~",
+        ".snippets": "~",
+        "anyenv": "~/.anyenv",
+        "git/.*": "~",
+        "mackup/.*": "~",
+        "tmux/.*": "~",
+        "tmux/tpm": "~/.tmux/plugins/tpm",
+        "vim/.*": "~",
+        "vim/*.toml": "~/.vim/",
+        "vim/load": "~/.vim/load",
+        "zsh/.*": "~"
+    },
+    "taps": [
+        "Homebrew/bundle"
+    ]
+}

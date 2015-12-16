@@ -1,0 +1,59 @@
+[[plugins]]
+repository = 'bling/vim-airline'
+
+[[plugins]]
+repository = 'flazz/vim-colorschemes'
+
+[[plugins]]
+repository = 'Shougo/unite.vim'
+
+[[plugins]]
+repository = 'Shougo/neomru.vim'
+depends = 'Shougo/unite.vim'
+
+[[plugins]]
+repository = 'Shougo/neoyank.vim'
+depends = 'Shougo/unite.vim'
+
+[[plugins]]
+repository = 'ujihisa/unite-colorscheme'
+depends = 'Shougo/unite.vim'
+
+[[plugins]]
+repository = 'scrooloose/nerdtree'
+
+[[plugins]]
+repository = 'ctrlpvim/ctrlp.vim'
+
+[[plugins]]
+repository = 'Lokaltog/vim-easymotion'
+
+[[plugins]]
+repository = 'terryma/vim-multiple-cursors'
+
+[[plugins]]
+repository = 'kana/vim-fakeclip'
+
+[[plugins]]
+repository = 'tpope/vim-obsession'
+
+[[plugins]]
+repository = 'tpope/vim-fugitive'
+
+[[plugins]]
+repository = 'thinca/vim-quickrun'
+
+[[plugins]]
+repository = 'Shougo/neocomplete.vim'
+
+[[plugins]]
+repository = 'scrooloose/syntastic'
+
+[[plugins]]
+repository = 'tpope/vim-surround'
+
+[[plugins]]
+repository = 'tomtom/tcomment_vim'
+
+[[plugins]]
+repository = 'Align'

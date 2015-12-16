@@ -1,0 +1,26 @@
+vim ~/.snippets
+
+# the number of directory
+ls -laR | grep -c '^-'
+
+# docker
+docker-machine create -d virtualbox --virtualbox-cpu-count "-1" --virtualbox-memory "4096" dev
+eval $(docker-machine env dev)
+eval $(docker-machine env dev -u)
+docker rmi $(docker images | awk '/^<none>/ { print  }')
+docker rm $(docker ps -a -q)
+
+# restart shell
+exec -l $SHELL
+
+# local servers
+~/.anyenv/envs/phpenv/versions/5.6.15/sbin/php-fpm --nodaemonize
+nginx -g "daemon off;"
+
+# brew bundle dump
+brew bundle --global --force dump
+
+# peco
+git issue view $(git issue mine | peco | cut -d " " -f1 | sed -e 's/#//g')
+cd $(ghq list --full-path | peco)
+gh-open $(ghq list --full-path | peco)

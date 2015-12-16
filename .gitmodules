@@ -1,0 +1,6 @@
+[submodule ".cider/symlinks/tmux/tpm"]
+	path = .cider/symlinks/tmux/tpm
+	url = git@github.com:tmux-plugins/tpm.git
+[submodule ".cider/symlinks/anyenv"]
+	path = .cider/symlinks/anyenv
+	url = git@github.com:riywo/anyenv.git

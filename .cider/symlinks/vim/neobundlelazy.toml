@@ -1,0 +1,40 @@
+[[plugins]]
+repository = 'fatih/vim-go'
+filetypes = 'go'
+
+[[plugins]]
+repository = 'PDV--phpDocumentor-for-Vim'
+filetypes = 'php'
+
+[[plugins]]
+repository = 'puppetlabs/puppet-syntax-vim'
+filetypes = 'puppet'
+
+[[plugins]]
+repository = 'rcmdnk/vim-markdown'
+filetypes = 'markdown'
+
+[[plugins]]
+repository = 'leafgarland/typescript-vim'
+filetypes = 'typescript'
+
+[[plugins]]
+repository = 'pangloss/vim-javascript'
+filetypes = 'javascript'
+
+[[plugins]]
+repository = 'mxw/vim-jsx'
+filetypes = 'javascript'
+
+[[plugins]]
+repository = 'evanmiller/nginx-vim-syntax'
+filetypes = 'nginx'
+
+[[plugins]]
+repository = 'ekalinin/Dockerfile.vim'
+filetypes = 'dockerfile'
+
+[[plugins]]
+repository = 'glidenote/keepalived-syntax.vim'
+filetypes = 'keepalived'
+
