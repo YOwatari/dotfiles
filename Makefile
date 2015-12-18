@@ -13,7 +13,7 @@ install: cider/link
 deploy: cider/restore mackup/restore
 
 homebrew/install:
-	ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	ruby -e "$(curl -fsSL 'https://raw.githubusercontent.com/Homebrew/install/master/install')"
 
 cider/install:
 	sudo easy_install -U cider
@@ -37,7 +37,7 @@ golang/install: VERSION=1.5.2
 golang/install: PKG=go$(VERSION).darwin-amd64.pkg
 golang/install:
 	-rm -f $(CURDIR)/$(PKG)
-	curl -C - -O https://storage.googleapis.com/golang/$(PKG)
+	curl -C - -O 'https://storage.googleapis.com/golang/$(PKG)'
 	sudo installer -pkg $(CURDIR)/$(PKG) -target /
 
 ghq/install:
@@ -47,7 +47,7 @@ ghq/install:
 zsh/install:
 	brew install zsh
 	-rm -rf $(HOME)/.zplug
-	curl -fLo $(HOME)/.zplug/zplug --create-dirs https://git.io/zplug
+	curl -fLo $(HOME)/.zplug/zplug --create-dirs 'https://git.io/zplug'
 
 iterm2/install:
 	brew cask instal iterm2
