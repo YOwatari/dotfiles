@@ -25,7 +25,10 @@ cider/link:
 cider/restore:
 	rm -rf $(HOME)/.gitconfig
 	rm -rf $(HOME)/.zshrc
-	cider restore
+	cider relink
+	brew tap Homebrew/bundle
+	cider apply-defaults
+	cider run-scripts
 
 mackup/install:
 	sudo easy_install -U mackup
@@ -50,6 +53,7 @@ zsh/install:
 	curl -fLo $(HOME)/.zplug/zplug --create-dirs https://git.io/zplug
 
 iterm2/install:
+	brew tap caskroom/cask
 	brew cask instal iterm2
 	$(HOME)/bin/ghq get mbadolato/iTerm2-Color-Schemes
 
