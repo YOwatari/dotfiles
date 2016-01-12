@@ -3,6 +3,9 @@ vim ~/.snippets
 # the number of directory
 ls -laR | grep -c '^-'
 
+# git
+git submodule foreach git pull origin master
+
 # docker
 docker-machine create -d virtualbox --virtualbox-cpu-count "-1" --virtualbox-memory "4096" dev
 eval $(docker-machine env dev)

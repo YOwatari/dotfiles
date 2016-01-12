@@ -10,6 +10,8 @@
     ci = commit
     df = diff
     br = branch
+    ch = cherry-pick
+    sb = submodule
     ls = !git ls-files -t|perl -pe 's/\\/.*/\\//'|uniq -c
     ll = !git ls-files -cdmokt|perl -pe 's/\\/.*/\\//'|grep -v '/'
     la = ls-files -cdmokt
