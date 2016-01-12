@@ -32,10 +32,12 @@ nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
 nnoremap <silent> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
 nnoremap <silent> ,gc :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
 nnoremap <silent> ,gr :<C-u>UniteResume search-buffer<CR>
+nnoremap <silent> ,gs :<C-u>Unite giti<CR>
 
 
 " NERDTree
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
+nnoremap <silent><C-f> :NERDTreeFind<CR>
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeQuitOnOpen = 1
 let g:NERDTreeBookmarksFile = '~/.vim/.NERDTreeBookmarks'
@@ -133,9 +135,9 @@ let g:jsx_ext_required = 0
 
 
 " php
-inoremap <C-P> <Esc>:call PhpDocSingle()<CR>i
-nnoremap <C-P> :call PhpDocSingle()<CR>
-vnoremap <C-P> :call PhpDocSingle()<CR>
+" inoremap <C-P> <Esc>:call PhpDocSingle()<CR>i
+" nnoremap <C-P> :call PhpDocSingle()<CR>
+" vnoremap <C-P> :call PhpDocSingle()<CR>
 
 
 " typescript

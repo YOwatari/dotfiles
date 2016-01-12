@@ -16,6 +16,10 @@ repository = 'Shougo/neoyank.vim'
 depends = 'Shougo/unite.vim'
 
 [[plugins]]
+repository = 'kmnk/vim-unite-giti'
+depends = 'Shougo/unite.vim'
+
+[[plugins]]
 repository = 'ujihisa/unite-colorscheme'
 depends = 'Shougo/unite.vim'
 

@@ -24,6 +24,8 @@ set softtabstop=4
 au BufNewFile,BufRead *.go set noexpandtab tabstop=4 shiftwidth=4
 au BufNewFile,BufRead *.css,*.scss set tabstop=2 shiftwidth=2 softtabstop=2
 au BufNewFile,BufRead *.pp set tabstop=2 shiftwidth=2 softtabstop=2
+au BufNewFile,BufRead *.json set tabstop=2 shiftwidth=2 softtabstop=2
+au BufNewFile,BufRead *.rb set tabstop=2 shiftwidth=2 softtabstop=2
 
 " 検索関連
 set ignorecase
