@@ -3,11 +3,14 @@ vim ~/.snippets
 # the number of directory
 ls -laR | grep -c '^-'
 
+# tcpdump
+sudo tcpdump -i en0 -s0 -A -nn port 80 or port 443
+
 # git
 git submodule foreach git pull origin master
 
 # docker
-docker-machine create -d virtualbox --virtualbox-cpu-count "-1" --virtualbox-memory "4096" dev
+docker-machine create -d virtualbox --virtualbox-cpu-count "-1" --virtualbox-memory "4096" --engine-opt ipv6=false dev
 eval $(docker-machine env dev)
 eval $(docker-machine env dev -u)
 docker rmi $(docker images | awk '/^<none>/ { print  }')
