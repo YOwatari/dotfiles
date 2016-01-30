@@ -15,6 +15,9 @@ deploy: cider/restore mackup/restore
 homebrew/install:
 	ruby -e "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
+homebrew/dump:
+	brew bundle --global --force dump
+
 cider/install:
 	sudo easy_install -U cider
 
