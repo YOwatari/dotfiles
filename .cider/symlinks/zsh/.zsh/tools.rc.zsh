@@ -25,7 +25,8 @@ fi
 export GOPATH=$HOME
 
 # direnv
-if [ type direnv >/dev/null 2>&1 ] ; then
+type direnv > /dev/null
+if [ $? -eq 0 ]; then
     export EDITOR=vim
     eval "$(direnv hook zsh)"
 fi

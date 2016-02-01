@@ -3,12 +3,13 @@
     editor = vim
     quotepath = false
 [color]
-    ui = true
+    ui = auto
+    interactive = auto
 [alias]
     st = status
     co = checkout
     ci = commit
-    df = diff
+    df = diff --word-diff
     br = branch
     ch = cherry-pick
     sb = submodule
@@ -17,6 +18,8 @@
     la = ls-files -cdmokt
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
     lga = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    lgs = log --stat --abbrev-commit
+    lgo = log -a --pretty=oneline
     noff = merge --no-ff
     delete-merged-branch = "!f() { git checkout $1; git branch --merged | egrep -v '\\*|master' | xargs git branch -d; };f"
     purge = "!f() { bfg --delete-files $@ $(git rev-parse --show-toplevel); };f"
@@ -35,11 +38,13 @@
 [merge]
     tool = vimdiff
 [ghq]
-       root = ~/src
+    root = ~/src
 [url "git@github.com:"]
-       pushInsteadOf = git://github.com/
-       pushInsteadOf = https://github.com/
+    pushInsteadOf = git://github.com/
+    pushInsteadOf = https://github.com/
 [url "git@gist.github.com:"]
-       pushInsteadOf = https://gist.github.com//
+    pushInsteadOf = https://gist.github.com//
 [url "git://github.com/"]
-       insteadOf = https://github.com/
+    insteadOf = https://github.com/
+[fetch]
+	prune = true
