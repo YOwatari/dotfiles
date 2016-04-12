@@ -9,6 +9,9 @@ zplug 'plugins/osx', from:oh-my-zsh, if:'[[ $ostype == *darwin* ]]'
 zplug 'lib/clipboard', from:oh-my-zsh, if:'[[ $ostype == *darwin* ]]'
 zplug 'jeremyFreeAgent/oh-my-zsh-powerline-theme', of:powerline.zsh-theme
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
+zplug "zsh-users/zsh-completions"
+zplug "mrowa44/emojify", as:command
+zplug "b4b4r07/emoji-cli", if:"which jq"
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then

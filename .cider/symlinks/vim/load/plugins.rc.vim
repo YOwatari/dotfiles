@@ -55,8 +55,8 @@ let g:ctrlp_custom_ignore = {
 
 
 " easymotion
-nmap s <Plug>(easymotion-s2)
-xmap s <Plug>(easymotion-s2)
+nmap e <Plug>(easymotion-s2)
+xmap e <Plug>(easymotion-s2)
 omap z <Plug>(easymotion-s2)
 nmap g/ <Plug>(easymotion-sn)
 xmap g/ <Plug>(easymotion-sn)
@@ -79,7 +79,7 @@ let g:quickrun_config.markdown = {
      \ 'outputter' : 'null',
      \ 'command'   : 'open',
      \ 'cmdopt'    : '-a',
-     \ 'args'      : 'Marked 2',
+     \ 'args'      : 'Marked',
      \ 'exec'      : '%c %o %a %s',
      \ }
 

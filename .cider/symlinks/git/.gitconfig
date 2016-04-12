@@ -9,17 +9,17 @@
     st = status
     co = checkout
     ci = commit
-    df = diff --word-diff
+    df = diff
     br = branch
     ch = cherry-pick
     sb = submodule
     ls = !git ls-files -t|perl -pe 's/\\/.*/\\//'|uniq -c
     ll = !git ls-files -cdmokt|perl -pe 's/\\/.*/\\//'|grep -v '/'
     la = ls-files -cdmokt
-    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-    lga = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-    lgs = log --stat --abbrev-commit
-    lgo = log -a --pretty=oneline
+    lg = !git log --stat --abbrev-commit --color | emojify | less
+    lgo = !git log -a --abbrev-commit --pretty=oneline --color | emojify | less
+    lgg = !git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative | emojify | less
+    lgga = !git log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative | emojify | less
     noff = merge --no-ff
     delete-merged-branch = "!f() { git checkout $1; git branch --merged | egrep -v '\\*|master' | xargs git branch -d; };f"
     purge = "!f() { bfg --delete-files $@ $(git rev-parse --show-toplevel); };f"
@@ -47,4 +47,8 @@
 [url "git://github.com/"]
     insteadOf = https://github.com/
 [fetch]
-	prune = true
+    prune = true
+[pager]
+    log = diff-highlight | less
+    show = diff-highlight | less
+    diff = diff-highlight | less

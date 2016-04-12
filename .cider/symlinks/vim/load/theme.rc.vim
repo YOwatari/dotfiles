@@ -20,4 +20,4 @@ let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
 
-colorscheme hybrid
+colorscheme hybrid_reverse

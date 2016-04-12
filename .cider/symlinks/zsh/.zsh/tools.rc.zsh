@@ -50,7 +50,7 @@ if [ -d ${HOMEBREW_PREFIX}/opt/colordiff/bin ] ; then
 fi
 
 if [ -d ${HOMEBREW_PREFIX}/opt/gomi/bin ]; then
-    alias rm="/usr/local/bin/gomi"
+    alias rm="/usr/local/bin/gomi -s"
 fi
 
 if [ -d ${HOMEBREW_PREFIX}/opt/gnu-which/bin ] ; then
