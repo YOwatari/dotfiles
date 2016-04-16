@@ -29,7 +29,7 @@
     # `git config --global push.default simple`. See http://git.io/mMah-w.
     default = matching
 [user]
-    name = Yuta OHWATARI
+    name = YOwatari
     email = yuta_ohwatari@voyagegroup.com
 [filter "lfs"]
     clean = git lfs clean %f
