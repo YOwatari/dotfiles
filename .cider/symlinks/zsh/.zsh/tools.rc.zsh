@@ -33,6 +33,7 @@ fi
 
 # homebrew
 export HOMEBREW_PREFIX=$(brew --prefix)
+export HOMEBREW_NO_ANALYTICS=1
 
 if [ -d ${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin ] ; then
     path=(${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin(N-/) ${path})
