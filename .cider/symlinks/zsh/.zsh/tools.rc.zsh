@@ -35,6 +35,10 @@ fi
 export HOMEBREW_PREFIX=$(brew --prefix)
 export HOMEBREW_NO_ANALYTICS=1
 
+if [ -f ${HOME}/.github.token ]; then
+    source ${HOME}/.github.token
+fi
+
 if [ -d ${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin ] ; then
     path=(${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin(N-/) ${path})
     alias ls="/usr/local/bin/gls -AFh --color"
@@ -57,3 +61,10 @@ fi
 if [ -d ${HOMEBREW_PREFIX}/opt/gnu-which/bin ] ; then
     alias which="/usr/local/bin/which -a"
 fi
+
+if [ -d ${HOMEBREW_PREFIX}/opt/groovy/libexec ]; then
+    export GROOVY_HOME=${HOMEBREW_PREFIX}/opt/groovy/libexec
+fi
+
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
