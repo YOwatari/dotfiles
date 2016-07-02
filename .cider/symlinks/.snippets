@@ -14,8 +14,11 @@ docker-machine create -d virtualbox --virtualbox-cpu-count "-1" --virtualbox-mem
 docker $(docker-machine config kvs) run -d -p 8500:8500 -h consul progrium/consul -server -bootstrap
 docker-machine create -d virtualbox --virtualbox-cpu-count "-1" --virtualbox-memory "4096" --swarm --swarm-master --swarm-discovery="consul://$(docker-machine ip kvs):8500" --engine-opt="cluster-store=consul://$(docker-machine ip kvs):8500" --engine-opt="cluster-advertise=eth1:2376" default
 docker-machine create -d virtualbox --virtualbox-cpu-count "-1" --virtualbox-memory "4096" --swarm --swarm-discovery="consul://$(docker-machine ip kvs):8500" --engine-opt="cluster-store=consul://$(docker-machine ip kvs):8500" --engine-opt="cluster-advertise=eth1:2376" node1
+docker-machine create -d virtualbox --virtualbox-cpu-count "-1" --virtualbox-memory "4096" solo
 eval $(docker-machine env --swarm default)
 eval $(docker-machine env -u default)
+eval $(docker-machine env solo)
+eval $(docker-machine env -u solo)
 docker rmi $(docker images | awk '/^<none>/ { print  }')
 docker rm $(docker ps -a -q)
 
@@ -31,3 +34,10 @@ brew bundle --global --force dump
 
 # peco
 git issue view $(git issue mine | peco | cut -d " " -f1 | sed -e 's/#//g')
+
+# check global ip
+curl inet-ip.info
+
+# random string
+openssl rand -base64 12 | fold -w 10 | head -1
+

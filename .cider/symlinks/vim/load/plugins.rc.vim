@@ -107,11 +107,6 @@ let g:neocomplete#force_omni_input_patterns.go = '[^.[:digit:] \t]\.\w*'
 
 
 " syntastic
-let g:syntastic_mode_map = {
-            \ 'mode': 'active',
-            \ 'active_filetypes': ['php'],
-            \ 'passive_filetypes': [],
-            \ }
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
@@ -120,9 +115,18 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_loc_list_height = 5
 let g:syntastic_quiet_messages  = { 'level': 'warnings' }
 
+let g:syntastic_aggregate_errors = 1
+
+let g:syntastic_go_checkers = ['go', 'golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+
 let g:syntastic_php_checkers   = ['phpcs']
 let g:syntastic_php_phpcs_args = '--standard=psr2'
-let g:syntasic_go_checkers = ['']
+let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['php'] }
+
+let g:syntastic_puppet_checkers = ['puppet', 'puppetlint']
+let g:syntastic_puppet_puppetlint_args = '--no-autoloader_layout-check'
+let g:syntastic_check_map = { 'mode': 'active', 'active_filetypes': ['puppet'] }
 
 
 " markdown
@@ -148,6 +152,14 @@ let g:typescript_indent_disable = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
+let g:go_highlight_interfaces = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
+let g:go_fmt_comand = "goimports"
+
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+au FileType go nmap <Leader>e <Plug>(go-rename)

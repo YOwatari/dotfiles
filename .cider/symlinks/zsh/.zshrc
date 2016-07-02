@@ -8,10 +8,11 @@ zplug 'plugins/vagrant', from:oh-my-zsh, if:'which vagrant'
 zplug 'plugins/osx', from:oh-my-zsh, if:'[[ $ostype == *darwin* ]]'
 zplug 'lib/clipboard', from:oh-my-zsh, if:'[[ $ostype == *darwin* ]]'
 zplug 'jeremyFreeAgent/oh-my-zsh-powerline-theme', of:powerline.zsh-theme
-zplug "zsh-users/zsh-syntax-highlighting", nice:10
-zplug "zsh-users/zsh-completions"
-zplug "mrowa44/emojify", as:command
-zplug "b4b4r07/emoji-cli", if:"which jq"
+zplug 'zsh-users/zsh-syntax-highlighting', nice:10
+zplug 'zsh-users/zsh-completions'
+zplug 'mrowa44/emojify', as:command
+zplug 'b4b4r07/emoji-cli', if:'which jq'
+zplug 'git/git', as:command, of:'contrib/diff-highlight/diff-highlight'
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -45,3 +46,6 @@ export LC_ALL=en_US.UTF-8
 source $HOME/.zsh/basic.rc.zsh
 source $HOME/.zsh/tools.rc.zsh
 source $HOME/.zsh/peco.rc.zsh
+
+# added by travis gem
+[ -f /Users/y-ohwatari/.travis/travis.sh ] && source /Users/y-ohwatari/.travis/travis.sh

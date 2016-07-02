@@ -17,9 +17,8 @@
     ll = !git ls-files -cdmokt|perl -pe 's/\\/.*/\\//'|grep -v '/'
     la = ls-files -cdmokt
     lg = !git log --stat --abbrev-commit --color | emojify | less
-    lgo = !git log -a --abbrev-commit --pretty=oneline --color | emojify | less
     lgg = !git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative | emojify | less
-    lgga = !git log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative | emojify | less
+    lggg = !git log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative | emojify | less
     noff = merge --no-ff
     delete-merged-branch = "!f() { git checkout $1; git branch --merged | egrep -v '\\*|master' | xargs git branch -d; };f"
     purge = "!f() { bfg --delete-files $@ $(git rev-parse --show-toplevel); };f"
@@ -52,3 +51,5 @@
     log = diff-highlight | less
     show = diff-highlight | less
     diff = diff-highlight | less
+[mergetool]
+	keepBackup = false

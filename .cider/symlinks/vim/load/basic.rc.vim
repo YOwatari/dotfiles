@@ -26,6 +26,7 @@ au BufNewFile,BufRead *.css,*.scss set tabstop=2 shiftwidth=2 softtabstop=2
 au BufNewFile,BufRead *.pp set tabstop=2 shiftwidth=2 softtabstop=2
 au BufNewFile,BufRead *.json set tabstop=2 shiftwidth=2 softtabstop=2
 au BufNewFile,BufRead *.rb,*.rake,Rakefile set tabstop=2 shiftwidth=2 softtabstop=2
+au BufNewFile,BufRead Makefile,*.mk set noexpandtab tabstop=4 shiftwidth=4
 
 " 検索関連
 set ignorecase
