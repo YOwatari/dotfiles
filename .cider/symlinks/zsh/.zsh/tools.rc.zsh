@@ -33,6 +33,7 @@ fi
 
 # homebrew
 export HOMEBREW_PREFIX=$(brew --prefix)
+export HOMEBREW_NO_ANALYTICS=1
 
 if [ -f ${HOME}/.github.token ]; then
     source ${HOME}/.github.token
