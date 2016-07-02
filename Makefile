@@ -10,7 +10,7 @@ init: homebrew/install cider/install mackup/install golang/install ghq/install i
 
 install: cider/link
 
-deploy: homebrew/dump cider/restore mackup/restore
+deploy: cider/restore mackup/restore
 
 homebrew/install:
 	ruby -e "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
