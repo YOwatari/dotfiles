@@ -53,3 +53,5 @@
     diff = diff-highlight | less
 [mergetool]
 	keepBackup = false
+[commit]
+	template = /Users/y-ohwatari/.commit_template

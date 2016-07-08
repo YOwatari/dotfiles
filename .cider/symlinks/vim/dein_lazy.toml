@@ -37,4 +37,3 @@ on_ft = ['dockerfile']
 [[plugins]]
 repo  = 'glidenote/keepalived-syntax.vim'
 on_ft = ['keepalived']
-

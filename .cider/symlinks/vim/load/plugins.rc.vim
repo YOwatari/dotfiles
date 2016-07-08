@@ -83,7 +83,6 @@ let g:quickrun_config.markdown = {
      \ 'exec'      : '%c %o %a %s',
      \ }
 
-
 " neocomplete
 let g:neocomplete#data_directory = '~/.vim/cache/neocomplete'
 let g:acp_enableAtStartup = 0
@@ -105,6 +104,12 @@ if !exists('g:neocomplete#force_omni_input_patterns')
 endif
 let g:neocomplete#force_omni_input_patterns.go = '[^.[:digit:] \t]\.\w*'
 
+if !exists('g:neocomplete#sources#omni#input_patterns')
+    let g:neocomplete#sources#omni#input_patterns = {}
+endif
+let g:neocomplete#sources#omni#input_patterns.markdown = ''
+let g:neocomplete#sources#omni#input_patterns.gitcommit = ''
+
 
 " syntastic
 let g:syntastic_always_populate_loc_list = 1
@@ -125,7 +130,7 @@ let g:syntastic_php_phpcs_args = '--standard=psr2'
 let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['php'] }
 
 let g:syntastic_puppet_checkers = ['puppet', 'puppetlint']
-let g:syntastic_puppet_puppetlint_args = '--no-autoloader_layout-check'
+let g:syntastic_puppet_puppetlint_args = '--no-80chars-check --no-autoloader_layout-check'
 let g:syntastic_check_map = { 'mode': 'active', 'active_filetypes': ['puppet'] }
 
 

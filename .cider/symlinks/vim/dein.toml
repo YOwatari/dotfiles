@@ -1,14 +1,4 @@
 [[plugins]]
-repo    = 'vim-airline/vim-airline'
-depends = ['vim-airline/vim-airline-themes']
-
-[[plugins]]
-repo = 'vim-airline/vim-airline-themes'
-
-[[plugins]]
-repo = 'flazz/vim-colorschemes'
-
-[[plugins]]
 repo = 'Shougo/vimproc.vim'
 hook_post_update = '''
   if dein#util#_is_windows()
@@ -28,19 +18,39 @@ repo = 'Shougo/unite.vim'
 
 [[plugins]]
 repo = 'Shougo/neomru.vim'
-depends = ['Shougo/unite.vim']
+on_source = ['Shougo/unite.vim']
 
 [[plugins]]
 repo = 'Shougo/neoyank.vim'
-depends = ['Shougo/unite.vim']
+on_source = ['Shougo/unite.vim']
 
 [[plugins]]
 repo = 'kmnk/vim-unite-giti'
-depends = ['Shougo/unite.vim']
+on_source = ['Shougo/unite.vim']
 
 [[plugins]]
 repo = 'ujihisa/unite-colorscheme'
-depends = ['Shougo/unite.vim']
+on_source = ['Shougo/unite.vim']
+
+[[plugins]]
+repo = 'Shougo/neocomplete.vim'
+
+[[plugins]]
+repo = 'junegunn/vim-emoji'
+
+[[plugins]]
+repo = 'rhysd/github-complete.vim'
+depends = ['Shougo/vimproc.vim', 'Shougo/vimproc.vim', 'junegunn/vim-emoji']
+
+[[plugins]]
+repo    = 'vim-airline/vim-airline'
+depends = ['vim-airline/vim-airline-themes']
+
+[[plugins]]
+repo = 'vim-airline/vim-airline-themes'
+
+[[plugins]]
+repo = 'flazz/vim-colorschemes'
 
 [[plugins]]
 repo = 'scrooloose/nerdtree'
@@ -67,9 +77,6 @@ repo = 'tpope/vim-fugitive'
 repo = 'thinca/vim-quickrun'
 
 [[plugins]]
-repo = 'Shougo/neocomplete.vim'
-
-[[plugins]]
 repo = 'scrooloose/syntastic'
 
 [[plugins]]
@@ -80,3 +87,6 @@ repo = 'tomtom/tcomment_vim'
 
 [[plugins]]
 repo = 'Align'
+
+[[plugins]]
+repo = 'editorconfig/editorconfig-vim'
