@@ -37,3 +37,7 @@ on_ft = ['dockerfile']
 [[plugins]]
 repo  = 'glidenote/keepalived-syntax.vim'
 on_ft = ['keepalived']
+
+[[plugins]]
+repo  = 'cespare/vim-toml'
+on_ft = ['toml']

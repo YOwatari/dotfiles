@@ -10,6 +10,7 @@ au BufNewFile,BufRead *.pp setfiletype puppet
 au BufNewFile,BufRead */nginx/conf/*,nginx.conf* setfiletype nginx
 au BufNewFile,BufRead Dockerfile* setfiletype dockerfile
 au BufNewFile,BufRead keepalived.conf* setfiletype keepalived
+au BufNewFile,BufRead *.toml setfiletype toml
 
 " 行番号とシンタックスハイライト
 set number

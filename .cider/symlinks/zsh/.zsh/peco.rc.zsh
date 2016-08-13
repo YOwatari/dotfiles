@@ -52,3 +52,11 @@ function open_ghq() {
 }
 zle -N open_ghq
 bindkey '^x^z' open_ghq
+
+function tree_vim() {
+  local SELECTED_FILE=$(tree --charset=o -f | peco | tr -d '\||`|-' | xargs echo)
+  BUFFER="vim $SELECTED_FILE"
+  zle accept-line
+}
+zle -N tree_vim
+bindkey "^t" tree_vim

@@ -14,6 +14,6 @@ if filereadable(expand('~/.vim/load/basic.rc.vim'))
     runtime! load/basic.rc.vim
 endif
 
-if filereadable(expand('~/.github.token.rc.vim'))
-    runtime! .github.token.rc.vim
+if filereadable(expand('~/.vim/.secret.rc.vim'))
+    runtime! .secret.rc.vim
 endif

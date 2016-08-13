@@ -17,19 +17,19 @@ hook_post_update = '''
 repo = 'Shougo/unite.vim'
 
 [[plugins]]
-repo = 'Shougo/neomru.vim'
+repo      = 'Shougo/neomru.vim'
 on_source = ['Shougo/unite.vim']
 
 [[plugins]]
-repo = 'Shougo/neoyank.vim'
+repo      = 'Shougo/neoyank.vim'
 on_source = ['Shougo/unite.vim']
 
 [[plugins]]
-repo = 'kmnk/vim-unite-giti'
+repo      = 'kmnk/vim-unite-giti'
 on_source = ['Shougo/unite.vim']
 
 [[plugins]]
-repo = 'ujihisa/unite-colorscheme'
+repo      = 'ujihisa/unite-colorscheme'
 on_source = ['Shougo/unite.vim']
 
 [[plugins]]
@@ -39,7 +39,7 @@ repo = 'Shougo/neocomplete.vim'
 repo = 'junegunn/vim-emoji'
 
 [[plugins]]
-repo = 'rhysd/github-complete.vim'
+repo    = 'rhysd/github-complete.vim'
 depends = ['Shougo/vimproc.vim', 'Shougo/vimproc.vim', 'junegunn/vim-emoji']
 
 [[plugins]]
@@ -72,6 +72,10 @@ repo = 'tpope/vim-obsession'
 
 [[plugins]]
 repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo    = 'shumphrey/fugitive-gitlab.vim'
+depends = ['tpope/vim-fugitive']
 
 [[plugins]]
 repo = 'thinca/vim-quickrun'
