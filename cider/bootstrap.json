@@ -17,6 +17,8 @@
         "vim/.*": "~",
         "vim/*.toml": "~/.vim/",
         "vim/load": "~/.vim/load",
+        "vimperator/.vimperatorrc.local": "~",
+        "vimperator/": "~/.vimperator/colors",
         "zsh/.*": "~"
     },
     "taps": [

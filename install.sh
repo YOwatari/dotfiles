@@ -36,7 +36,7 @@ initialize() {
 }
 
 install() {
-	make -C "$DOTPATH" init
+	make -C "$DOTPATH" setup
 }
 
 initialize
