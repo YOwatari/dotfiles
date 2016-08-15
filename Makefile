@@ -90,11 +90,11 @@ $(bundle.tap): $(brew)
 
 $(zsh): $(brew)
 	$< install zsh
-	-/bin/rm -rf $(HOME)/.zplug
 	$(MAKE) $(zplug)
 
-$(zplug):
-	curl -fLo $@ --create-dirs https://git.io/zplug
+$(zplug): $(brew)
+	-/bin/rm -rf $(HOME)/.zplug
+	$< install zplug
 
 $(cask.tap): $(brew)
 	$< tap caskroom/cask

@@ -1,4 +1,5 @@
-source ~/.zplug/zplug
+export ZPLUG_HOME=/usr/local/opt/zplug
+source $ZPLUG_HOME/init.zsh
 
 zplug 'plugins/git', from:oh-my-zsh, if:'which git'
 zplug 'plugins/brew', from:oh-my-zsh, if:'which brew'
@@ -7,12 +8,12 @@ zplug 'plugins/tmux', from:oh-my-zsh, if:'which tmux'
 zplug 'plugins/vagrant', from:oh-my-zsh, if:'which vagrant'
 zplug 'plugins/osx', from:oh-my-zsh, if:'[[ $ostype == *darwin* ]]'
 zplug 'lib/clipboard', from:oh-my-zsh, if:'[[ $ostype == *darwin* ]]'
-zplug 'jeremyFreeAgent/oh-my-zsh-powerline-theme', of:powerline.zsh-theme
+zplug 'jeremyFreeAgent/oh-my-zsh-powerline-theme', use:'powerline.zsh-theme'
 zplug 'zsh-users/zsh-syntax-highlighting', nice:10
 zplug 'zsh-users/zsh-completions'
 zplug 'mrowa44/emojify', as:command
 zplug 'b4b4r07/emoji-cli', if:'which jq'
-zplug 'git/git', as:command, of:'contrib/diff-highlight/diff-highlight'
+zplug 'git/git', as:command, use:'contrib/diff-highlight/diff-highlight'
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
