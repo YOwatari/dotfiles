@@ -9,7 +9,7 @@ dotfiles   := $(HOME)/src/github.com/YOwatari/dotfiles
 bundle.tap := /usr/local/Library/Taps/homebrew/homebrew-bundle
 
 zsh        := /usr/local/bin/zsh
-zplug      := $(HOME)/.zplug/zplug
+zplug      := /usr/local/opt/zplug
 
 cask.tap   := /usr/local/Library/Taps/caskroom/homebrew-cask
 iterm2     := /Applications/iTerm.app
