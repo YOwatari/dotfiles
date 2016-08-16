@@ -16,9 +16,9 @@
     ls = !git ls-files -t|perl -pe 's/\\/.*/\\//'|uniq -c
     ll = !git ls-files -cdmokt|perl -pe 's/\\/.*/\\//'|grep -v '/'
     la = ls-files -cdmokt
-    lg = !git log --stat --abbrev-commit --color | emojify | less
-    lgg = !git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative | emojify | less
-    lggg = !git log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative | emojify | less
+    lg = !git log --stat --abbrev-commit --color | emojify | less -R
+    lgg = !git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative | emojify | less -R
+    lggg = !git log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative | emojify | less -R
     noff = merge --no-ff
     delete-merged-branch = "!f() { git checkout $1; git branch --merged | egrep -v '\\*|master' | xargs git branch -d; };f"
     purge = "!f() { bfg --delete-files $@ $(git rev-parse --show-toplevel); };f"

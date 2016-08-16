@@ -73,7 +73,7 @@ $(python.tools):
 	sudo /usr/bin/easy_install install -U $(notdir $@)
 	$@ --version
 
-GO_VERSION=1.6.3
+GO_VERSION=1.7
 go$(GO_VERSION).darwin-amd64.pkg:
 	curl -C - -O https://storage.googleapis.com/golang/$@
 

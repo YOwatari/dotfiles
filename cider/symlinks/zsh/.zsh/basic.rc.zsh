@@ -56,3 +56,6 @@ setopt print_eight_bit
 ## alias
 alias sub='/usr/bin/open -a ~/Applications/Sublime\ Text\ 2.app'
 alias gping='/sbin/ping -c 5 8.8.8.8'
+
+## set editor bind
+bindkey -e
