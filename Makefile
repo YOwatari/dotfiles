@@ -1,8 +1,10 @@
 brew       := /usr/local/bin/brew
 cider      := /usr/local/bin/cider
 mackup     := /usr/local/bin/mackup
+
 go         := /usr/local/go/bin/go
 ghq        := $(HOME)/bin/ghq
+gomi       := $(HOME)/bin/gomi
 
 dotfiles   := $(HOME)/src/github.com/YOwatari/dotfiles
 
@@ -17,12 +19,15 @@ iterm2     := /Applications/iTerm.app
 ricty.tap  := /usr/local/Library/Taps/sanemat/homebrew-font
 ricty      := /usr/local/opt/ricty
 
+.PHONY: brew.dump \
+  cider.clean cider.link cider.restore \
+  mackup.restore
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 setup:   ## initial deployment
-setup: $(dotfiles)
+setup: go.tools $(dotfiles)
 	$(MAKE) -C $(dotfiles) install
 	-/bin/rm -rf /tmp/dotfiles
 
@@ -60,9 +65,10 @@ cider.restore: $(cider) $(bundle.tap)
 mackup.restore: $(mackup)
 	$< restore
 
-.PHONY: brew.dump \
-  cider.clean cider.link cider.restore \
-  mackup.restore
+
+.INTERMEDIATE: go$(GO_VERSION).darwin-amd64.pkg
+
+.PHONY: go.tools
 
 $(brew):
 	ruby -e "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -82,8 +88,13 @@ $(go): go$(GO_VERSION).darwin-amd64.pkg
 	$@ version
 
 $(ghq): $(go)
-	GOPATH=$(HOME) $< get github.com/motemen/ghq
+	GOPATH=$(HOME) $< get -u github.com/motemen/ghq/...
 	git config --global ghq.root "~/src"
+
+$(gomi): $(go)
+	GOPATH=$(HOME) $< get -u github.com/b4b4r07/gomi/...
+
+go.tools: $(ghq) $(gomi)
 
 $(bundle.tap): $(brew)
 	$< tap Homebrew/bundle
@@ -117,10 +128,3 @@ $(HOME)/Library/Fonts/Ricty%.ttf:
 $(dotfiles): $(ghq)
 	$(ghq) get https://github.com/YOwatari/dotfiles.git
 	git --git-dir=$@/.git --work-tree=$@ submodule update --init --recursive
-
-.PRECIOUS: $(brew) $(cider) $(mackup) $(go) $(ghq) \
-  $(zsh) $(zplug) \
-  $(bundle.tap) \
-  $(cask.tap) $(iterm2) \
-  $(ricty.tap) $(ricty) $(HOME)/Library/Fonts/Ricty%.ttf \
-  $(dotfiles)

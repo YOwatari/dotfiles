@@ -19,7 +19,8 @@
         "vim/load": "~/.vim/load",
         "vimperator/.vimperatorrc.local": "~",
         "vimperator/": "~/.vimperator/colors",
-        "zsh/.*": "~"
+        "zsh/.*": "~",
+        "gomi/config.toml": "~/.gomi/config.yaml"
     },
     "taps": [
         "Homebrew/bundle"

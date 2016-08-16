@@ -31,6 +31,11 @@ if [ $? -eq 0 ]; then
     eval "$(direnv hook zsh)"
 fi
 
+# gomi
+if [ -d ${HOME}/bin/gomi ]; then
+    alias rm="${HOME}/bin/gomi -s"
+fi
+
 # homebrew
 export HOMEBREW_PREFIX=$(brew --prefix)
 export HOMEBREW_NO_ANALYTICS=1
@@ -52,10 +57,6 @@ if [ -d ${HOMEBREW_PREFIX}/opt/colordiff/bin ] ; then
     if [ -d ${HOMEBREW_PREFIX}/opt/less/bin ] ; then
         alias less="/usr/local/bin/less -R"
     fi
-fi
-
-if [ -d ${HOMEBREW_PREFIX}/opt/gomi/bin ]; then
-    alias rm="/usr/local/bin/gomi -s"
 fi
 
 if [ -d ${HOMEBREW_PREFIX}/opt/gnu-which/bin ] ; then
