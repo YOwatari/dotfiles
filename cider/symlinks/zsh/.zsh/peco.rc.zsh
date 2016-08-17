@@ -4,7 +4,7 @@ function snippets() {
     zle clear-screen
 }
 zle -N snippets
-bindkey '^x^s' snippets
+bindkey '^S^S' snippets
 
 function history_command() {
     history | sort -r | sed 1d | sed -e "s/^[ *0-9]*  \(.*\)/\1/g" | \
@@ -17,7 +17,7 @@ function history_search() {
     zle clear-screen
 }
 zle -N history_search
-bindkey '^x^h' history_search
+bindkey '^H^H' history_search
 
 function snippets_register_history() {
     BUFFER=$(history_command)
@@ -25,7 +25,7 @@ function snippets_register_history() {
     zle clear-screen
 }
 zle -N snippets_register_history
-bindkey '^x^h^h' snippets_register_history
+bindkey '^H^H^H' snippets_register_history
 
 function cd_ghq() {
     local dir=$(ghq list --full-path | \
@@ -37,7 +37,7 @@ function cd_ghq() {
     zle clear-screen
 }
 zle -N cd_ghq
-bindkey '^x^x' cd_ghq
+bindkey '^X^X' cd_ghq
 
 function open_ghq() {
     local url=$(ghq list --full-path | \
@@ -51,12 +51,26 @@ function open_ghq() {
     zle clear-screen
 }
 zle -N open_ghq
-bindkey '^x^z' open_ghq
+bindkey '^X^Z' open_ghq
 
-function tree_vim() {
-  local SELECTED_FILE=$(tree --charset=o -f | peco | tr -d '\||`|-' | xargs echo)
-  BUFFER="vim $SELECTED_FILE"
+function tree_cd(){
+    local goto=$(tree --charset=o -f | peco | tr -d '\||`|-' | xargs echo)
+    if [ -n $goto ]; then
+        BUFFER="cd ${goto}"
+        zle accept-line
+    fi
+    zle clear-screen
+}
+zle -N tree_cd
+bindkey '^T^T' tree_cd
+
+function tree_vim(){
+  local file=$(tree --charset=o -f | peco | tr -d '\||`|-' | xargs echo)
+  if [ -n $file ]; then
+    BUFFER="vim ${file}"
+    zle accept-line
+  fi
   zle accept-line
 }
 zle -N tree_vim
-bindkey "^t" tree_vim
+bindkey "^V^V" tree_vim

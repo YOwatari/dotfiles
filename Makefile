@@ -11,7 +11,6 @@ dotfiles   := $(HOME)/src/github.com/YOwatari/dotfiles
 bundle.tap := /usr/local/Library/Taps/homebrew/homebrew-bundle
 
 zsh        := /usr/local/bin/zsh
-zplug      := /usr/local/opt/zplug
 
 cask.tap   := /usr/local/Library/Taps/caskroom/homebrew-cask
 iterm2     := /Applications/iTerm.app
@@ -101,11 +100,6 @@ $(bundle.tap): $(brew)
 
 $(zsh): $(brew)
 	$< install zsh
-	$(MAKE) $(zplug)
-
-$(zplug): $(brew)
-	-/bin/rm -rf $(HOME)/.zplug
-	$< install zplug
 
 $(cask.tap): $(brew)
 	$< tap caskroom/cask

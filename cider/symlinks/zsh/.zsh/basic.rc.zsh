@@ -1,3 +1,7 @@
+## disable stty
+stty stop undef
+stty start undef
+
 ## 補完
 autoload -U compinit
 compinit
@@ -14,6 +18,9 @@ zstyle ':completion:*:default' menu select=1
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 ## ヒストリ
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
 setopt hist_ignore_dups
 setopt extended_history
 setopt hist_verify
@@ -52,10 +59,16 @@ setopt pushd_ignore_dups
 ## 出力時8ビットを通す
 setopt print_eight_bit
 
+## set editor bind
+bindkey -d
+bindkey -e
+
+## prevent miss type logout
+setopt IGNOREEOF
+
+## ignore case in tab completion
+compctl -M 'm:{a-z}={A-Z}'
 
 ## alias
 alias sub='/usr/bin/open -a ~/Applications/Sublime\ Text\ 2.app'
 alias gping='/sbin/ping -c 5 8.8.8.8'
-
-## set editor bind
-bindkey -e

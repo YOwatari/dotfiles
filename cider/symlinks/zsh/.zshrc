@@ -1,4 +1,9 @@
-export ZPLUG_HOME=/usr/local/opt/zplug
+if [[ ! -d ~/.zplug ]]; then
+    git clone https://github.com/zplug/zplug ~/.zplug
+    source ~/.zplug/init.zsh && zplug update --self
+fi
+
+export ZPLUG_HOME=$HOME/.zplug
 source $ZPLUG_HOME/init.zsh
 
 zplug 'mrowa44/emojify', as:command
@@ -16,6 +21,7 @@ zplug 'lib/clipboard', from:oh-my-zsh, if:'[[ $OSTYPE == *darwin* ]]', nice:10
 zplug 'jeremyFreeAgent/oh-my-zsh-powerline-theme', use:'powerline.zsh-theme', nice:15
 zplug 'zsh-users/zsh-syntax-highlighting', nice:15
 zplug 'zsh-users/zsh-completions', nice:15
+zplug 'b4b4r07/gomi', use:'completions/zsh/_gomi', nice:15
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then

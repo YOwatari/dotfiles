@@ -32,7 +32,7 @@ if [ $? -eq 0 ]; then
 fi
 
 # gomi
-if [ -d ${HOME}/bin/gomi ]; then
+if [ -x ${HOME}/bin/gomi ]; then
     alias rm="${HOME}/bin/gomi -s"
 fi
 
