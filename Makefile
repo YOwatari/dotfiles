@@ -20,7 +20,8 @@ ricty      := /usr/local/opt/ricty
 
 .PHONY: brew.dump \
   cider.clean cider.link cider.restore \
-  mackup.restore
+  mackup.restore \
+  submodule.update
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
@@ -37,6 +38,7 @@ deploy:  ## deploy tools and applications
 deploy: cider.restore mackup.restore
 
 dump:    ## dump installed tools and applications
+dump: submodule.update
 	$(MAKE) brew.$@
 
 .PHONY: help \
@@ -64,6 +66,9 @@ cider.restore: $(cider) $(bundle.tap)
 mackup.restore: $(mackup)
 	$< restore
 
+submodule.update:
+	git submodule update
+	git submodule foreach git pull origin master
 
 .INTERMEDIATE: go$(GO_VERSION).darwin-amd64.pkg
 

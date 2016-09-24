@@ -54,4 +54,4 @@
 [mergetool]
 	keepBackup = false
 [commit]
-	template = /Users/y-ohwatari/.commit_template
+	template = ~/.commit_template

@@ -3,11 +3,11 @@ if [[ ! -d ~/.zplug ]]; then
     source ~/.zplug/init.zsh && zplug update --self
 fi
 
-export ZPLUG_HOME=$HOME/.zplug
-source $ZPLUG_HOME/init.zsh
-
 unset ZPLUG_SHALLOW
 export ZPLUG_CLONE_DEPTH=1
+
+export ZPLUG_HOME=$HOME/.zplug
+source $ZPLUG_HOME/init.zsh
 
 zplug 'mrowa44/emojify', as:command
 zplug 'b4b4r07/emoji-cli', if:'which jq'
