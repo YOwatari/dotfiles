@@ -67,5 +67,11 @@ if [ -d ${HOMEBREW_PREFIX}/opt/groovy/libexec ]; then
     export GROOVY_HOME=${HOMEBREW_PREFIX}/opt/groovy/libexec
 fi
 
+if [ -d ${HOMEBREW_PREFIX}/opt/curl/bin ]; then
+    if [ -d ${HOMEBREW_PREFIX}/etc/openssl ]; then
+        alias mycurl="${HOMEBREW_PREFIX}/opt/curl/bin/curl --cacert ${HOMEBREW_PREFIX}/etc/openssl/cert.pem --capath ${HOMEBREW_PREFIX}/etc/openssl/certs"
+    fi
+fi
+
 source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
 source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'

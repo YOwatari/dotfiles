@@ -86,12 +86,12 @@ $(go): go$(GO_VERSION).darwin-amd64.pkg
 	sudo installer -pkg $(CURDIR)/$< -target /
 	$@ version
 
-$(ghq): $(go)
-	GOPATH=$(HOME) $< get -u github.com/motemen/ghq/...
+$(ghq):
+	GOPATH=$(HOME) $(go) get -u github.com/motemen/ghq/...
 	git config --global ghq.root "~/src"
 
-$(gomi): $(go)
-	GOPATH=$(HOME) $< get -u github.com/b4b4r07/gomi/...
+$(gomi):
+	GOPATH=$(HOME) $(go) get -u github.com/b4b4r07/gomi/...
 
 go.tools: $(ghq) $(gomi)
 
@@ -119,6 +119,6 @@ $(ricty): $(ricty.tap)
 $(HOME)/Library/Fonts/Ricty%.ttf:
 	cp -f /usr/local/share/fonts/$(notdir $@) $@
 
-$(dotfiles): $(ghq)
+$(dotfiles): $(go) go.tools
 	$(ghq) get https://github.com/YOwatari/dotfiles.git
 	git --git-dir=$@/.git --work-tree=$@ submodule update --init --recursive

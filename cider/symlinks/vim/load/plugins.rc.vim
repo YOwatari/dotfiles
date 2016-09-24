@@ -83,6 +83,30 @@ let g:quickrun_config.markdown = {
      \ 'exec'      : '%c %o %a %s',
      \ }
 
+
+" syntastic
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_loc_list_height = 5
+let g:syntastic_quiet_messages  = { 'level': 'warnings' }
+
+let g:syntastic_aggregate_errors = 1
+
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+
+let g:syntastic_php_checkers   = ['phpcs']
+let g:syntastic_php_phpcs_args = '--standard=psr2'
+let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['php'] }
+
+let g:syntastic_puppet_checkers = ['puppet', 'puppetlint']
+let g:syntastic_puppet_puppetlint_args = '--no-80chars-check --no-autoloader_layout-check'
+let g:syntastic_check_map = { 'mode': 'active', 'active_filetypes': ['puppet'] }
+
+
 " neocomplete
 let g:neocomplete#data_directory = '~/.vim/cache/neocomplete'
 let g:acp_enableAtStartup = 0
@@ -111,29 +135,6 @@ let g:neocomplete#sources#omni#input_patterns.markdown = ''
 let g:neocomplete#sources#omni#input_patterns.gitcommit = ''
 
 
-" syntastic
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_loc_list_height = 5
-let g:syntastic_quiet_messages  = { 'level': 'warnings' }
-
-let g:syntastic_aggregate_errors = 1
-
-let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
-
-let g:syntastic_php_checkers   = ['phpcs']
-let g:syntastic_php_phpcs_args = '--standard=psr2'
-let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['php'] }
-
-let g:syntastic_puppet_checkers = ['puppet', 'puppetlint']
-let g:syntastic_puppet_puppetlint_args = '--no-80chars-check --no-autoloader_layout-check'
-let g:syntastic_check_map = { 'mode': 'active', 'active_filetypes': ['puppet'] }
-
-
 " markdown
 let g:vim_markdown_folding_disabled=1
 let g:vim_markdown_codeblock_syntax=0
@@ -153,7 +154,7 @@ let g:jsx_ext_required = 0
 let g:typescript_indent_disable = 1
 
 
-" go-vim
+" vim-go
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
@@ -170,3 +171,5 @@ au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>c <Plug>(go-coverage)
 au FileType go nmap <Leader>e <Plug>(go-rename)
+
+
