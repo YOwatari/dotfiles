@@ -38,8 +38,7 @@ deploy:  ## deploy tools and applications
 deploy: cider.restore mackup.restore
 
 dump:    ## dump installed tools and applications
-dump: submodule.update
-	$(MAKE) brew.$@
+dump: brew.dump submodule.update
 
 .PHONY: help \
   setup install \

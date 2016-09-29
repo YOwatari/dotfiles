@@ -15,6 +15,14 @@ repo  = 'rcmdnk/vim-markdown'
 on_ft = ['markdown']
 
 [[plugins]]
+repo  = 'kannokanno/previm'
+on_ft = ['markdown']
+
+[[plugins]]
+repo  = 'tyru/open-browser.vim'
+on_ft = ['markdown']
+
+[[plugins]]
 repo  = 'leafgarland/typescript-vim'
 on_ft = ['typescript']
 

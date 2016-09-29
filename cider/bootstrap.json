@@ -16,6 +16,7 @@
         "tmux/tpm": "~/.tmux/plugins/tpm",
         "vim/.*": "~",
         "vim/*.toml": "~/.vim/",
+        "vim/*.css": "~/.vim/",
         "vim/load": "~/.vim/load",
         "vimperator/.vimperatorrc.local": "~",
         "vimperator/colors": "~/.vimperator/colors",

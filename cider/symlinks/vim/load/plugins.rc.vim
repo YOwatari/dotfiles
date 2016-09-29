@@ -73,17 +73,6 @@ function! Multiple_cursors_after()
 endfunction
 
 
-" vim-quickrun
-let g:quickrun_config = {}
-let g:quickrun_config.markdown = {
-     \ 'outputter' : 'null',
-     \ 'command'   : 'open',
-     \ 'cmdopt'    : '-a',
-     \ 'args'      : 'Marked',
-     \ 'exec'      : '%c %o %a %s',
-     \ }
-
-
 " syntastic
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -106,6 +95,8 @@ let g:syntastic_puppet_checkers = ['puppet', 'puppetlint']
 let g:syntastic_puppet_puppetlint_args = '--no-80chars-check --no-autoloader_layout-check'
 let g:syntastic_check_map = { 'mode': 'active', 'active_filetypes': ['puppet'] }
 
+let g:syntastic_markdown_mdl_exec = 'mdl'
+let g:syntastic_markdown_mdl_args = '-r~MD013'
 
 " neocomplete
 let g:neocomplete#data_directory = '~/.vim/cache/neocomplete'
@@ -134,11 +125,18 @@ endif
 let g:neocomplete#sources#omni#input_patterns.markdown = ''
 let g:neocomplete#sources#omni#input_patterns.gitcommit = ''
 
+" previm
+let g:previm_enable_realtime = 1
+let g:previm_custom_css_path = '~/.vim/github.css'
+augroup Markdown
+  autocmd!
+  autocmd BufEnter *.md let s:updatetime_origin = &updatetime | let &updatetime = 100
+  autocmd BufLeave *.md let &updatetime = get(s:, 'updatetime_origin', &updatetime)
+augroup END
 
 " markdown
 let g:vim_markdown_folding_disabled=1
 let g:vim_markdown_codeblock_syntax=0
-
 
 " jsx
 let g:jsx_ext_required = 0
