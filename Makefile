@@ -97,7 +97,7 @@ $(ghq):
 $(gomi):
 	GOPATH=$(HOME) $(go) get -u github.com/b4b4r07/gomi/...
 
-go.tools: $(ghq) $(gomi)
+go.tools: $(go) $(ghq) $(gomi)
 
 $(bundle.tap): $(brew)
 	$< tap Homebrew/bundle
