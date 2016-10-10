@@ -134,6 +134,6 @@ $(HOME)/Library/Fonts/Ricty%.ttf:
 
 $(dotfiles): $(go) go.tools
 	$(ghq) get https://github.com/YOwatari/dotfiles.git
-	cd $@
+	pushd $@
 	git submodule update --init --recursive
-	cd -
+	popd
