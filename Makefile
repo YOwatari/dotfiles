@@ -1,12 +1,15 @@
 brew       := /usr/local/bin/brew
-cider      := /usr/local/bin/cider
-mackup     := /usr/local/bin/mackup
 
 go         := /usr/local/go/bin/go
 ghq        := $(HOME)/bin/ghq
 gomi       := $(HOME)/bin/gomi
 
 dotfiles   := $(HOME)/src/github.com/YOwatari/dotfiles
+
+venv       := $(dotfiles)/.venv
+virtualenv := /usr/local/bin/virtualenv
+cider      := $(venv)/bin/cider
+mackup     := $(venv)/bin/mackup
 
 bundle.tap := /usr/local/Library/Taps/homebrew/homebrew-bundle
 
@@ -32,7 +35,7 @@ setup: go.tools $(dotfiles)
 	-/bin/rm -rf /tmp/dotfiles
 
 install: ## install tools and applications
-install: $(cider) $(mackup) $(ricty) $(iterm2) $(zsh) cider.relink deploy
+install: $(venv) $(cider) $(mackup) $(ricty) $(iterm2) $(zsh) cider.relink deploy
 
 deploy:  ## deploy tools and applications
 deploy: cider.restore mackup.restore
@@ -77,9 +80,15 @@ $(brew):
 	ruby -e "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	$@ --version
 
+$(virtualenv):
+	sudo easy_install virtualenv
+
+$(venv): $(virtualenv)
+	$< --no-site-packages $@
+
 python.tools := $(cider) $(mackup)
-$(python.tools):
-	sudo /usr/bin/easy_install install -U $(notdir $@)
+$(python.tools): $(venv)
+	$</bin/pip install -U $(notdir $@)
 	$@ --version
 
 GO_VERSION=1.7.1
