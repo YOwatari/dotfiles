@@ -82,7 +82,7 @@ $(python.tools):
 	sudo /usr/bin/easy_install install -U $(notdir $@)
 	$@ --version
 
-GO_VERSION=1.7
+GO_VERSION=1.7.1
 go$(GO_VERSION).darwin-amd64.pkg:
 	curl -C - -O https://storage.googleapis.com/golang/$@
 
@@ -125,4 +125,6 @@ $(HOME)/Library/Fonts/Ricty%.ttf:
 
 $(dotfiles): $(go) go.tools
 	$(ghq) get https://github.com/YOwatari/dotfiles.git
-	git --git-dir=$@/.git --work-tree=$@ submodule update --init --recursive
+	pushd $@
+	git submodule update --init --recursive
+	popd
