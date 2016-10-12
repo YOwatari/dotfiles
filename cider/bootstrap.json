@@ -18,7 +18,7 @@
         "vim/*.toml": "~/.vim/",
         "vim/*.css": "~/.vim/",
         "vim/load": "~/.vim/load",
-        "vimperator/.vimperatorrc.local": "~",
+        "vimperator/.*": "~",
         "vimperator/colors": "~/.vimperator/colors",
         "zsh/.*": "~",
         "gomi/config.toml": "~/.gomi/config.yaml"

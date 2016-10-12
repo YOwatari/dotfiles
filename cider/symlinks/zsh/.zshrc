@@ -33,14 +33,15 @@ if ! zplug check --verbose; then
     fi
 fi
 
+# powerline
 POWERLINE_HIDE_HOST_NAME='true'
 POWERLINE_HIDE_GIT_PROMPT_STATUS='true'
 POWERLINE_SHOW_GIT_ON_RIGHT='true'
 POWERLINE_PATH='full'
+POWERLINE_RIGHT_A='exit-status'
 
 # Then, source plugins and add commands to $PATH
 zplug load --verbose
-
 
 export SHELL=$(which zsh)
 
