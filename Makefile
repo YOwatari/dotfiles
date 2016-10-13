@@ -126,14 +126,14 @@ $(ricty.tap): $(brew)
 
 $(ricty): $(ricty.tap)
 	$(brew) install ricty --powerline --vim-powerline
-	$(MAKE) $(shell find /usr/local/share/fonts/ -type f -name 'Ricty*.ttf' -exec basename {} \; | xargs -I{} echo "'$(HOME)/Library/Fonts/{}'")
+	$(MAKE) $(shell find /usr/local/opt/ricty/share/fonts/ -type f -name 'Ricty*.ttf' -exec basename {} \; | xargs -I{} echo "'$(HOME)/Library/Fonts/{}'")
 	fc-cache -v
 
 $(HOME)/Library/Fonts/Ricty%.ttf:
-	cp -f /usr/local/share/fonts/$(notdir $@) $@
+	cp -f '/usr/local/share/fonts/$(notdir $@)' '$@'
 
 $(dotfiles): $(go) go.tools
 	$(ghq) get https://github.com/YOwatari/dotfiles.git
-	cd $@
+	pushd $@
 	git submodule update --init --recursive
-	cd -
+	popd
