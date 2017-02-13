@@ -39,19 +39,17 @@ function cd_ghq() {
 zle -N cd_ghq
 bindkey '^X^X' cd_ghq
 
-function open_ghq() {
-    local url=$(ghq list --full-path | \
+function open_repo() {
+    local url=$(pwd | \
         sed -e 's/\/Users\/y-ohwatari\/src\//https:\/\//g' | \
-        sed -e 's/fluct\-gitlab\.dev\.fluct\.ec2:443/fluct-gitlab\.dev\.fluct\.ec2:8443/g' | \
-        peco --prompt "open repository:" --query "${LBUFFER}")
+        sed -e 's/fluct\-gitlab\.dev\.fluct\.ec2:443/fluct-gitlab\.dev\.fluct\.ec2:8443/g')
     if [ -n $url ]; then
         BUFFER=$(open $url)
         zle accept-line
     fi
-    zle clear-screen
 }
-zle -N open_ghq
-bindkey '^X^Z' open_ghq
+zle -N open_repo
+bindkey '^Z^Z' open_repo
 
 function tree_cd(){
     local goto=$(tree --charset=o -f | peco | tr -d '\||`|-' | xargs echo)
@@ -65,7 +63,8 @@ zle -N tree_cd
 bindkey '^T^T' tree_cd
 
 function tree_vim(){
-  local file=$(tree --charset=o -f | peco | tr -d '\||`|-' | xargs echo)
+  local file=$(tree --charset=o -f | peco | tr -d '\||`| ' | xargs echo)
+  file=$file[3,-1]
   if [ -n $file ]; then
     BUFFER="vim ${file}"
     zle accept-line

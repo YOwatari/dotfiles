@@ -103,3 +103,6 @@ set clipboard=unnamed
 
 " 全角対応
 " set ambiwidth=double
+
+" 0埋め文字の10進数対応
+set nf=""

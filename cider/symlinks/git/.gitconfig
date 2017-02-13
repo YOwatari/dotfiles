@@ -45,6 +45,8 @@
     pushInsteadOf = https://gist.github.com//
 [url "git://github.com/"]
     insteadOf = https://github.com/
+[url "ssh://git@fluct-gitlab.dev.fluct.ec2:443/"]
+    insteadOf = https://fluct-gitlab.dev.fluct.ec2:8443/
 [fetch]
     prune = true
 [pager]

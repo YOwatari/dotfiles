@@ -56,7 +56,7 @@ export LC_ALL=en_US.UTF-8
 
 source $HOME/.zsh/basic.rc.zsh
 source $HOME/.zsh/tools.rc.zsh
-source $HOME/.zsh/peco.rc.zsh
+source $HOME/.zsh/cmd.rc.zsh
 
 # added by travis gem
 [ -f /Users/y-ohwatari/.travis/travis.sh ] && source /Users/y-ohwatari/.travis/travis.sh

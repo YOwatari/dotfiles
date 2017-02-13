@@ -19,7 +19,7 @@ eval $(docker-machine env --swarm default)
 eval $(docker-machine env -u default)
 eval $(docker-machine env solo)
 eval $(docker-machine env -u solo)
-docker rmi $(docker images | awk '/^<none>/ { print  }')
+docker rmi $(docker images | awk '/<none>/ { print $3 }')
 docker rm $(docker ps -a -q)
 
 # restart shell
