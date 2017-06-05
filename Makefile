@@ -91,7 +91,7 @@ $(python.tools): $(venv)
 	$</bin/pip install -U $(notdir $@)
 	$@ --version
 
-GO_VERSION=1.7.1
+GO_VERSION=1.8
 go$(GO_VERSION).darwin-amd64.pkg:
 	curl -C - -O https://storage.googleapis.com/golang/$@
 

@@ -1,3 +1,9 @@
+# zmodload zsh/zprof && zprof
+
+if [[ $HOME/.zshrc -nt ~/.zshrc.zwc ]]; then
+    zcompile ~/.zshrc
+fi
+
 if [[ ! -d ~/.zplug ]]; then
     git clone https://github.com/zplug/zplug ~/.zplug
     source ~/.zplug/init.zsh && zplug update --self
@@ -8,21 +14,19 @@ source $ZPLUG_HOME/init.zsh
 
 zstyle :zplug:tag depth 1
 
-zplug 'mrowa44/emojify', as:command
-zplug 'b4b4r07/emoji-cli', if:'which jq'
-zplug 'git/git', as:command, use:'contrib/diff-highlight/diff-highlight'
+zplug 'git/git', as:command, use:contrib/diff-highlight/diff-highlight
+zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf
+zplug "junegunn/fzf", as:command, use:bin/fzf-tmux, if:'which tmux'
 
-zplug 'plugins/git', from:oh-my-zsh, if:'which git', nice:15
-zplug 'plugins/brew', from:oh-my-zsh, if:'which brew', nice:15
-zplug 'plugins/brew-cask', from:oh-my-zsh, if:'which brew', nice:15
-zplug 'plugins/tmux', from:oh-my-zsh, if:'which tmux', nice:15
-zplug 'plugins/vagrant', from:oh-my-zsh, if:'which vagrant', nice:15
-zplug 'plugins/osx', from:oh-my-zsh, if:'[[ $OSTYPE == *darwin* ]]', nice:15
-zplug 'lib/clipboard', from:oh-my-zsh, if:'[[ $OSTYPE == *darwin* ]]', nice:15
+zplug 'yous/lime'
+zplug 'zsh-users/zsh-completions'
+zplug 'plugins/git', from:oh-my-zsh, if:'which git'
+zplug 'plugins/tmux', from:oh-my-zsh, if:'which tmux'
+zplug 'plugins/brew', from:oh-my-zsh, if:'which brew'
+zplug 'plugins/brew-cask', from:oh-my-zsh, if:'which brew'
 
-zplug 'jeremyFreeAgent/oh-my-zsh-powerline-theme', use:'powerline.zsh-theme', nice:10
-zplug 'zsh-users/zsh-syntax-highlighting', nice:10
-zplug 'zsh-users/zsh-completions', nice:10
+# zsh-syntax-highlighting.zsh wraps ZLE widgets. It must be sourced after all custom widgets have been created (i.e., after all zle -N calls and after running compinit).
+zplug 'zsh-users/zsh-syntax-highlighting', defer:3
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -32,12 +36,11 @@ if ! zplug check --verbose; then
     fi
 fi
 
-# powerline
-POWERLINE_HIDE_HOST_NAME='true'
-POWERLINE_HIDE_GIT_PROMPT_STATUS='true'
-POWERLINE_SHOW_GIT_ON_RIGHT='true'
-POWERLINE_PATH='full'
-POWERLINE_RIGHT_A='exit-status'
+LIME_SHOW_HOSTNAME=1
+LIME_DIR_DISPLAY_COMPONENTS=3
+LIME_USER_COLOR=109
+LIME_DIR_COLOR=143
+LIME_GIT_COLOR=109
 
 # Then, source plugins and add commands to $PATH
 zplug load --verbose
@@ -58,5 +61,10 @@ source $HOME/.zsh/basic.rc.zsh
 source $HOME/.zsh/tools.rc.zsh
 source $HOME/.zsh/cmd.rc.zsh
 
-# added by travis gem
-[ -f /Users/y-ohwatari/.travis/travis.sh ] && source /Users/y-ohwatari/.travis/travis.sh
+# fzf
+source $HOME/.zplug/repos/junegunn/fzf/shell/key-bindings.zsh
+source $HOME/.zplug/repos/junegunn/fzf/shell/completion.zsh
+
+# if (which zprof >/dev/null 2>&1); then
+#     zprof
+# fi

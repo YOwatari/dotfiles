@@ -16,9 +16,9 @@
     ls = !git ls-files -t|perl -pe 's/\\/.*/\\//'|uniq -c
     ll = !git ls-files -cdmokt|perl -pe 's/\\/.*/\\//'|grep -v '/'
     la = ls-files -cdmokt
-    lg = !git log --stat --abbrev-commit --color | emojify | less -R
-    lgg = !git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative | emojify | less -R
-    lggg = !git log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative | emojify | less -R
+    lg = !git log --stat --abbrev-commit --color | less
+    lgg = !git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative | less
+    lggg = !git log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative | less
     noff = merge --no-ff
     delete-merged-branch = "!f() { git checkout $1; git branch --merged | egrep -v '\\*|master' | xargs git branch -d; };f"
     purge = "!f() { bfg --delete-files $@ $(git rev-parse --show-toplevel); };f"
@@ -45,8 +45,11 @@
     pushInsteadOf = https://gist.github.com//
 [url "git://github.com/"]
     insteadOf = https://github.com/
-[url "ssh://git@fluct-gitlab.dev.fluct.ec2:443/"]
-    insteadOf = https://fluct-gitlab.dev.fluct.ec2:8443/
+[url "git@git.hub.fluct.me:"]
+    pushInsteadOf = git://git.hub.fluct.me/
+    pushInsteadOf = httsp://git.hub.fluct.me/
+[url "git://git.hub.fluct.me/"]
+    insteadOf = https://git.hub.fluct.me/
 [fetch]
     prune = true
 [pager]

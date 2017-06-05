@@ -3,8 +3,8 @@ stty stop undef
 stty start undef
 
 ## 補完
-autoload -U compinit
-compinit
+# autoload -U compinit
+# compinit
 setopt list_types
 setopt auto_resume
 setopt auto_list
@@ -72,3 +72,11 @@ compctl -M 'm:{a-z}={A-Z}'
 ## alias
 alias sub='/usr/bin/open -a ~/Applications/Sublime\ Text\ 2.app'
 alias gping='/sbin/ping -c 5 8.8.8.8'
+alias g='git'
+
+## less configure
+export LESS='-i -R -S -W'
+export PAGER=less
+# if which lesspipe.sh >/dev/null; then
+#     export LESSOPEN='| /usr/bin/env lesspipe.sh %s 2>&-'
+# fi

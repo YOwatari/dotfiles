@@ -12,6 +12,7 @@ au BufNewFile,BufRead Dockerfile* setfiletype dockerfile
 au BufNewFile,BufRead keepalived.conf* setfiletype keepalived
 au BufNewFile,BufRead *.toml setfiletype toml
 au BufNewfile,BufRead *cron/files/* setfiletype crontab
+au BufNewfile,BufRead Jenkinsfile setfiletype groovy
 
 " 行番号とシンタックスハイライト
 set number
@@ -27,6 +28,7 @@ au BufNewFile,BufRead *.go set noexpandtab tabstop=4 shiftwidth=4
 au BufNewFile,BufRead *.css,*.scss set tabstop=2 shiftwidth=2 softtabstop=2
 au BufNewFile,BufRead *.pp set tabstop=2 shiftwidth=2 softtabstop=2
 au BufNewFile,BufRead *.json set tabstop=2 shiftwidth=2 softtabstop=2
+au BufNewFile,BufRead *.yml,*.yaml set tabstop=2 shiftwidth=2 softtabstop=2
 au BufNewFile,BufRead *.rb,*.rake,Rakefile set tabstop=2 shiftwidth=2 softtabstop=2
 au BufNewFile,BufRead Makefile,*.mk set noexpandtab tabstop=2 shiftwidth=2
 
@@ -106,3 +108,14 @@ set clipboard=unnamed
 
 " 0埋め文字の10進数対応
 set nf=""
+
+" jq で整形する
+command! -nargs=? Jq call s:Jq(<f-args>)
+function! s:Jq(...)
+    if 0 == a:0
+        let l:arg = "."
+    else
+        let l:arg = a:1
+    endif
+    execute "%! jq \"" . l:arg . "\""
+endfunction

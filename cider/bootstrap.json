@@ -1,7 +1,6 @@
 {
     "after-scripts": [
         "brew cask cleanup",
-        "brew cask update",
         "brew cleanup",
         "brew update",
         "brew bundle --global --verbose"

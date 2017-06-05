@@ -19,7 +19,7 @@ fi
 # anyenv
 if [ -d ${HOME}/.anyenv ] ; then
     path=(~/.anyenv/bin(N-/) ${path})
-    eval "$(anyenv init -)"
+    eval "$(anyenv init - --no-rehash)"
 fi
 
 export GOPATH=$HOME
@@ -46,10 +46,10 @@ fi
 
 if [ -d ${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin ] ; then
     path=(${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin(N-/) ${path})
-    alias ls="/usr/local/bin/gls -AFh --color"
-    alias ll="/usr/local/bin/gls -slAFh --color"
-    alias la="/usr/local/bin/gls -aAFh --color"
-    alias lla="/usr/local/bin/gls -slaAFh --color"
+    alias ls="/usr/local/bin/gls -AFh --color=auto"
+    alias ll="/usr/local/bin/gls -slAFh --color=auto"
+    alias la="/usr/local/bin/gls -aAFh --color=auto"
+    alias lla="/usr/local/bin/gls -slaAFh --color=auto"
 fi
 
 if [ -d ${HOMEBREW_PREFIX}/opt/colordiff/bin ] ; then
