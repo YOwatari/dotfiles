@@ -1,9 +1,9 @@
 [submodule "cider/symlinks/tmux/tpm"]
 	path = cider/symlinks/tmux/tpm
-	url = git@github.com:tmux-plugins/tpm.git
+	url = https://github.com/tmux-plugins/tpm.git
 [submodule "cider/symlinks/anyenv"]
 	path = cider/symlinks/anyenv
-	url = git@github.com:riywo/anyenv.git
+	url = https://github.com/riywo/anyenv.git
 [submodule "cider/symlinks/vimperator/colors"]
 	path = cider/symlinks/vimperator/colors
 	url = https://github.com/vimpr/vimperator-colors.git
