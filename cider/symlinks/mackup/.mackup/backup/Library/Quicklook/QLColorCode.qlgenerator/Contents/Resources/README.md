@@ -7,8 +7,11 @@
 This is a Quick Look plugin that renders source code with syntax highlighting,
 using the [Highlight library](http://www.andre-simon.de).
 
-To install the plugin, just drag it to `/Library/QuickLook`.
+To install the plugin, just drag it to `~/Library/QuickLook`.
 You may need to create that folder if it doesn't already exist.
+
+Alternative, if you use [Homebrew-Cask](https://github.com/caskroom/homebrew-cask),
+install with `brew cask install qlcolorcode`.
 
 ## Settings
 If you want to configure `QLColorCode`, there are several `defaults` commands that could be useful:

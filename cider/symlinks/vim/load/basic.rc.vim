@@ -119,3 +119,6 @@ function! s:Jq(...)
     endif
     execute "%! jq \"" . l:arg . "\""
 endfunction
+
+" delete ANSI color codes
+command! DeleteAnsi %s/<1b>\[[0-9;]*m//g$

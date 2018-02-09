@@ -170,4 +170,5 @@ au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>c <Plug>(go-coverage)
 au FileType go nmap <Leader>e <Plug>(go-rename)
 
-
+" quickrun
+let g:quickrun_config={'*': {'split': ''}}

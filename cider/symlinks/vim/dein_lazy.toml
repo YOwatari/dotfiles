@@ -3,7 +3,7 @@ repo  = 'fatih/vim-go'
 on_ft = ['go']
 
 [[plugins]]
-repo  = 'PDV--phpDocumentor-for-Vim'
+repo  = 'vim-scripts/PDV--phpDocumentor-for-Vim'
 on_ft = ['php']
 
 [[plugins]]

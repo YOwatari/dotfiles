@@ -72,7 +72,7 @@ compctl -M 'm:{a-z}={A-Z}'
 ## alias
 alias sub='/usr/bin/open -a ~/Applications/Sublime\ Text\ 2.app'
 alias gping='/sbin/ping -c 5 8.8.8.8'
-alias g='git'
+alias gg='/usr/local/bin/git checkout master && /usr/local/bin/git pull && /usr/local/bin/git checkout -'
 
 ## less configure
 export LESS='-i -R -S -W'

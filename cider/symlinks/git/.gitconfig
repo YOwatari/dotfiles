@@ -57,6 +57,10 @@
     show = diff-highlight | less
     diff = diff-highlight | less
 [mergetool]
-	keepBackup = false
+    keepBackup = false
 [commit]
-	template = ~/.commit_template
+    template = ~/.commit_template
+[diff]
+    tool = vimdiff
+[difftool]
+    prompt = false
