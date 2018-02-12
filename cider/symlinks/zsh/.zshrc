@@ -17,7 +17,7 @@ zstyle :zplug:tag depth 1
 zplug 'git/git', as:command, use:contrib/diff-highlight/diff-highlight, hook-build:"make -C contrib/diff-highlight"
 zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf
 zplug "junegunn/fzf", as:command, use:bin/fzf-tmux, if:'which tmux'
-zplug "LazoCoder/Pokemon-Terminal", as:command, use:main.py, rename-to:pokemon
+zplug "LazoCoder/Pokemon-Terminal", as:command, use:pokemon
 
 zplug 'yous/lime'
 zplug 'zsh-users/zsh-completions'
@@ -71,4 +71,4 @@ source $HOME/.zplug/repos/junegunn/fzf/shell/completion.zsh
 # fi
 
 # pokemon
-pokemon random
+pokemon; clear
