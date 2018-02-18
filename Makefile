@@ -18,9 +18,6 @@ zsh        := /usr/local/bin/zsh
 cask.tap   := /usr/local/Library/Taps/caskroom/homebrew-cask
 iterm2     := /Applications/iTerm.app
 
-ricty.tap  := /usr/local/Library/Taps/sanemat/homebrew-font
-ricty      := /usr/local/opt/ricty
-
 .PHONY: brew.dump \
   cider.clean cider.link cider.restore \
   mackup.restore \
@@ -35,7 +32,7 @@ setup: go.tools $(dotfiles)
 	-/bin/rm -rf /tmp/dotfiles
 
 install: ## install tools and applications
-install: $(venv) $(cider) $(mackup) $(ricty) $(iterm2) $(zsh) cider.relink deploy
+install: $(venv) $(cider) $(mackup) $(iterm2) $(zsh) cider.relink deploy
 
 deploy:  ## deploy tools and applications
 deploy: cider.restore mackup.restore
@@ -120,17 +117,6 @@ $(cask.tap): $(brew)
 $(iterm2): $(cask.tap) $(ghq)
 	$(brew) cask install --force iterm2
 	$(ghq) get mbadolato/iTerm2-Color-Schemes
-
-$(ricty.tap): $(brew)
-	$< tap sanemat/font
-
-$(ricty): $(ricty.tap)
-	$(brew) install ricty --powerline --vim-powerline
-	$(MAKE) $(shell find /usr/local/opt/ricty/share/fonts/ -type f -name 'Ricty*.ttf' -exec basename {} \; | xargs -I{} echo "'$(HOME)/Library/Fonts/{}'")
-	fc-cache -v
-
-$(HOME)/Library/Fonts/Ricty%.ttf:
-	cp -f '/usr/local/share/fonts/$(notdir $@)' '$@'
 
 $(dotfiles): $(go) go.tools
 	$(ghq) get https://github.com/YOwatari/dotfiles.git
