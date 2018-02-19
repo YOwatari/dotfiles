@@ -8,7 +8,7 @@
 	# Show which segment fails and its exit code.
 	export TMUX_POWERLINE_DEBUG_MODE_ENABLED="true"
 	# Use patched font symbols.
-	export TMUX_POWERLINE_PATCHED_FONT_IN_USE="true"
+	export TMUX_POWERLINE_PATCHED_FONT_IN_USE="false"
 	# The theme to use.
 	export TMUX_POWERLINE_THEME="default"
 	# Overlay directory to look for themes. There you can put your own themes outside the repo. Fallback will still be the "themes" directory in the repo.
@@ -141,18 +141,18 @@
 
 # TMUX_POWERLINE_LEFT_STATUS_SEGMENTS {
     TMUX_POWERLINE_LEFT_STATUS_SEGMENTS=(
-        "tmux_session_info 148 234" \
-        "hostname 33 0" \
-        "lan_ip 24 255 ${TMUX_POWERLINE_SEPARATOR_RIGHT_THIN}" \
-        "wan_ip 24 255" \
+        "tmux_session_info 148 234 |" \
+        "hostname 33 0 |" \
+        "lan_ip 24 255 |" \
+        "wan_ip 24 255 |" \
     )
 # }
 
 # TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS {
     TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS=(
-        "date_day 235 136" \
-        "date 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \
-        "time 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \
-        "uptime 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \
+        "date_day 235 136 |" \
+        "date 235 136 |" \
+        "time 235 136 |" \
+        "uptime 235 136 |" \
     )
 # }
