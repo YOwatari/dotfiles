@@ -72,3 +72,6 @@ source $HOME/.zplug/repos/junegunn/fzf/shell/completion.zsh
 
 # pokemon
 pokemon; clear
+
+# credentials
+source $HOME/.credentials.zsh
