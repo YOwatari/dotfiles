@@ -2,9 +2,24 @@ if [[ $HOME/.zshrc -nt ~/.zshrc.zwc ]]; then
     zcompile ~/.zshrc
 fi
 
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
+
+typeset -U path cdpath fpath manpath
+typeset -xT SUDO_PATH sudo_path
+typeset -U sudo_path
+sudo_path=({/usr/local,/usr,}/sbin(N-/))
+path=(/usr/local{/bin,/sbin}(N-/) $path)
+fpath=(~/.zsh/completions(N-/) $fpath)
+
+export TERM=xterm-256color
+export GPG_TTY=$(tty)
+export EDITOR=vim
+
 
 export ZPLUG_HOME=$HOME/.zplug
 if [[ ! -d $ZPLUG_HOME ]]; then
@@ -52,21 +67,10 @@ if zplug check 'yous/lime'; then
     LIME_GIT_COLOR=109
 fi
 
-PROMPT='$(kube_ps1)'' '$PROMPT'
+if zplug check 'jonmosco/kube-ps1'; then
+    PROMPT='$(kube_ps1)'' '$PROMPT'
 \$ '
-
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_CACHE_HOME="$HOME/.cache"
-
-typeset -U path cdpath fpath manpath
-typeset -xT SUDO_PATH sudo_path
-typeset -U sudo_path
-sudo_path=({/usr/local,/usr,}/sbin(N-/))
-path=(/usr/local{/bin,/sbin}(N-/) $path)
-fpath=(~/.zsh/completions(N-/) $fpath)
-
-export GPG_TTY=$(tty)
-export EDITOR=vim
+fi
 
 source $HOME/.zsh/base.rc.zsh
 source $HOME/.zsh/cmd.rc.zsh

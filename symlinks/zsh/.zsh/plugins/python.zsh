@@ -1,3 +1,5 @@
+export PYENV_ROOT=$PYENV_HOME
+
 path=($HOME/.local/bin(N-/) $path)
 
 _zsh_pipx_install() {

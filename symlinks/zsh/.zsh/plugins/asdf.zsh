@@ -4,7 +4,7 @@ path=($ASDF_DIR/bin $path)
 
 _zsh_asdf_install() {
   echo "Installing asdf..."
-  git clone https://github.com/asdf-vm/asdf.git $ASDF_DIR --branch v0.8.1
+  git clone https://github.com/asdf-vm/asdf.git "$ASDF_DIR" --branch v0.8.1
 }
 
 _zsh_asdf_load() {
