@@ -18,7 +18,7 @@ set formatoptions=q
 set iminsert=0
 set imsearch=-1
 set tags=./tags;
-set showtabline=2
+set showtabline=1
 set signcolumn=yes
 set maxmempattern=4096
 

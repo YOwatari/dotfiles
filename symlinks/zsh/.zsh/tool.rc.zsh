@@ -2,8 +2,9 @@ if command -v nvim &>/dev/null; then
   alias vim=nvim
 fi
 
-fpath=(/usr/share/google-cloud-sdk/completion.zsh.inc $fpath)
-fpath=(/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc $fpath)
+if [[ -d $HOME/.asdf/installs/gcloud ]]; then
+  source "$(find "$HOME/.asdf/installs/gcloud" -type f -name 'completion.zsh.inc')"
+fi
 
 if command -v aws-vault &>/dev/null; then
   if command -v pass &>/dev/null; then
