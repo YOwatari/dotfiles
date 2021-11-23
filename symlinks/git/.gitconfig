@@ -1,0 +1,79 @@
+[init]
+    defaultBranch = main
+[core]
+    pager = delta
+    excludesfile = ~/.gitignore
+    editor = vim
+    ignorecase = false
+    quotepath = false
+    safecrlf = true
+    autocrlf = false
+    fiilemode = false
+[color]
+    ui = auto
+    interactive = auto
+[alias]
+    sw = switch
+    re = restore
+    st = status
+    co = checkout
+    ci = commit
+    df = diff
+    br = branch
+    ch = cherry-pick
+    sb = submodule
+    ls = !git ls-files -t|perl -pe 's/\\/.*/\\//'|uniq -c
+    ll = !git ls-files -cdmokt|perl -pe 's/\\/.*/\\//'|grep -v '/'
+    la = ls-files -cdmokt
+    lg = !git log --stat --abbrev-commit --color | less
+    lgg = !git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative | less
+    lggg = !git log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative | less
+    noff = merge --no-ff
+[pager]
+    branch = false
+    tag = false
+[interactive]
+    diffFilter = delta --color-only
+[pull]
+    rebase = false
+[push]
+    default = current
+[commit]
+    gpgsign = true
+[merge]
+    tool = vimdiff
+[mergetool]
+    keepBackup = false
+[fetch]
+    prune = true
+[diff]
+    tool = vimdiff
+[difftool]
+    prompt = false
+[user]
+    name = Yuta OHWATARI
+    email = yuta_ohwatari@voyagegroup.com
+[filter "lfs"]
+    clean = git lfs clean %f
+    smudge = git lfs smudge %f
+    required = true
+[url "git@github.com:"]
+    pushInsteadOf = git://github.com/
+    pushInsteadOf = https://github.com/
+[url "git@gist.github.com:"]
+    pushInsteadOf = https://gist.github.com/
+[url "git://github.com/"]
+    insteadOf = https://github.com/
+[url "git@git.hub.fluct.me:"]
+    pushInsteadOf = git://git.hub.fluct.me/
+    pushInsteadOf = https://git.hub.fluct.me/
+[ghq]
+    root = ~/src
+[delta]
+    features = line-numbers
+    whitespace-error-style = 22 reverse
+    plus-style = "syntax #012800"
+    minus-style = "syntax #340001"
+    syntax-theme = Monokai Extended
+    navigate = true
+    paging = always

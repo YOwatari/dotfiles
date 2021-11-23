@@ -1,0 +1,181 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'haya14busa/dein-command.vim'
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+if = 'has("unix") || has("mac")'
+build = 'make'
+
+[[plugins]]
+repo = 'Shougo/vimshell'
+
+[[plugins]]
+repo = 'Shougo/denite.nvim'
+
+[[plugins]]
+repo = 'Shougo/neomru.vim'
+on_source = ['denite']
+
+[[plugins]]
+repo = 'Shougo/neoyank.vim'
+on_source = ['denite']
+
+[[plugins]]
+repo = 'ctrlpvim/ctrlp.vim'
+hook_add = '''
+    let g:ctrp_clear_cache_on_exit = 0
+    let g:ctrlp_show_hidden = 1
+    let g:ctrlp_custom_ignore = {
+        \ 'dir':  '\v[\/](\.git|\.hg|\.svn|node_modules)$',
+        \ 'file': '\v\.(exe|so|dll|swp|zip|jpg|png|gif)$',
+        \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
+        \ }
+'''
+
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+
+[[plugins]]
+repo = 'flazz/vim-colorschemes'
+
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+hook_add = '''
+    let g:NERDTreeShowHidden = 1
+    let g:NERDTreeQuitOnOpen = 1
+    let g:NERDTreeWinSize = 40
+    nnoremap <silent><C-e> :NERDTreeToggle<CR>
+    nnoremap <silent><C-f> :NERDTreeFind<CR>
+'''
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+
+[[plugins]]
+repo = 'delphinus/vim-auto-cursorline'
+
+[[plugins]]
+repo = 'Lokaltog/vim-easymotion'
+hook_add = '''
+    nmap e  <Plug>(easymotion-s2)
+    nmap g/ <Plug>(easymotion-sn)
+    xmap e  <Plug>(easymotion-s2)
+    xmap g/ <Plug>(easymotion-sn)
+    omap z  <Plug>(easymotion-s2)
+    omap g/ <Plug>(easymotion-tn)
+'''
+
+[[plugins]]
+repo = 'terryma/vim-multiple-cursors'
+hook_add = '''
+    function! Multiple_cursors_before()
+        let b:deoplete_disable_auto_complete = 1
+    endfunction
+
+    function! Multiple_cursors_after()
+        let b:deoplete_disable_auto_complete = 0
+    endfunction
+'''
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'tpope/vim-obsession'
+
+[[plugins]]
+repo = 'simeji/winresizer'
+hook_add = '''
+    let g:winresizer_gui_enable = 1
+    let g:winresizer_start_key = '<C-k><C-e>'
+'''
+
+[[plugins]]
+repo = 'tyru/caw.vim'
+hook_add = '''
+    nmap <C-c> <Nop>
+    vmap <C-c> <Nop>
+    nmap <C-k><C-c> <Plug>(caw:hatpos:comment)
+    vmap <C-k><C-c> <Plug>(caw:hatpos:comment)
+    nmap <C-k><C-u> <Plug>(caw:hatpos:uncomment)
+    vmap <C-k><C-u> <Plug>(caw:hatpos:uncomment)
+'''
+
+[[plugins]]
+repo = 'bronson/vim-trailing-whitespace'
+
+[[plugins]]
+repo = 'editorconfig/editorconfig-vim'
+
+#
+# git
+#
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'tpope/vim-rhubarb'
+on_source = ['vim-fugitive']
+
+[[plugins]]
+repo    = 'shumphrey/fugitive-gitlab.vim'
+on_source = ['vim-fugitive']
+hook_add = '''
+    let g:fugitive_gitlab_domains = ['https://git.hub.fluct.me']
+'''
+
+[[plugins]]
+repo = 'cohama/agit.vim'
+
+#
+# 補完
+#
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+
+[[plugins]]
+repo = 'mattn/vim-lsp-settings'
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+hook_add = '''
+    let g:deoplete#enable_at_startup = 1
+'''
+
+[[plugins]]
+repo = 'roxma/nvim-yarp'
+if = '!has("nvim")'
+on_source = ['deoplete']
+
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+if = '!has("nvim")'
+on_source = ['deoplete']
+
+[[plugins]]
+repo = 'Shougo/neco-vim'
+depends = ['deoplete']
+
+[[plugins]]
+repo = 'Shougo/neco-syntax'
+depends = ['deoplete']
+
+[[plugins]]
+repo = 'ujihisa/neco-look'
+depends = ['deoplete']
+
+[[plugins]]
+repo = 'lighttiger2505/deoplete-vim-lsp'
+depends = ['deoplete', 'vim-lsp']
