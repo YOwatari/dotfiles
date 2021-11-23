@@ -1,43 +1,43 @@
 #!/bin/sh
 
-DOTPATH=/tmp/dotfiles
-HOSTNAME=YOwatari-Mac
+set -eu
+
+SCRIPT_DIR="$(mktemp -d)"
+trap 'rm -rf $SCRIPT_DIR' EXIT
 
 download() {
-	echo "dotfiles intializing..."
-	rm -rf "$DOTPATH"
+  echo "downloading dotfiles..."
+  rm -rf "$DOTPATH"
 
-	if [ `which curl` ] || [ `which wget` ]; then
-		tarball="https://github.com/YOwatari/dotfiles/archive/master.tar.gz"
+  if [ -x "$(which curl)" ] || [ -x "$(which wget)" ]; then
+    tarball="https://github.com/YOwatari/dotfiles/archive/main.tar.gz"
 
-		if [ `which curl` ]; then
-			curl -L "$tarball"
-		elif [ `which wget` ]; then
-			wget -O - "$tarball"
-		fi | tar xv -
+    if [ -x "$(which curl)" ]; then
+      curl -L "$tarball"
+    elif [ -x "$(which wget)" ]; then
+      wget -O - "$tarball"
+    fi | tar xv -
 
-		mv -f dotfiles-master "$DOTPATH"
-	else
-		echo "curl or wget required"
-		exit 1
-	fi
-
-	cd $DOTPATH
-	if [ $? -ne 0 ]; then
-		echo "not found: $DOTPATH"
-		exit 1
-	fi
+    mv -f dotfiles-main "$SCRIPT_DIR"
+  else
+    echo "curl or wget is required"
+    exit 2
+  fi
 }
 
-initialize() {
+init() {
     download
-    sudo scutil --set ComputerName "$HOSTNAME"
-    sudo scutil --set LocalHostName "$HOSTNAME"
 }
 
-install() {
-	make -C "$DOTPATH" setup
+run() {
+  if [ ! -x "$(which make)" ]; then
+    echo "make is required"
+    exit 2
+  fi
+  make -C "$SCRIPT_DIR" init
 }
 
-initialize
-install
+init
+run
+
+echo "done"

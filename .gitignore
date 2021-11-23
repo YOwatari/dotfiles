@@ -1,2 +1,6 @@
-.venv/
-*.pkg
+symlinks/zsh/.zsh/completions
+!symlinks/zsh/.zsh/completions/.gitkeep
+symlinks/nvim/.config/nvim/dein/
+
+vendor/
+!vendor/.gitkeep

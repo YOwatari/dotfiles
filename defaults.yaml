@@ -1,0 +1,42 @@
+NSGlobalDomain:
+  AppleKeyboardUIMode: 3
+  NSTableViewDefaultSizeMode: 3
+  ApplePressAndHoldEnabled: false
+  NSScrollAnimationEnabled: false
+  AppleShowAllExtensions: true
+  NSAppSleepDisabled: true
+  NSNavPanelExpandedStateForSaveMode: true
+  PMPrintingExpandedStateForPrint: true
+
+com.apple.desktopservices:
+  DSDontWriteNetworkStores: true
+  DSDontWriteUSBStores: true
+
+com.apple.finder:
+  FXArrangeGroupViewBy: Name
+  FXDefaultSearchScope: SCcf
+  FXPreferredGroupBy: None
+  FXPreferredViewStyle: Nlsv
+  FXEnableExtensionChangeWarning: false
+  NewWindowTarget: PfHm
+  NewWindowTargetPath: "file://${HOME}"
+  QuitMenuItem: true
+  ShowHardDrivesOnDesktop: false
+  ShowPathbar: true
+  ShowStatusBar: true
+  WarnOnEmptyTrash: true
+  EmptyTrashSecurely: true
+
+com.apple.NetworkBrowser:
+  ShowThisComputer: true
+
+com.apple.screencapture:
+  disable-shadow: true
+  type: png
+
+com.apple.Terminal:
+  SecureKeyboardEntry: true
+
+com.apple.SoftwareUpdate:
+  AutomaticCheckEnabled: true
+  AutomaticDownload: true

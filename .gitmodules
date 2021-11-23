@@ -1,9 +1,6 @@
-[submodule "cider/symlinks/tmux/tpm"]
-	path = cider/symlinks/tmux/tpm
-	url = https://github.com/tmux-plugins/tpm.git
-[submodule "cider/symlinks/anyenv"]
-	path = cider/symlinks/anyenv
-	url = https://github.com/riywo/anyenv.git
-[submodule "cider/symlinks/iTerm2-Color-Schemes"]
-	path = cider/symlinks/iTerm2-Color-Schemes
-	url = https://github.com/mbadolato/iTerm2-Color-Schemes
+[submodule "zero"]
+	path = zero
+	url = https://github.com/zero-sh/zero.sh
+[submodule "gitignore"]
+	path = gitignore
+	url = https://github.com/github/gitignore.git
