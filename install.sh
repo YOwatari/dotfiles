@@ -17,7 +17,7 @@ download() {
       wget -O - "$tarball"
     fi | tar xv -
 
-    mv -f dotfiles-main "$SCRIPT_DIR"
+    mv -f dotfiles-main/* dotfiles-main.[^\.]* "$SCRIPT_DIR/"
   else
     echo "curl or wget is required"
     exit 2
