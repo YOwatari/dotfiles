@@ -7,7 +7,6 @@ trap 'rm -rf $SCRIPT_DIR' EXIT
 
 download() {
   echo "downloading dotfiles..."
-  rm -rf "$DOTPATH"
 
   if [ -x "$(which curl)" ] || [ -x "$(which wget)" ]; then
     tarball="https://github.com/YOwatari/dotfiles/archive/main.tar.gz"
