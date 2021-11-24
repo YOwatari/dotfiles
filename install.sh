@@ -32,7 +32,7 @@ run() {
     echo "make is required"
     exit 2
   fi
-  make -C "$SCRIPT_DIR" init
+  make -C "$SCRIPT_DIR/dotfiles-main" init
 }
 
 init
