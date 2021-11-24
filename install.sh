@@ -15,9 +15,8 @@ download() {
       curl -L "$tarball"
     elif [ -x "$(which wget)" ]; then
       wget -O - "$tarball"
-    fi | tar xv -
+    fi | tar x - -C "$SCRIPT_DIR"
 
-    mv -f dotfiles-main/* dotfiles-main.[^\.]* "$SCRIPT_DIR/"
   else
     echo "curl or wget is required"
     exit 2
