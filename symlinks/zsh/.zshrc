@@ -81,5 +81,5 @@ if [[ "$(uname -r)" =~ "microsoft" ]]; then
 fi
 
 if [[ "$(uname)" = "Darwin" ]]; then
-    source $HOME/.zsh/macos.rs.zsh
+    source $HOME/.zsh/macos.rc.zsh
 fi
