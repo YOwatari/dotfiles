@@ -10,7 +10,7 @@ awscli aws-vault gcloud bat buildpack delta duf fzf ghq jq jsonnet mkcert protoc
 
 ifeq ($(OS),darwin)
 aws-session-manager-plugin: vendor/session-manager-plugin.pkg
-	sudo installer -pkg $< -target
+	sudo installer -pkg $< -target /Volumes/Macintosh\ HD
 	ln -s /usr/local/sessionmanagerplugin/bin/session-manager-plugin /usr/local/bin/session-manager-plugin
 endif
 ifeq ($(OS),linux)
