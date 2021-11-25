@@ -14,6 +14,6 @@ if ! command -v direnv &>/dev/null; then
   _zsh_direnv_install
 fi
 
-if ! command -v direnv &>/dev/null; then
+if command -v direnv &>/dev/null; then
   _zsh_direnv_load
 fi

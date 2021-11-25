@@ -1,6 +1,10 @@
 export PYENV_ROOT=$PYENV_HOME
 
-path=($HOME/.local/bin(N-/) $path)
+path=(
+  $HOME/Library/Python/2.7/bin
+  $HOME/Library/Python/3.9/bin
+  $path
+)
 
 _zsh_pipx_install() {
   echo "Installing pipx..."
