@@ -19,7 +19,7 @@ cask "zoom"
 cask "iterm2"
 cask "visual-studio-code-insiders"
 cask "jetbrains-toolbox"
-cask "docker-edge"
+cask "docker"
 
 cask "apache-directory-studio"
 cask "the-unarchiver"
