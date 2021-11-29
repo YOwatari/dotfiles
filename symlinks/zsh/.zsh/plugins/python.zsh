@@ -17,7 +17,11 @@ _zsh_pipx_load() {
 
 _zsh_poetry_install() {
   echo "Installing poetry..."
-  curl -sSL https://install.python-poetry.org | python3 -
+  if command -v brew &>/dev/null; then
+    curl -sSL https://install.python-poetry.org | $(brew --prefix)/bin/python3 -
+  else  
+    curl -sSL https://install.python-poetry.org | python3 -
+  fi
   poetry completions zsh > "$HOME/.zsh/completions/_poetry"
 }
 
