@@ -1,3 +1,5 @@
+eval $(/opt/homebrew/bin/brew shellenv)
+
 export HOMEBREW_PREFIX=$(brew --prefix)
 export HOMEBREW_NO_ANALYTICS=1
 

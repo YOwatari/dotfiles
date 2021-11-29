@@ -1,5 +1,6 @@
 OS := $(shell uname | tr "[:upper:]" "[:lower:]")
 
+# bat delta protoc by brew for Apple Silicon
 all: awscli aws-vault gcloud bat buildpack delta duf fzf ghq jq jsonnet mkcert protoc ripgrep sops terraform yq
 all: aws-session-manager-plugin
 
@@ -11,7 +12,7 @@ awscli aws-vault gcloud bat buildpack delta duf fzf ghq jq jsonnet mkcert protoc
 ifeq ($(OS),darwin)
 aws-session-manager-plugin: vendor/session-manager-plugin.pkg
 	sudo installer -pkg $< -target /Volumes/Macintosh\ HD
-	ln -s /usr/local/sessionmanagerplugin/bin/session-manager-plugin /usr/local/bin/session-manager-plugin
+	sudo ln -s /usr/local/sessionmanagerplugin/bin/session-manager-plugin /usr/local/bin/session-manager-plugin
 endif
 ifeq ($(OS),linux)
 aws-session-manager-plugin: vendor/session-manager-plugin.deb

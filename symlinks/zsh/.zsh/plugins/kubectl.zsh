@@ -37,5 +37,5 @@ if command -v kubectl &>/dev/null; then
 
   _zsh_krew_plugins "ctx"
   _zsh_krew_plugins "ns"
-  _zsh_krew_plugins "tail"
+  #_zsh_krew_plugins "tail"
 fi
