@@ -15,7 +15,7 @@ download() {
       curl -L "$tarball"
     elif [ -x "$(which wget)" ]; then
       wget -O - "$tarball"
-    fi | tar x - -C "$SCRIPT_DIR"
+    fi | tar zxf - -C "$SCRIPT_DIR"
 
   else
     echo "curl or wget is required"
