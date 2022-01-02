@@ -43,7 +43,7 @@ zplug "paulirish/git-open", as:command, use:git-open
 zplug "tsenart/vegeta", as:command, from:gh-r, rename-to:vegeta
 
 zplug "mattberther/zsh-pyenv"
-zplug "~/.zsh/plugins", from:local
+zplug "~/.zsh/plugins", from:local, defer:2
 
 zplug "zsh-users/zsh-syntax-highlighting", defer:3
 
@@ -72,6 +72,10 @@ if zplug check 'jonmosco/kube-ps1'; then
 \$ '
 fi
 
+source $HOME/.zsh/base.rc.zsh
+source $HOME/.zsh/cmd.rc.zsh
+source $HOME/.zsh/tool.rc.zsh
+
 if [[ "$(uname -r)" =~ "microsoft" ]]; then
     source $HOME/.zsh/wsl.rc.zsh
 fi
@@ -79,8 +83,4 @@ fi
 if [[ "$(uname)" = "Darwin" ]]; then
     source $HOME/.zsh/macos.rc.zsh
 fi
-
-source $HOME/.zsh/base.rc.zsh
-source $HOME/.zsh/cmd.rc.zsh
-source $HOME/.zsh/tool.rc.zsh
 
