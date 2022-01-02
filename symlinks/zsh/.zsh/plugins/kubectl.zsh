@@ -22,7 +22,7 @@ _zsh_krew_install() {
 }
 
 _zsh_krew_plugins() {
-  if ! command! -v "kubectl-$1" &>/dev/null; then
+  if ! command -v "kubectl-$1" &>/dev/null; then
     kubectl krew install "$1"
   fi
 }

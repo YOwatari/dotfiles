@@ -9,7 +9,7 @@ _zsh_gimme_install() {
   chmod +x "$GOPATH/bin/gimme"
 }
 
-_zsh_go_load() {
+_zsh_gimme_load() {
   eval "$(gimme stable)"
 }
 
@@ -19,5 +19,5 @@ if ! command -v gimme &>/dev/null; then
 fi
 
 if command -v gimme &>/dev/null; then
-  _zsh_go_load
+  _zsh_gimme_load
 fi
