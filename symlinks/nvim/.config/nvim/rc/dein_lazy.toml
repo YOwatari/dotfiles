@@ -102,9 +102,10 @@ on_ft = ['markdown', 'mkd', 'md']
 repo = 'vim-scripts/rest.vim'
 on_ft = ['rest']
 
-#
-# toml
-#
+
 [[plugins]]
-repo = 'cespare/vim-toml'
-on_ft = ['toml']
+repo = 'mattn/vim-goimports'
+hook_add = '''
+  let g:goimports_simplify = 1
+'''
+on_ft = ['go']

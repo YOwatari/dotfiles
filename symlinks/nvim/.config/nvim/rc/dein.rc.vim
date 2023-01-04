@@ -1,4 +1,3 @@
-filetype off
 let s:dein_dir = g:vim_home . '/dein'
 
 " インストール
@@ -23,10 +22,10 @@ if dein#load_state(s:dein_dir)
     call dein#save_state()
 endif
 
+filetype plugin indent on
+syntax enable
+
 if dein#check_install()
     call dein#install()
 endif
 
-filetype plugin indent on
-syntax enable
-syntax on

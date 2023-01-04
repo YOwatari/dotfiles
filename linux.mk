@@ -18,7 +18,8 @@ install: deps
 	  neovim python3-neovim \
 	  default-libmysqlclient-dev default-mysql-client \
 	  pass \
-	  kubectl
+	  kubectl \
+	  git-extras \
 	if [[ "$$(uname -r)" =~ microsoft ]]; then \
 	  sudo apt-get install -y ubuntu-wsl keychain; \
 	fi

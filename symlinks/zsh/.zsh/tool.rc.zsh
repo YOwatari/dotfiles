@@ -17,3 +17,9 @@ fi
 if command -v pack &>/dev/null; then
   source "$(pack completion --shell zsh)"
 fi
+
+if command -v afx &>/dev/null; then
+    source <(afx init)
+    source <(afx completion zsh)
+fi
+

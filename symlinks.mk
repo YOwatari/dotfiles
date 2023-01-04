@@ -24,6 +24,9 @@ symlinks/git/.gitignore: gitignore/Global/macOS.gitignore gitignore/Global/Linux
 ~/.config/nvim: symlinks/nvim/.config/nvim ~/.config
 	ln -sf $(abspath $<) $@
 
+~/.config/afx: symlinks/afx ~/.config
+	ln -sf $(abspath $<) $@
+
 ~/.zshrc: symlinks/zsh/.zshrc
 	ln -sf $(abspath $<) $@
 
