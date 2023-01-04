@@ -72,6 +72,7 @@ brew "gnu-sed"
 brew "gnu-tar"
 brew "gnutls"
 brew "gnu-which"
+brew "git-extras"
 
 brew "mas"
 mas "Magnet", id: 441258766

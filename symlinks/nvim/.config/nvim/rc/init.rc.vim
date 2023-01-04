@@ -22,8 +22,10 @@ set showtabline=1
 set signcolumn=yes
 set maxmempattern=4096
 
-filetype indent on
-filetype plugin on
+set mouse-=a
+
+" filetype indent on
+" filetype plugin on
 
 " 補完
 set wildmenu

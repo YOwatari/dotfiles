@@ -30,6 +30,8 @@ let g:lsp_diagnostics_echo_cursor = 1
 let g:lsp_diagnostics_echo_delay = 0
 let g:lsp_diagnostics_float_cursor = 1
 let g:lsp_diagnostics_float_delay = 0
+let g:python_host_prog = expand('~/.pyenv/versions/neovim-2/bin/python')
+let g:python3_host_prog = expand('~/.pyenv/versions/neovim-3/bin/python')
 
 nnoremap [lsp] <Nop>
 nmap <C-k><C-l> [lsp]

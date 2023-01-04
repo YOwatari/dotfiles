@@ -26,3 +26,4 @@ call s:load('deoplete.rc.vim')
 call s:load('denite.rc.vim')
 call s:load('lightline.rc.vim')
 call s:load('color.rc.vim')
+

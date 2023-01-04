@@ -1,0 +1,68 @@
+github:
+- name: yous/lime
+  owner: yous
+  repo: lime
+  plugin:
+    env: # https://github.com/yous/lime#options
+      LIME_SHOW_HOSTNAME: 1
+      LIME_DIR_DISPLAY_COMPONENTS: 3
+      LIME_USER_COLOR: 109
+      LIME_DIR_COLOR: 143
+      LIME_GIT_COLOR: 109
+    sources:
+    - "*.plugin.zsh"
+- name: zsh-users/zsh-completions
+  owner: zsh-users
+  repo: zsh-completions
+  plugin:
+    sources:
+    - "*.plugin.zsh"
+- name: ohmyzsh/oh-my-zsh
+  owner: ohmyzsh
+  repo: oh-my-zsh
+  plugin:
+    sources:
+    - "plugins/git/*.plugin.zsh"
+- name: tj/git-extras
+  owner: tj
+  repo: git-extras
+  plugin:
+    sources:
+    - "etc/*.zsh"
+- name: pyenv/pyenv
+  owner: pyenv
+  repo: pyenv
+  plugin:
+    sources:
+    - "completions/*.zsh"
+- name: phpenv/phpenv
+  owner: phpenv
+  repo: phpenv
+  plugin:
+    sources:
+    - "completions/*.zsh"
+- name: zsh-users/zsh-syntax-highlighting
+  owner: zsh-users
+  repo: zsh-syntax-highlighting
+  plugin:
+    sources:
+    - "zsh-syntax-highlighting.zsh"
+- name: mattberther/zsh-pyenv
+  owner: mattberther
+  repo: zsh-pyenv
+  plugin:
+    sources:
+    - "*.plugin.zsh"
+- name: jonmosco/kube-ps1
+  owner: jonmosco
+  repo: kube-ps1
+  plugin:
+    sources:
+    - "kube-ps1.sh"
+local:
+- name: zsh
+  directory: ~/.zsh/plugins
+  plugin:
+    sources:
+    - "*.zsh"
+

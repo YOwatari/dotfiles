@@ -29,6 +29,7 @@
     lgg = !git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative | less
     lggg = !git log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative | less
     noff = merge --no-ff
+    com = !git switch $(git symbolic-ref refs/remotes/origin/HEAD | cut -d '/' -f4)
 [pager]
     branch = false
     tag = false
@@ -52,18 +53,17 @@
     prompt = false
 [user]
     name = Yuta OHWATARI
-    email = yuta_ohwatari@voyagegroup.com
+    email = y.ohwatari@cartahd.com
+	signingkey = 638D6FA2077404B7E8F6BE0336F6DFDEEE1FE348
 [filter "lfs"]
     clean = git lfs clean %f
     smudge = git lfs smudge %f
     required = true
 [url "git@github.com:"]
-    pushInsteadOf = git://github.com/
-    pushInsteadOf = https://github.com/
+    insteadOf = git://github.com/
+    insteadOf = https://github.com/
 [url "git@gist.github.com:"]
     pushInsteadOf = https://gist.github.com/
-[url "git://github.com/"]
-    insteadOf = https://github.com/
 [url "git@git.hub.fluct.me:"]
     pushInsteadOf = git://git.hub.fluct.me/
     pushInsteadOf = https://git.hub.fluct.me/

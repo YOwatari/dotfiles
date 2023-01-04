@@ -1,10 +1,10 @@
 OS := $(shell uname | tr "[:upper:]" "[:lower:]")
 
 # bat delta protoc by brew for Apple Silicon
-all: awscli aws-vault gcloud bat buildpack delta duf fzf ghq jq jsonnet mkcert protoc ripgrep sops terraform yq
+all: awscli aws-sam-cli aws-vault gcloud bat buildpack delta duf fd ghq jq jsonnet mkcert protoc ripgrep sops terraform yq
 all: aws-session-manager-plugin
 
-awscli aws-vault gcloud bat buildpack delta duf fzf ghq jq jsonnet mkcert protoc ripgrep sops terraform yq:
+awscli aws-sam-cli aws-vault gcloud bat buildpack delta duf fd ghq jq jsonnet mkcert protoc ripgrep sops terraform yq:
 	asdf plugin add $@
 	asdf install $@ latest
 	asdf global $@ latest
