@@ -1,4 +1,4 @@
-all: ~/.asdfrc ~/.gitconfig ~/.gitignore ~/.vimrc ~/.vim ~/.config/nvim ~/.zsh ~/.zshrc
+all: ~/.asdfrc ~/.gitconfig ~/.gitignore ~/.vimrc ~/.vim ~/.config/nvim ~/.config/afx ~/.zsh ~/.zshrc
 
 ~/.asdfrc: symlinks/asdf/.asdfrc
 	ln -sf $(abspath $<) $@
@@ -25,7 +25,7 @@ symlinks/git/.gitignore: gitignore/Global/macOS.gitignore gitignore/Global/Linux
 	ln -sf $(abspath $<) $@
 
 ~/.config/afx: symlinks/afx ~/.config
-	ln -sf $(abspath $<) $@
+	ln -sfnv $(abspath $<) $@
 
 ~/.zshrc: symlinks/zsh/.zshrc
 	ln -sf $(abspath $<) $@

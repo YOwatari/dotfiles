@@ -1,31 +1,36 @@
-let s:dein_dir = g:vim_home . '/dein'
+let s:dein_base = expand('~/.config/dein')
+let s:dein_src  = s:dein_base . '/repos/github.com/Shougo/dein.vim'
 
-" インストール
+if &compatible
+    set nocompatible
+endif
+
+" install
 if &runtimepath !~# '/dein.vim'
-    let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
-    if !isdirectory(s:dein_repo_dir)
-        execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+    if !isdirectory(s:dein_src)
+        execute '!git clone https://github.com/Shougo/dein.vim' s:dein_src
     endif
-    execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 endif
 
-if dein#load_state(s:dein_dir)
-    call dein#begin(s:dein_dir)
+execute 'set runtimepath+=' . s:dein_src
 
-    let s:toml = g:rc_dir . '/dein.toml'
-    let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
 
-    call dein#load_toml(s:toml, {'lazy': 0})
-    call dein#load_toml(s:lazy_toml, {'lazy': 1})
+call dein#begin(s:dein_base)
+let s:toml      = g:rc_dir . '/dein.toml'
+let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
+call dein#load_toml(s:toml,      {'lazy': 0})
+call dein#load_toml(s:lazy_toml, {'lazy': 1})
+call dein#end()
 
-    call dein#end()
-    call dein#save_state()
+if has('filetype')
+    filetype plugin indent on
 endif
 
-filetype plugin indent on
-syntax enable
-
-if dein#check_install()
-    call dein#install()
+if has('syntax')
+    syntax on
 endif
+
+" if dein#check_install()
+"     call dein#install()
+" endif
 

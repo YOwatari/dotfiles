@@ -1,4 +1,49 @@
 [[plugins]]
+repo = 'Shougo/ddc.vim'
+on_event = 'InsertEnter'
+depends = ['denops.vim']
+hook_source = '''
+  call ddc#custom#patch_global('sources', ['nvim-lsp', 'around'])
+  call ddc#custom#patch_global('sourceOptions', {
+        \ '_': {
+        \   'matchers': ['matcher_head'],
+        \   'sorters': ['sorter_rank']},
+        \ 'around': {
+        \   'mark': 'around' },
+        \ 'nvim-lsp': {
+        \   'mark': 'lsp',
+        \   'forceCompletionPattern': '\.\w*|:\w*|->\w*' },
+        \ })
+  call ddc#enable()
+'''
+
+[[plugins]]
+repo = 'Shougo/ddc-ui-native'
+on_source = 'ddc.vim'
+hook_source = '''
+  call ddc#custom#patch_global('ui', 'native')
+'''
+
+[[plugins]]
+repo = 'Shougo/ddc-nvim-lsp'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-around'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-matcher_head'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-sorter_rank'
+on_source = 'ddc.vim'
+
+#
+# general
+#
+[[plugins]]
 repo = 'prettier/vim-prettier'
 build = 'npm install'
 on_ft = ['javascript', 'typescript', 'vue', 'css', 'scss', 'json', 'markdown']

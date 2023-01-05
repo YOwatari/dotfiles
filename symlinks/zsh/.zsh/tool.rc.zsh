@@ -2,6 +2,11 @@ if command -v nvim &>/dev/null; then
   alias vim=nvim
 fi
 
+if command -v afx &>/dev/null; then
+  source <(afx init)
+  source <(afx completion zsh)
+fi
+
 if [[ -d $HOME/.asdf/installs/gcloud ]]; then
   source "$(find "$HOME/.asdf/installs/gcloud" -type f -name 'completion.zsh.inc')"
 fi
@@ -18,8 +23,8 @@ if command -v pack &>/dev/null; then
   source "$(pack completion --shell zsh)"
 fi
 
-if command -v afx &>/dev/null; then
-    source <(afx init)
-    source <(afx completion zsh)
+if [[ -d $HOME/.deno ]]; then
+  export DENO_INSTALL="$HOME/.deno"
+  path=(~/.deno/bin(N-/) $path)
 fi
 

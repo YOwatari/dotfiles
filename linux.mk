@@ -5,7 +5,7 @@ ARCH   := $(if $(filter $(shell uname -m), arm64 aarch64),arm64,amd64)
 
 all: install
 
-install: deps
+install: deps neovim
 	sudo apt-get install -y \
 	  locales locales-all \
 	  build-essential \
@@ -15,7 +15,6 @@ install: deps
 	  openssh-client \
 	  openssl \
 	  python python3 python3-pip python3-venv \
-	  neovim python3-neovim \
 	  default-libmysqlclient-dev default-mysql-client \
 	  pass \
 	  kubectl \
@@ -23,6 +22,11 @@ install: deps
 	if [[ "$$(uname -r)" =~ microsoft ]]; then \
 	  sudo apt-get install -y ubuntu-wsl keychain; \
 	fi
+
+neovim:
+	curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+	chmod +x nvim.appimage
+	sudo mv nvim.appimage /usr/local/bin/nvim
 
 deps:
 ifneq ($(DISTRO),Ubuntu)

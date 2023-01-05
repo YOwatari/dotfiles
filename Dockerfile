@@ -10,5 +10,5 @@ RUN set -x \
     && echo "dot ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 USER dot
-COPY --chown=dot:dot ./ ./home/dot/.dotfiles
-WORKDIR /home/dot/.dotfiles
+COPY --chown=dot:dot ./ ./home/dot/dotfiles
+WORKDIR /home/dot/dotfiles

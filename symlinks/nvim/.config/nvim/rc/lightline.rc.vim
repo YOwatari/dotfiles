@@ -19,8 +19,8 @@ let g:lightline = {
       \ },
       \ 'component_function': {
       \   'absolutepath': 'LightLineAbsolutePath',
-      \   'fugitive': 'LightlineFugitive',
-      \   'readonly': 'LightlineReadonly',
+      \   'fugitive': 'LightLineFugitive',
+      \   'readonly': 'LightLineReadonly',
       \ },
       \ }
 
@@ -35,15 +35,15 @@ function! LightLineAbsolutePath()
   endif
 endfunction
 
-function! LightlineFugitive()
-  let branch = fugitive#head()
+function! LightLineFugitive()
+  let branch = FugitiveHead()
   return branch !=# '' ? "\u2b60 ".branch : ''
 endfunction
 
-function! LightlineReadonly()
+function! LightLineReadonly()
   return &readonly ? "\u2b64" : ''
 endfunction
 
-function! LightlineTabInfo()
+function! LightLineTabInfo()
   return lightline#tabs()
 endfunction

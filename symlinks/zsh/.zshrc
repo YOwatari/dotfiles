@@ -25,10 +25,6 @@ source $HOME/.zsh/base.rc.zsh
 source $HOME/.zsh/cmd.rc.zsh
 source $HOME/.zsh/tool.rc.zsh
 
-source $HOME/.zsh/base.rc.zsh
-source $HOME/.zsh/cmd.rc.zsh
-source $HOME/.zsh/tool.rc.zsh
-
 if [[ "$(uname -r)" =~ "microsoft" ]]; then
     source $HOME/.zsh/wsl.rc.zsh
 fi
@@ -37,6 +33,7 @@ if [[ "$(uname)" = "Darwin" ]]; then
     source $HOME/.zsh/macos.rc.zsh
 fi
 
-PROMPT='$(kube_ps1)'' '$PROMPT'
+#PROMPT='$(kube_ps1)'' '$PROMPT'
+PROMPT=$PROMPT'
 \$ '
 
