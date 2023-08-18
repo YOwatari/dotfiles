@@ -1,16 +1,7 @@
 all: ~/.asdfrc ~/.gitconfig ~/.gitignore ~/.vimrc ~/.vim ~/.config/nvim ~/.config/afx ~/.zsh ~/.zshrc
 
-~/.asdfrc: symlinks/asdf/.asdfrc
-	ln -sf $(abspath $<) $@
-
-~/.gitconfig: symlinks/git/.gitconfig
-	ln -sf $(abspath $<) $@
-
-symlinks/git/.gitignore: gitignore/Global/macOS.gitignore gitignore/Global/Linux.gitignore gitignore/Global/Windows.gitignore gitignore/Global/Vim.gitignore gitignore/Global/JetBrains.gitignore gitignore/Global/VisualStudioCode.gitignore gitignore/Global/Xcode.gitignore
+.gitignore: gitignore/Global/macOS.gitignore gitignore/Global/Linux.gitignore gitignore/Global/Windows.gitignore gitignore/Global/Vim.gitignore gitignore/Global/JetBrains.gitignore gitignore/Global/VisualStudioCode.gitignore gitignore/Global/Xcode.gitignore
 	cat $^ > $@
-
-~/.gitignore: symlinks/git/.gitignore
-	ln -sf $(abspath $<) $@
 
 ~/.vimrc: symlinks/nvim/.vimrc
 	ln -sf $(abspath $<) $@

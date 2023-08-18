@@ -4,3 +4,6 @@
 [submodule "gitignore"]
 	path = gitignore
 	url = https://github.com/github/gitignore.git
+[submodule "symlinks/gitignore"]
+	path = symlinks/gitignore
+	url = https://github.com/github/gitignore.git
