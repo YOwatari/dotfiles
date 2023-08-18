@@ -3,12 +3,6 @@ all: ~/.asdfrc ~/.gitconfig ~/.gitignore ~/.vimrc ~/.vim ~/.config/nvim ~/.confi
 .gitignore: gitignore/Global/macOS.gitignore gitignore/Global/Linux.gitignore gitignore/Global/Windows.gitignore gitignore/Global/Vim.gitignore gitignore/Global/JetBrains.gitignore gitignore/Global/VisualStudioCode.gitignore gitignore/Global/Xcode.gitignore
 	cat $^ > $@
 
-~/.vimrc: symlinks/nvim/.vimrc
-	ln -sf $(abspath $<) $@
-
-~/.vim: symlinks/nvim/.vim
-	ln -sf $(abspath $<) $@
-
 ~/.config:
 	mkdir -p $@
 
