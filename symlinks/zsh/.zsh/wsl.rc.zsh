@@ -10,5 +10,5 @@ source $HOME/.keychain/$HOST-sh
 export BROWSER=wslview
 
 alias open=wslview
-alias pbcopy=/mnt/c/Windows/system32/clip.exe
+alias -g pbcopy='iconv -t sjis | /mnt/c/Windows/system32/clip.exe'
 

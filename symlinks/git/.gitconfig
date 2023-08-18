@@ -3,7 +3,7 @@
 [core]
     pager = delta
     excludesfile = ~/.gitignore
-    editor = vim
+    editor = nvim
     ignorecase = false
     quotepath = false
     safecrlf = true
@@ -48,6 +48,7 @@
 [fetch]
     prune = true
 [diff]
+    colorMoved = default
     tool = vimdiff
 [difftool]
     prompt = false
@@ -56,9 +57,10 @@
     email = y.ohwatari@cartahd.com
 	signingkey = 638D6FA2077404B7E8F6BE0336F6DFDEEE1FE348
 [filter "lfs"]
-    clean = git lfs clean %f
-    smudge = git lfs smudge %f
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
     required = true
+	process = git-lfs filter-process
 [url "git@github.com:"]
     insteadOf = git://github.com/
     insteadOf = https://github.com/
@@ -77,3 +79,9 @@
     syntax-theme = Monokai Extended
     navigate = true
     paging = always
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential

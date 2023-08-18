@@ -29,12 +29,6 @@ github:
   plugin:
     sources:
     - "etc/*.zsh"
-- name: pyenv/pyenv
-  owner: pyenv
-  repo: pyenv
-  plugin:
-    sources:
-    - "completions/*.zsh"
 - name: phpenv/phpenv
   owner: phpenv
   repo: phpenv

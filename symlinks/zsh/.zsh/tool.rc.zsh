@@ -8,7 +8,7 @@ if command -v afx &>/dev/null; then
 fi
 
 if [[ -d $HOME/.asdf/installs/gcloud ]]; then
-  source "$(find "$HOME/.asdf/installs/gcloud" -type f -name 'completion.zsh.inc')"
+  source "$(find "$HOME/.asdf/installs/gcloud" -type f -name 'completion.zsh.inc' | head -n1)"
 fi
 
 if command -v aws-vault &>/dev/null; then
@@ -26,5 +26,9 @@ fi
 if [[ -d $HOME/.deno ]]; then
   export DENO_INSTALL="$HOME/.deno"
   path=(~/.deno/bin(N-/) $path)
+fi
+
+if [[ -d $HOME/.rye ]]; then
+  path=(~/.rye/shims(N-/) $path)
 fi
 
