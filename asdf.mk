@@ -1,10 +1,11 @@
 OS := $(shell uname | tr "[:upper:]" "[:lower:]")
 
-# bat delta protoc by brew for Apple Silicon
-all: awscli aws-sam-cli aws-vault gcloud bat buildpack delta duf fd ghq jq jsonnet mkcert protoc ripgrep sops terraform yq
-all: aws-session-manager-plugin
+PACKAGES := awscli aws-sam-cli aws-vault gcloud bat buildpack delta deno duf fd ghq jq jsonnet mkcert protoc ripgrep rye terraform yq
 
-awscli aws-sam-cli aws-vault gcloud bat buildpack delta duf fd ghq jq jsonnet mkcert protoc ripgrep sops terraform yq:
+# bat delta protoc by brew for Apple Silicon
+all: $(PACKAGES) aws-session-manager-plugin
+
+$(PACKAGES):
 	asdf plugin add $@
 	asdf install $@ latest
 	asdf global $@ latest
@@ -24,3 +25,4 @@ vendor/session-manager-plugin.deb:
 
 vendor/session-manager-plugin.pkg:
 	curl -sSL -o $@ "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/mac/session-manager-plugin.pkg"
+
