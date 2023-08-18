@@ -5,7 +5,7 @@ path=($GOPATH/bin $path)
 _zsh_gimme_install() {
   echo "Installing gimme..."
   mkdir -p "$GOPATH/bin"
-  curl -sL -o "$GOPATH/bin/gimme" https://raw.githubusercontent.com/travis-ci/gimme/master/gimme
+  curl -sL -o "$GOPATH/bin/gimme" https://raw.githubusercontent.com/YOwatari/gimme/master/gimme
   chmod +x "$GOPATH/bin/gimme"
 }
 

@@ -41,12 +41,6 @@ github:
   plugin:
     sources:
     - "zsh-syntax-highlighting.zsh"
-- name: mattberther/zsh-pyenv
-  owner: mattberther
-  repo: zsh-pyenv
-  plugin:
-    sources:
-    - "*.plugin.zsh"
 - name: jonmosco/kube-ps1
   owner: jonmosco
   repo: kube-ps1
