@@ -16,8 +16,11 @@ endif
 	@echo "2. make asdf"
 	@echo "3. launch vim"
 
-asdf symlinks:
+asdf:
 	$(MAKE) -f $@.mk
+
+symlinks:
+	$(MAKE) -C $@ install
 
 #
 # dev
@@ -36,3 +39,4 @@ init: $(DOTFILES)
 
 $(DOTFILES):
 	git clone --recursive https://github.com/YOwatari/dotfiles.git $@
+
