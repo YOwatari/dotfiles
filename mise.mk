@@ -1,6 +1,6 @@
 OS := $(shell uname | tr "[:upper:]" "[:lower:]")
 
-PACKAGES := awscli aws-sam-cli aws-vault gcloud bat buildpack bun delta deno duf editorconfig-checker fd fzf ghq github-cli go gomigrate jq jsonnet mkcert node protoc racket ripgrep rust rye sqlite terraform yq
+PACKAGES := awscli aws-sam-cli aws-vault gcloud bat buildpack bun delta deno duf editorconfig-checker fd fzf ghq github-cli go gomigrate jq jsonnet mkcert node php protoc racket ripgrep ruby rust rye sqlite terraform yq
 
 # bat delta protoc by brew for Apple Silicon
 all: $(PACKAGES) aws-session-manager-plugin
