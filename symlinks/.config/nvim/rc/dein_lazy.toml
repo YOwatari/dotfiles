@@ -154,3 +154,15 @@ hook_add = '''
   let g:goimports_simplify = 1
 '''
 on_ft = ['go']
+
+#
+# SICP
+#
+[[plugins]]
+repo = 'olical/conjure'
+on_ft = ['racket']
+
+[[plugins]]
+repo = 'wlangstroth/vim-racket'
+on_ft = ['racket']
+
