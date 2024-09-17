@@ -1,0 +1,45 @@
+[tools]
+awscli = "latest"
+aws-sam-cli = "latest"
+aws-vault = "latest"
+gcloud = "latest"
+bat = "latest"
+buildpack = "latest"
+bun = "latest"
+delta = "latest"
+deno = "latest"
+duf = "latest"
+fd = "latest"
+ghq = "latest"
+go = "latest"
+jq = "latest"
+jsonnet = "latest"
+mkcert = "latest"
+protoc = "latest"
+racket = "latest"
+ripgrep = "latest"
+ruby = "latest"
+rye = "latest"
+sqlite = "latest"
+terraform = "latest"
+yq = "latest"
+rust = "latest"
+node = "lts"
+php = "8.1"
+
+[settings]
+legacy_version_file = true
+legacy_version_file_disable_tools = ["python"]
+
+plugin_autoupdate_last_check_duration = "1 week"
+
+verbose = false
+asdf_compat = false
+http_timeout = 30
+jobs = 4
+raw = false
+yes = false
+
+[env]
+
+MISE_FETCH_REMOTE_VERSIONS_TIMEOUT = "120 sec"
