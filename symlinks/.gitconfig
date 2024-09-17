@@ -56,11 +56,6 @@
     name = Yuta OHWATARI
     email = y.ohwatari@cartahd.com
 	signingkey = 638D6FA2077404B7E8F6BE0336F6DFDEEE1FE348
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-    required = true
-	process = git-lfs filter-process
 [url "git@github.com:"]
     insteadOf = git://github.com/
     insteadOf = https://github.com/

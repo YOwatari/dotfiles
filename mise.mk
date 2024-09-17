@@ -1,14 +1,25 @@
 OS := $(shell uname | tr "[:upper:]" "[:lower:]")
 
-PACKAGES := awscli aws-sam-cli aws-vault gcloud bat buildpack delta deno duf fd ghq jq jsonnet mkcert protoc ripgrep rye terraform yq
+PACKAGES := awscli aws-sam-cli aws-vault gcloud bat buildpack bun delta deno duf editorconfig-checker fd fzf ghq github-cli go gomigrate jq jsonnet mkcert node php protoc racket ripgrep ruby rust rye sqlite terraform yq
 
 # bat delta protoc by brew for Apple Silicon
 all: $(PACKAGES) aws-session-manager-plugin
 
 $(PACKAGES):
-	asdf plugin add $@
-	asdf install $@ latest
-	asdf global $@ latest
+	mise use --global -y $@@latest
+
+ruby:
+	mise use --global -y $@@2.3.8
+
+php:
+	mise install $@@8.0
+	mise install $@@8.1
+	mise install $@@8.2
+	mise use --global -y $@@8.1
+
+node:
+	mise use --global -y $@@lts
+
 
 ifeq ($(OS),darwin)
 aws-session-manager-plugin: vendor/session-manager-plugin.pkg
