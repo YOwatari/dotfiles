@@ -13,10 +13,10 @@ ifeq ($(OS),linux)
 endif
 	$(MAKE) symlinks
 	@echo "1. launch zsh"
-	@echo "2. make asdf"
+	@echo "2. make mise"
 	@echo "3. launch vim"
 
-asdf:
+mise:
 	$(MAKE) -f $@.mk
 
 symlinks:
