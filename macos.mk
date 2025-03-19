@@ -1,7 +1,4 @@
-all: setup apply-defaults bundle
-
-apply-symlinks:
-	zero $@ --verbose
+all: bundle apply-defaults
 
 bundle:
 	brew bundle
