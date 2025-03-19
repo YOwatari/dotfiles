@@ -32,3 +32,6 @@ if [[ -d $HOME/.rye ]]; then
   path=(~/.rye/shims(N-/) $path)
 fi
 
+if [[ -d $HOME/.codeium/windsurf/bin ]]; then
+  path=(~/.codeium/windsurf/bin(N-/) $path)
+fi
