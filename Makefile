@@ -2,7 +2,7 @@ DOTFILES := $(HOME)/.dotfiles
 
 OS := $(shell uname | tr "[:upper:]" "[:lower:]")
 
-.PHONY: all asdf symlinks docker dev init
+.PHONY: all mise chezmoi docker dev init
 
 all:
 ifeq ($(OS),darwin)
@@ -11,16 +11,19 @@ endif
 ifeq ($(OS),linux)
 	$(MAKE) -f linux.mk
 endif
-	$(MAKE) symlinks
 	@echo "1. launch zsh"
 	@echo "2. make mise"
-	@echo "3. launch vim"
+	@echo "3. make chezmoi"
+	@echo "4. launch vim"
 
 mise:
 	$(MAKE) -f $@.mk
 
-symlinks:
-	$(MAKE) -C $@ install
+chezmoi:
+	chezmoi update
+
+dot_gitignore: gitignore/Global/macOS.gitignore gitignore/Global/Linux.gitignore gitignore/Global/Windows.gitignore gitignore/Global/Vim.gitignore gitignore/Global/VisualStudioCode.gitignore gitignore/Global/Xcode.gitignore
+	@cat $^ > $@
 
 #
 # dev
