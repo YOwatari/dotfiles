@@ -33,16 +33,3 @@ github:
     link:
     - from: "*vegeta*"
       to: vegeta
-- name: editorconfig-checker/editorconfig-checker
-  owner: editorconfig-checker
-  repo: editorconfig-checker
-  release:
-    name: ec
-    tag: "2.6.0"
-    asset:
-      filename: "{{ .Release.Name }}-{{ .OS }}-{{ .Arch }}.tar.gz"
-  command:
-    link:
-    - from: "**/ec-*"
-      to: ec
-

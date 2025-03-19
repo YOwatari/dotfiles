@@ -32,12 +32,6 @@ github:
   plugin:
     sources:
     - "etc/*.zsh"
-- name: phpenv/phpenv
-  owner: phpenv
-  repo: phpenv
-  plugin:
-    sources:
-    - "completions/*.zsh"
 - name: zsh-users/zsh-syntax-highlighting
   owner: zsh-users
   repo: zsh-syntax-highlighting

@@ -7,7 +7,7 @@ cask "google-chrome-canary"
 cask "vivaldi-snapshot"
 
 cask "1password"
-cask "alfred"
+cask "deepl"
 cask "karabiner-elements"
 
 cask "slack-beta"
@@ -16,21 +16,10 @@ cask "zoom"
 
 cask "iterm2"
 cask "visual-studio-code-insiders"
-cask "jetbrains-toolbox"
 cask "docker"
 
 cask "apache-directory-studio"
 cask "the-unarchiver"
-
-cask "qlimagesize"
-cask "qlcolorcode"
-cask "qlstephen"
-cask "scriptql"
-cask "quicklook-csv"
-cask "quicklook-json"
-cask "qlmarkdown"
-cask "webpquicklook"
-cask "qlvideo"
 
 cask "font-myrica"
 cask "font-myricam"
