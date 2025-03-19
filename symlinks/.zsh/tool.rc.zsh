@@ -7,8 +7,12 @@ if command -v afx &>/dev/null; then
   source <(afx completion zsh)
 fi
 
-if [[ -d $HOME/.asdf/installs/gcloud ]]; then
-  source "$(find "$HOME/.asdf/installs/gcloud" -type f -name 'completion.zsh.inc' | head -n1)"
+if command -v mise &>/dev/null; then
+    eval "$(mise activate zsh)"
+fi
+
+if [[ -f $HOME/.local/share/mise/installs/gcloud/latest/completion.zsh.inc ]]; then
+  source "$HOME/.local/share/mise/installs/gcloud/latest/completion.zsh.inc"
 fi
 
 if command -v aws-vault &>/dev/null; then
@@ -30,6 +34,22 @@ fi
 
 if [[ -d $HOME/.rye ]]; then
   path=(~/.rye/shims(N-/) $path)
+fi
+
+if command -v fzf &>/dev/null; then
+  export FZF_DEFAULT_COMMAND="fd --type f"
+  export FZF_DEFAULT_OPTS="--height 50% --reverse"
+  export FZF_CTRL_T_COMMAND="rg --files --hidden --follow --glob '!.git/*'"
+  export FZF_CTRL_T_OPTS="--preview 'bat --color=always --style=header,grid --line-range :100 {}'"
+  export FZF_ALT_C_COMMAND="fd --type d"
+fi
+
+if command -v fzf &>/dev/null; then
+  export FZF_DEFAULT_COMMAND="fd --type f"
+  export FZF_DEFAULT_OPTS="--height 50% --reverse"
+  export FZF_CTRL_T_COMMAND="rg --files --hidden --follow --glob '!.git/*'"
+  export FZF_CTRL_T_OPTS="--preview 'bat --color=always --style=header,grid --line-range :100 {}'"
+  export FZF_ALT_C_COMMAND="fd --type d"
 fi
 
 if [[ -d $HOME/.codeium/windsurf/bin ]]; then
