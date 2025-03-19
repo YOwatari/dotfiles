@@ -36,4 +36,3 @@ vendor/session-manager-plugin.deb:
 
 vendor/session-manager-plugin.pkg:
 	curl -sSL -o $@ "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/mac/session-manager-plugin.pkg"
-
