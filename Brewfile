@@ -1,6 +1,4 @@
 tap "homebrew/bundle"
-tap "homebrew/core"
-tap "homebrew/cask"
 tap "homebrew/cask-versions"
 tap "homebrew/cask-fonts"
 
@@ -37,7 +35,6 @@ cask "qlvideo"
 cask "font-myrica"
 cask "font-myricam"
 cask "font-ricty-diminished"
-cask "font-migu-1m"
 cask "font-cica"
 
 brew "bash"
