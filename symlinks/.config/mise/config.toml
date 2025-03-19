@@ -1,3 +1,6 @@
+[plugins]
+jsonnet = "https://github.com/Banno/asdf-jsonnet.git"
+
 [tools]
 awscli = "latest"
 aws-sam-cli = "latest"
@@ -40,7 +43,7 @@ plugin_autoupdate_last_check_duration = "1 week"
 
 verbose = false
 asdf_compat = false
-http_timeout = 30
+http_timeout = "30s"
 jobs = 4
 raw = false
 yes = false
