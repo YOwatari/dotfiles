@@ -1,5 +1,5 @@
-[plugins]
-jsonnet = "https://github.com/Banno/asdf-jsonnet.git"
+[alias]
+jsonnet = "asdf:Banno/asdf-jsonnet"
 
 [tools]
 awscli = "latest"
