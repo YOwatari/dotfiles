@@ -35,8 +35,10 @@ github:
   release:
     name: ec
     tag: "2.6.0"
+    asset:
+      filename: "{{ .Release.Name }}-{{ .OS }}-{{ .Arch }}.tar.gz"
   command:
     link:
-    - from: "*ec*"
+    - from: "**/ec-*"
       to: ec
 

@@ -21,6 +21,9 @@ github:
   owner: ohmyzsh
   repo: oh-my-zsh
   plugin:
+    snippet-prepare: |
+      autoload -Uz compinit
+      compinit
     sources:
     - "plugins/git/*.plugin.zsh"
 - name: tj/git-extras
@@ -41,12 +44,6 @@ github:
   plugin:
     sources:
     - "zsh-syntax-highlighting.zsh"
-- name: jonmosco/kube-ps1
-  owner: jonmosco
-  repo: kube-ps1
-  plugin:
-    sources:
-    - "kube-ps1.sh"
 local:
 - name: zsh
   directory: ~/.zsh/plugins
