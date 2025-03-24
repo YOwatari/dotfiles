@@ -60,3 +60,6 @@ nnoremap [denite]j     :Denite grep -buffer-name=grep-buffer-denite<CR>
 nnoremap [denite]r     :Denite grep -resume -buffer-name=grep-buffer-denite<CR>
 nnoremap [denite]n     :Denite grep -resume -buffer-name=grep-buffer-denite -select=+1 -immediately<CR>
 nnoremap [denite]p     :Denite grep -resume -buffer-name=grep-buffer-denite -select=-1 -immediately<CR>
+
+autocmd FileType racket call rainbow_parentheses#activate() | call rainbow_parentheses#load(0)
+

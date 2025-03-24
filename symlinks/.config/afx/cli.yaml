@@ -4,7 +4,7 @@ github:
   repo: mise
   release:
     name: mise
-    tag: "v2024.9.3"
+    tag: "v2025.2.1"
     asset:
       filename: "{{ .Release.Name }}-{{ .Release.Tag }}-{{ .OS }}-{{ .Arch }}"
       replacements:
@@ -33,3 +33,17 @@ github:
     link:
     - from: "*vegeta*"
       to: vegeta
+- name: junegunn/fzf
+  owner: junegunn
+  repo: fzf
+  plugin:
+    sources:
+    - "shell/*.zsh"
+    env:
+      FZF_DEFAULT_COMMAND: fd --type f
+      FZF_DEFAULT_OPTS: --height 50% --reverse
+      FZF_CTRL_T_COMMAND: rg --files --hidden --follow --glob "!.git/*"
+      FZF_CTRL_T_OPTS: --preview "bat --color=always --style=header,grid --line-range :100 {}"
+      FZF_ALT_C_COMMAND: fd --type d
+  depends-on:
+  - zsh-users/zsh-completions

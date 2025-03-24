@@ -19,7 +19,7 @@ gomigrate = "latest"
 jq = "latest"
 jsonnet = "latest"
 mkcert = "latest"
-node = "lts"
+node = "20.18.0"
 php = "8.1"
 protoc = "latest"
 racket = "latest"
@@ -30,6 +30,10 @@ rye = "latest"
 sqlite = "latest"
 terraform = "latest"
 yq = "latest"
+duckdb = "latest"
+"aqua:fujiwara/lambroll" = "latest"
+"aqua:kayac/ecspresso" = "latest"
+"aqua:suzuki-shunsuke/pinact" = "latest"
 
 [settings]
 legacy_version_file = true
@@ -39,7 +43,7 @@ plugin_autoupdate_last_check_duration = "1 week"
 
 verbose = false
 asdf_compat = false
-http_timeout = 30
+http_timeout = "30s"
 jobs = 4
 raw = false
 yes = false
