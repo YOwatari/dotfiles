@@ -1,45 +1,53 @@
-DOTFILES := $(HOME)/.dotfiles
+OS          := $(shell uname | tr "[:upper:]" "[:lower:]")
+OS_MAKEFILE := $(wildcard $(OS).mk)
 
-OS := $(shell uname | tr "[:upper:]" "[:lower:]")
 
-.PHONY: all mise chezmoi docker dev init
+.PHONY: all mise chezmoi docker dev help
+.DEFAULT_GOAL := all
 
-all:
-ifeq ($(OS),darwin)
-	$(MAKE) -f macos.mk
+all: $(OS_MAKEFILE)
+ifeq ($(OS_MAKEFILE),)
+	@echo "No specific makefile found for OS $(OS). Skipping OS-specific setup."
+	@exit 1
+else
+	$(MAKE) -f $(OS_MAKEFILE)
 endif
-ifeq ($(OS),linux)
-	$(MAKE) -f linux.mk
-endif
+	$(MAKE) chezmoi
 	@echo "1. launch zsh"
 	@echo "2. make mise"
-	@echo "3. make chezmoi"
-	@echo "4. launch vim"
+	@echo "3. launch vim"
 
 mise:
-	$(MAKE) -f $@.mk
+	$(MAKE) -f mise.mk
 
 chezmoi:
-	chezmoi update
+	chezmoi update --recurse-submodules=false
 
-dot_gitignore: gitignore/Global/macOS.gitignore gitignore/Global/Linux.gitignore gitignore/Global/Windows.gitignore gitignore/Global/Vim.gitignore gitignore/Global/VisualStudioCode.gitignore gitignore/Global/Xcode.gitignore
+dot_gitignore: external_gitignore/Global/macOS.gitignore external_gitignore/Global/Linux.gitignore external_gitignore/Global/Windows.gitignore external_gitignore/Global/Vim.gitignore external_gitignore/Global/VisualStudioCode.gitignore external_gitignore/Global/Xcode.gitignore
 	@cat $^ > $@
 
 #
 # dev
 #
 docker:
-	docker build -t dotfiles .
+	docker build \
+	  --platform linux/amd64 \
+	  --build-arg HOST_UID=$(shell id -u) \
+	  --build-arg HOST_GID=$(shell id -g) \
+	  -t dotfiles .
 
 dev:
-	docker run --rm -it -v $(CURDIR):/home/dot/.dotfiles --name dotfiles dotfiles
+	docker run --rm -it \
+	  --platform linux/amd64 \
+	  -v $(CURDIR):/home/dot/.local/share/chezmoi \
+	  --name dotfiles \
+	  dotfiles
 
-#
-# init
-#
-init: $(DOTFILES)
-	$(MAKE) -C $(DOTFILES)
-
-$(DOTFILES):
-	git clone --recursive https://github.com/YOwatari/dotfiles.git $@
-
+help:
+	@echo "Available targets:"
+	@echo "  all       : Run the default setup."
+	@echo "  mise      : Run mise setup from mise.mk."
+	@echo "  chezmoi   : Update chezmoi."
+	@echo "  docker    : Build the development Docker image."
+	@echo "  dev       : Run the development Docker container."
+	@echo "  help      : Show this help message."
