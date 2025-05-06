@@ -1,14 +1,30 @@
-FROM ubuntu:latest
+FROM ubuntu:20.04
 
-RUN set -x \
-    && apt-get update \
-    && apt-get install -y sudo curl make git build-essential lsb-release
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
+      sudo \
+      curl \
+      make \
+      git \
+      build-essential \
+      lsb-release \
+      ca-certificates
 
-RUN set -x \
-    && groupadd -g 1000 dot \
-    && useradd -m -s /bin/bash -u 1000 -g 1000 dot \
-    && echo "dot ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+RUN sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/local/bin
+
+ARG HOST_UID=1001
+ARG HOST_GID=1001
+RUN (groupadd -g ${HOST_GID} dot || true) && \
+    useradd --create-home --no-log-init -s /bin/bash -u ${HOST_UID} -g ${HOST_GID} dot && \
+    echo "dot ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 USER dot
-COPY --chown=dot:dot ./ ./home/dot/dotfiles
-WORKDIR /home/dot/dotfiles
+
+RUN mkdir -p /home/dot/.local/share/chezmoi
+COPY --chown=dot:dot ./ /home/dot/.local/share/chezmoi/
+
+WORKDIR /home/dot/.local/share/chezmoi
+
+CMD ["/bin/bash"]

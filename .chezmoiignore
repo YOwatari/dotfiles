@@ -8,3 +8,6 @@ Brewfile
 Brewfile.lock.json
 Dockerfile
 Makefile
+
+gitignore/
+vendor/
