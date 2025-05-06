@@ -14,6 +14,7 @@ else
 endif
 	$(MAKE) chezmoi
 	@echo "1. launch zsh"
+	@echo "2. afx install"
 	@echo "2. make mise"
 	@echo "3. launch vim"
 
@@ -39,6 +40,7 @@ docker:
 dev:
 	docker run --rm -it \
 	  --platform linux/amd64 \
+	  -v $(HOME)/.ssh:/home/dot/.ssh \
 	  -v $(CURDIR):/home/dot/.local/share/chezmoi \
 	  --name dotfiles \
 	  dotfiles
