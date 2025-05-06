@@ -1,7 +1,7 @@
-all: setup apply-defaults bundle
+all: bundle apply-defaults
 
-setup:
-	./zero/setup --verbose
+bundle:
+	brew bundle
 
-bundle apply-defaults apply-symlinks:
-	zero $@ --verbose
+apply-defaults:
+	./.macos

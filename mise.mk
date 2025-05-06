@@ -1,25 +1,9 @@
 OS := $(shell uname | tr "[:upper:]" "[:lower:]")
 
-PACKAGES := awscli aws-sam-cli aws-vault gcloud bat buildpack bun delta deno duf editorconfig-checker fd fzf ghq github-cli go gomigrate jq jsonnet mkcert node php protoc racket ripgrep ruby rust rye sqlite terraform yq
+all: install aws-session-manager-plugin
 
-# bat delta protoc by brew for Apple Silicon
-all: $(PACKAGES) aws-session-manager-plugin
-
-$(PACKAGES):
-	mise use --global -y $@@latest
-
-ruby:
-	mise use --global -y $@@2.3.8
-
-php:
-	mise install $@@8.0
-	mise install $@@8.1
-	mise install $@@8.2
-	mise use --global -y $@@8.1
-
-node:
-	mise use --global -y $@@lts
-
+install:
+	mise install
 
 ifeq ($(OS),darwin)
 aws-session-manager-plugin: vendor/session-manager-plugin.pkg
@@ -36,4 +20,3 @@ vendor/session-manager-plugin.deb:
 
 vendor/session-manager-plugin.pkg:
 	curl -sSL -o $@ "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/mac/session-manager-plugin.pkg"
-

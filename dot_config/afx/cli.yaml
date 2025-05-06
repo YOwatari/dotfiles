@@ -4,11 +4,12 @@ github:
   repo: mise
   release:
     name: mise
-    tag: "v2025.2.1"
+    tag: "v2025.3.6"
     asset:
       filename: "{{ .Release.Name }}-{{ .Release.Tag }}-{{ .OS }}-{{ .Arch }}"
       replacements:
         amd64: x64
+        darwin: macos
   command:
     link:
     - from: "*mise*"

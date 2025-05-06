@@ -1,8 +1,3 @@
-symlinks/zsh/.zsh/completions
-!symlinks/zsh/.zsh/completions/.gitkeep
-symlinks/nvim/.config/nvim/dein/
-symlinks/nvim/.vim/dein/
-
 vendor/
 !vendor/.gitkeep
 

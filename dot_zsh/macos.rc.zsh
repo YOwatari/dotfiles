@@ -43,3 +43,10 @@ fi
 if [[ -x "$HOMEBREW_PREFIX/opt/colordiff/bin" ]]; then
   alias diff=colordiff
 fi
+
+if [[ -x "$HOMEBREW_PREFIX/opt/openjdk/bin" ]]; then
+  path=($HOMEBREW_PREFIX/opt/openjdk/bin(N-/) $path)
+  # sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+  # export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
+fi
+

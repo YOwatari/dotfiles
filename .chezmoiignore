@@ -1,0 +1,10 @@
+*.mk
+*.sh
+*.md
+
+.macos
+
+Brewfile
+Brewfile.lock.json
+Dockerfile
+Makefile

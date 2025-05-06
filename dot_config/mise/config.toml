@@ -1,3 +1,6 @@
+[alias]
+jsonnet = "asdf:Banno/asdf-jsonnet"
+
 [tools]
 awscli = "latest"
 aws-sam-cli = "latest"
@@ -6,6 +9,7 @@ gcloud = "latest"
 bat = "latest"
 buildpack = "latest"
 bun = "latest"
+chezmoi = "latest"
 delta = "latest"
 deno = "latest"
 duf = "latest"
@@ -19,12 +23,12 @@ gomigrate = "latest"
 jq = "latest"
 jsonnet = "latest"
 mkcert = "latest"
-node = "20"
-php = "8.1"
+node = ["20", "20"]
+php = ["8.0", "8.1", "8.2"]
 protoc = "latest"
-racket = "latest"
+#racket = "latest"
 ripgrep = "latest"
-ruby = "2.3.8"
+#ruby = "2.3.8"
 rust = "latest"
 rye = "latest"
 sqlite = "latest"
