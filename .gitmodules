@@ -1,3 +1,3 @@
-[submodule "gitignore"]
-	path = gitignore
+[submodule "external_gitignore"]
+	path = external_gitignore
 	url = https://github.com/github/gitignore.git
