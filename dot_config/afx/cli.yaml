@@ -4,7 +4,7 @@ github:
   repo: mise
   release:
     name: mise
-    tag: "v2025.3.6"
+    tag: "v2025.5.1"
     asset:
       filename: "{{ .Release.Name }}-{{ .Release.Tag }}-{{ .OS }}-{{ .Arch }}"
       replacements:
@@ -29,7 +29,7 @@ github:
   repo: vegeta
   release:
     name: vegeta
-    tag: "v12.11.0"
+    tag: "v12.12.0"
   command:
     link:
     - from: "*vegeta*"
