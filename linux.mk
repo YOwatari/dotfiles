@@ -22,9 +22,9 @@ install: deps neovim afx
 	fi
 
 neovim:
-	curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
-	chmod +x nvim.appimage
-	sudo mv nvim.appimage /usr/local/bin/nvim
+	curl -LO https://github.com/neovim/neovim/releases/download/v0.10.4/nvim-linux-x86_64.appimage
+	chmod +x nvim-linux-x86_64.appimage
+	sudo mv nvim-linux-x86_64.appimage /usr/local/bin/nvim
 
 afx:
 	curl -sL https://raw.githubusercontent.com/b4b4r07/afx/HEAD/hack/install | bash
