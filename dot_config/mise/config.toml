@@ -27,6 +27,7 @@ node = ["20", "lts"]
 php = ["8.2"]
 protoc = "latest"
 python = ["3.12"]
+uv = "latest"
 #racket = "latest"
 ripgrep = "latest"
 #ruby = "2.3.8"
@@ -39,6 +40,9 @@ duckdb = "latest"
 "aqua:fujiwara/lambroll" = "latest"
 "aqua:kayac/ecspresso" = "latest"
 "aqua:suzuki-shunsuke/pinact" = "latest"
+"npm:@anthropic-ai/claude-code" = "latest"
+"npm:opencommit" = "latest"
+
 
 [settings]
 legacy_version_file = true
@@ -52,6 +56,8 @@ http_timeout = "30s"
 jobs = 4
 raw = false
 yes = false
+idiomatic_version_file_enable_tools = ["go"]
+experimental = true
 
 [env]
 
