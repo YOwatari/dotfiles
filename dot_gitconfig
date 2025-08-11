@@ -55,7 +55,7 @@
 [user]
     name = Yuta OHWATARI
     email = y.ohwatari@cartahd.com
-	signingkey = BCACF4C58F882389
+	signingkey = 1058405CCD1D996372D193BCDFBC4DF15C3FF9C5
 [url "git@github.com:"]
     insteadOf = git://github.com/
     insteadOf = https://github.com/
