@@ -41,6 +41,7 @@ duckdb = "latest"
 "aqua:kayac/ecspresso" = "latest"
 "aqua:suzuki-shunsuke/pinact" = "latest"
 "npm:@anthropic-ai/claude-code" = "latest"
+"npm:ccusage" = "latest"
 "npm:opencommit" = "latest"
 
 
@@ -59,6 +60,17 @@ yes = false
 idiomatic_version_file_enable_tools = ["go"]
 experimental = true
 
-[env]
+[settings.npm]
+bun = true
 
+[env]
 MISE_FETCH_REMOTE_VERSIONS_TIMEOUT = "120 sec"
+
+[tasks.claude_serena]
+description = "Add Serena MCP to Claude Code"
+run = "claude mcp add serena -- uvx --from git+https://github.com/oraios/serena serena start-mcp-server --context ide-assistant --project $(pwd)"
+
+[tasks.serena_index]
+description = "Serena activation & indexing project"
+run = "uvx --from git+https://github.com/oraios/serena serena project index"
+
