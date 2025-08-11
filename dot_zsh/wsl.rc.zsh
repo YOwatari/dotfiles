@@ -12,5 +12,14 @@ export BROWSER=wslview
 alias open=wslview
 alias -g pbcopy='iconv -t sjis | /mnt/c/Windows/system32/clip.exe'
 
-path=(/mnt/c/Users/y-ohwatari/AppData/Local/Programs/cursor/resources/app/bin(N-/) $path)
+function add_op() {
+  local win_op_path wsl_op_path
+  win_op_path=$(powershell.exe -NoProfile -Command "Get-ChildItem -Path \$env:LOCALAPPDATA\\Microsoft\\WinGet\\Packages -Filter op.exe -Recurse | Select-Object -First 1 -ExpandProperty DirectoryName" | tr -d '\r\n')
 
+  if [[ -n "$win_op_path" ]]; then
+    wsl_op_path=$(wslpath "$win_op_path")
+    mkdir -p "$HOME/.local/bin"
+    ln -sf "$wsl_op_path/op.exe" "$HOME/.local/bin/op"
+  fi
+}
+add_op
