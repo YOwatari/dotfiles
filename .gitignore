@@ -2,3 +2,5 @@ vendor/
 !vendor/.gitkeep
 
 Brewfile.lock.json
+
+external_gitignore/
