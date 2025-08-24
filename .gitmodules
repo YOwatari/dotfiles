@@ -1,5 +1,5 @@
 [submodule "gitignore"]
-	path = gitignore
+	path = external_gitignore
 	url = https://github.com/github/gitignore.git
 [submodule "dot_claude/agents"]
 	path = dot_claude/agents
