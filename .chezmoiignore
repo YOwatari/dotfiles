@@ -10,5 +10,6 @@ Dockerfile
 Makefile
 
 vendor/
-external_gitignore/
+
 gitignore/
+.claude/agents/.git*
