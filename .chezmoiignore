@@ -1,6 +1,6 @@
-*.mk
-*.sh
-*.md
+**/*.mk
+**/*.sh
+**/*.md
 
 .macos
 
@@ -13,3 +13,10 @@ vendor/
 
 gitignore/
 .claude/agents/.git*
+!.claude/agents/*.md
+
+{{- if not .isWork }}
+**/*.work
+{{- end }}
+
+**/*.asc
