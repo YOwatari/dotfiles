@@ -49,4 +49,3 @@ if [[ -x "$HOMEBREW_PREFIX/opt/openjdk/bin" ]]; then
   # sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
   # export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
 fi
-
