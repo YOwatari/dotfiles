@@ -1,8 +1,16 @@
+{{ $isWork := promptBoolOnce . "isWork" "Is this a work machine?" -}}
+
 encryption = "gpg"
-[gpg]
-    recipient = "1058405CCD1D996372D193BCDFBC4DF15C3FF9C5"
-    args = ["--quiet"]
+
+[data]
+    isWork = {{ $isWork }}
+
 [edit]
     command = "nvim"
+
 [diff]
     pager = "delta"
+
+[gpg]
+    recipient = "1058405CCD1D996372D193BCDFBC4DF15C3FF9C5"
+    args = ["--quiet", "--batch", "--passphrase", {{ onepasswordRead "op://Personal/GPG Secret Key/vucxzg6pc7x3tgiihxhjdsmeve" | quote }}, "--no-symkey-cache"]
