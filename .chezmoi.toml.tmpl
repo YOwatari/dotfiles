@@ -1,9 +1,10 @@
-{{ $isWork := promptBoolOnce . "isWork" "Is this a work machine?" -}}
+{{- $profiles := list "Personal" "Work" -}}
+{{- $profile := promptChoiceOnce . "Profile" "What profile do you want to use?" $profiles -}}
 
 encryption = "gpg"
 
 [data]
-    isWork = {{ $isWork }}
+    profile = {{ $profile | quote }}
 
 [edit]
     command = "nvim"

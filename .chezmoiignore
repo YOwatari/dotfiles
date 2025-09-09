@@ -15,8 +15,8 @@ gitignore/
 .claude/agents/.git*
 !.claude/agents/*.md
 
-{{- if not .isWork }}
+{{- if ne .profile "Work" }}
 **/*.work
 {{- end }}
 
-**/*.asc
+**/ignored_*
