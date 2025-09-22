@@ -3,7 +3,6 @@ jsonnet = "asdf:Banno/asdf-jsonnet"
 
 [tools]
 awscli = "latest"
-aws-sam-cli = "latest"
 aws-vault = "latest"
 gcloud = "latest"
 bat = "latest"
@@ -74,4 +73,3 @@ run = "claude mcp add serena -- uvx --from git+https://github.com/oraios/serena 
 [tasks.serena_index]
 description = "Serena activation & indexing project"
 run = "uvx --from git+https://github.com/oraios/serena serena project index"
-
