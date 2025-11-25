@@ -45,6 +45,14 @@ duckdb = "latest"
 "npm:@openai/codex" = "latest"
 "pipx:httpie" = "latest"
 
+[tools."http:cloud-sql-proxy"]
+version = "2.19.0"
+bin = "cloud-sql-proxy"
+
+[tools."http:cloud-sql-proxy".platforms]
+darwin-arm64 = { url = "https://storage.googleapis.com/cloud-sql-connectors/cloud-sql-proxy/v2.19.0/cloud-sql-proxy.darwin.arm64" }
+linux-amd64 = { url = "https://storage.googleapis.com/cloud-sql-connectors/cloud-sql-proxy/v2.19.0/cloud-sql-proxy.linux.amd64" }
+
 [settings]
 legacy_version_file = true
 legacy_version_file_disable_tools = ["python"]
