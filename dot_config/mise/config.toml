@@ -44,14 +44,7 @@ duckdb = "latest"
 "npm:opencommit" = "latest"
 "npm:@openai/codex" = "latest"
 "pipx:httpie" = "latest"
-
-[tools."http:cloud-sql-proxy"]
-version = "2.19.0"
-bin = "cloud-sql-proxy"
-
-[tools."http:cloud-sql-proxy".platforms]
-darwin-arm64 = { url = "https://storage.googleapis.com/cloud-sql-connectors/cloud-sql-proxy/v2.19.0/cloud-sql-proxy.darwin.arm64" }
-linux-amd64 = { url = "https://storage.googleapis.com/cloud-sql-connectors/cloud-sql-proxy/v2.19.0/cloud-sql-proxy.linux.amd64" }
+"aqua:GoogleCloudPlatform/cloud-sql-proxy" = "latest"
 
 [settings]
 legacy_version_file = true
