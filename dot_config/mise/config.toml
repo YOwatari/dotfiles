@@ -43,7 +43,8 @@ duckdb = "latest"
 "npm:ccusage" = "latest"
 "npm:opencommit" = "latest"
 "npm:@openai/codex" = "latest"
-
+"npm:agent-browser" = "latest"
+"cargo:viu" = "latest"
 
 [settings]
 legacy_version_file = true
