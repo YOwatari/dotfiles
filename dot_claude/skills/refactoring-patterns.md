@@ -1,6 +1,9 @@
-# Refactoring Patterns
+---
+name: Refactoring Patterns
+description: Reusable refactoring patterns for improving code structure
+---
 
-Reusable refactoring patterns for improving code structure
+# Refactoring Patterns
 
 ## Common Refactoring Patterns
 

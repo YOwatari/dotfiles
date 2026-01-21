@@ -1,6 +1,9 @@
-# Coding Standards & Code Review Guidelines
+---
+name: Coding Standards & Code Review Guidelines
+description: Coding standards and code review criteria
+---
 
-Coding standards and code review criteria
+# Coding Standards & Code Review Guidelines
 
 ## Core Principles
 

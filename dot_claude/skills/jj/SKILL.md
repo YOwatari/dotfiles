@@ -1,4 +1,9 @@
-# CLAUDE.md – JJ Quick Command List
+---
+name: JJ Quick Command List
+description: A minimal cheat-sheet of day-to-day Jujutsu (jj) commands
+---
+
+# JJ Quick Command List
 
 A minimal cheat‑sheet of the day‑to‑day **Jujutsu (`jj`)** commands you (or an agent) really need.
 

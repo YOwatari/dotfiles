@@ -1,3 +1,8 @@
+---
+name: Security Review Checklist
+description: OWASP Top 10 based security review checklist
+---
+
 # Security Review Checklist
 
 セキュリティレビューのためのOWASP Top 10ベースのチェックリスト
