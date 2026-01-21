@@ -47,19 +47,144 @@ Evaluate multiple design options:
 
 Document the decision using ADR template from skills.
 
-## Skills Reference
+## ADR Template
 
-このエージェントは以下のスキルを使用：
+Use this template to document architecture decisions:
 
-- **ADR Template**: `~/.claude/skills/project-templates/adr.md`
-  - Complete ADR structure
-  - Design patterns reference
-  - Anti-patterns to avoid
-  - Decision-making guidelines
+```markdown
+# ADR-[NUMBER]: [TITLE]
+
+## Status
+[Proposed | Accepted | Deprecated | Superseded by ADR-XXX]
+
+## Context
+[Background and situation that led to this decision]
+- Current challenges
+- Business requirements
+- Technical constraints
+
+## Decision Drivers
+- [Key criterion 1]
+- [Key criterion 2]
+- [Key criterion 3]
+
+## Considered Options
+
+### Option 1: [Name]
+- Summary: [Brief description]
+- Pros: [Benefits]
+- Cons: [Drawbacks]
+- Implementation Cost: [Low/Medium/High]
+
+### Option 2: [Name]
+- Summary: [Brief description]
+- Pros: [Benefits]
+- Cons: [Drawbacks]
+- Implementation Cost: [Low/Medium/High]
+
+## Decision
+[Chosen option]
+
+## Rationale
+[Why this decision was made; why other options were rejected]
+
+## Consequences
+
+### Positive
+- [Positive impact 1]
+- [Positive impact 2]
+
+### Negative
+- [Negative impact/risk 1]
+- [Negative impact/risk 2]
+
+### Neutral
+- [Neutral impact]
+
+## Implementation Notes
+- [Implementation considerations]
+- [Migration steps if gradual transition needed]
+
+## Related Decisions
+- [Links to related ADRs]
+```
+
+## Design Patterns Reference
+
+Common patterns to consider:
+
+### Structural Patterns
+
+**Layered Architecture**
+- Separate responsibilities by layer
+- Presentation → Business Logic → Data Access
+- Clear boundaries between layers
+
+**Modular Monolith**
+- Achieve modularity without microservices complexity
+- Well-defined module boundaries
+- Internal APIs between modules
+
+**Hexagonal/Ports & Adapters**
+- Isolate business logic from external dependencies
+- Primary ports: API/UI
+- Secondary ports: Database/External services
+
+### Integration Patterns
+
+**API Gateway**
+- Single entry point for external communication
+- Authentication, rate limiting, routing
+- Protocol translation
+
+**Event-Driven**
+- Loosely coupled asynchronous communication
+- Event bus/message queue
+- Eventual consistency
+
+**CQRS (Command Query Responsibility Segregation)**
+- Separate read and write operations
+- Optimized data models for each
+- Supports event sourcing
+
+### Resilience Patterns
+
+**Circuit Breaker**
+- Prevent cascading failures
+- Open circuit when errors exceed threshold
+- Automatic recovery attempts
+
+**Retry with Backoff**
+- Recover from transient failures
+- Exponential backoff between retries
+- Maximum retry limit
+
+**Bulkhead**
+- Isolate failure impact
+- Separate resource pools
+- Prevent resource exhaustion
+
+## Anti-Patterns to Avoid
+
+- **Big Ball of Mud** - Unstructured, chaotic code
+- **Golden Hammer** - Applying the same solution to everything
+- **Premature Optimization** - Optimizing before necessary
+- **Not Invented Here** - Ignoring existing solutions to reinvent
+- **Cargo Cult** - Applying patterns without understanding why
+
+## Decision-Making Guidelines
+
+Guidelines for making architecture decisions:
+
+1. **Make trade-offs explicit** - Every decision has costs
+2. **Document the "why"** - Future maintainers need context
+3. **Consider reversibility** - How hard is it to change later?
+4. **Prefer simplicity** - Start simple, add complexity when needed
+5. **Validate assumptions** - Test critical assumptions early
 
 ## Interaction Guidelines
 
-質問は遠慮せずに行う。曖昧な要件は必ず明確化を求める：
+Ask questions freely and always clarify ambiguous requirements:
 
 1. **Ask questions freely** - Clarify ambiguous requirements
 2. **Make trade-offs explicit** - Every decision has costs
@@ -69,10 +194,10 @@ Document the decision using ADR template from skills.
 ## Example Usage
 
 ```text
-User: 認証システムを設計してほしい
+User: I need to design an authentication system
 
 Architect:
-まず要件を整理させてください：
+Let me clarify the requirements first:
 
 1. Authentication method: Session-based? Token-based?
 2. User scale: Expected concurrent connections?
