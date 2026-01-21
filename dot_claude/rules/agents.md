@@ -14,11 +14,6 @@ Located in `~/.claude/agents/`:
 | refactorer | Code refactoring & cleanup | Dead code removal, code maintenance |
 | doc-updater | Documentation | Updating docs |
 
-**Built-in agents** (available in Claude Code):
-- build-error-resolver: Fix build errors when build fails
-- e2e-runner: E2E testing for critical user flows
-- debugger: Error investigation and debugging
-
 ## Immediate Agent Usage
 
 No user prompt needed:
@@ -41,12 +36,3 @@ Launch 3 agents in parallel:
 # BAD: Sequential when unnecessary
 First agent 1, then agent 2, then agent 3
 ```
-
-## Multi-Perspective Analysis
-
-For complex problems, use split role sub-agents:
-- Factual reviewer
-- Senior engineer
-- Security expert
-- Consistency reviewer
-- Redundancy checker
