@@ -8,8 +8,8 @@ if command -v afx &>/dev/null; then
 fi
 
 if command -v mise &>/dev/null; then
-    eval "$($HOME/bin/mise activate zsh)"
-    eval "$($HOME/bin/mise activate --shims)"
+    eval "$($HOME/.local/bin/mise activate zsh)"
+    eval "$($HOME/.local/bin/mise activate --shims)"
 fi
 
 if [[ -f $HOME/.local/share/mise/installs/gcloud/latest/completion.zsh.inc ]]; then
