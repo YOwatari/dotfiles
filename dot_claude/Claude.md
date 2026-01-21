@@ -6,16 +6,20 @@
 
 ## Development Philosophy
 
-### Test-Driven Development (TDD)
+TDD で開発する（探索 → Red → Green → Refactoring）。
+KPI やカバレッジ目標が与えられたら、達成するまで試行する。
+不明瞭な指示は質問して明確にする。
 
-- 原則としてテスト駆動開発（TDD）で進める
-- 期待される入出力に基づき、まずテストを作成する
-- 実装コードは書かず、テストのみを用意する
-- テストを実行し、失敗を確認する
-- テストが正しいことを確認できた段階でコミットする
-- その後、テストをパスさせる実装を進める
-- 実装中はテストを変更せず、コードを修正し続ける
-- すべてのテストが通過するまで繰り返す
+## Coding
+
+- 関心の分離を保つ
+- 状態とロジックを分離する
+- 可読性と保守性を重視する
+- コントラクト層（API/型）を厳密に定義し、実装層は再生成可能に保つ
+
+## Tools
+
+- VCS: jj を優先する（未初期化なら `jj git init --colocate`）
 
 ## Configuration Structure
 
@@ -51,12 +55,9 @@ dot_claude/
     └── tdd-workflow/SKILL.md           # TDDワークフロー
 ```
 
-### 構成の考え方
-
-- **agents/**: 各エージェントの役割・ミッション・使用タイミング
-- **rules/**: 守るべき基準・制約・禁止事項
-- **skills/**: 具体的な実行手順・テクニック・テンプレート
-
 ## Reference
 
-Based on: [everything-claude-code](https://github.com/affaan-m/everything-claude-code)
+Based on:
+
+- [affaan-m/everything-claude-code](https://github.com/affaan-m/everything-claude-code)
+- [mizchi/chezmoi-dotfiles](https://github.com/mizchi/chezmoi-dotfiles)
