@@ -24,12 +24,26 @@
     ],
     "deny": []
   },
+  "model": "opusplan",
   "statusLine": {
     "type": "command",
     "command": "ccusage statusline"
   },
+  "enabledPlugins": {
+    "ddd@context-engineering-kit": true,
+    "sadd@context-engineering-kit": true,
+    "superpowers@claude-plugins-official": true,
+    "aws-common@aws-skills": true,
+    "aws-cdk@aws-skills": true,
+    "code-review@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": true,
+    "gopls-lsp@claude-plugins-official": true,
+    "php-lsp@claude-plugins-official": true,
+    "pr-review-toolkit@claude-plugins-official": true,
+    "ralph-loop@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true
+  },
   "feedbackSurveyState": {
     "lastShownTime": 1754045417784
-  },
-  "model": "opusplan"
+  }
 }
