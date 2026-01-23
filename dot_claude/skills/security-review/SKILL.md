@@ -1,224 +1,288 @@
 ---
-name: Security Review Checklist
-description: OWASP Top 10 based security review checklist
+name: security-review
+description: Security vulnerability detection and review skill. Use when implementing authentication, handling user input, creating APIs, managing secrets, or implementing payment features.
 ---
 
-# Security Review Checklist
+# Security Review Skill
 
-セキュリティレビューのためのOWASP Top 10ベースのチェックリスト
+Systematically review code for security vulnerabilities based on OWASP Top 10.
+
+## Activation Triggers
+
+Use this skill when:
+
+- Implementing or modifying authentication/authorization
+- Handling user input or file uploads
+- Creating new API endpoints
+- Working with secrets or credentials
+- Implementing payment/billing features
+- Storing or transmitting sensitive data
+- Integrating third-party APIs
+- Before finalizing code changes
+
+## Execution Procedure
+
+### Step 1: Identify Project Structure
+
+```bash
+# List relevant source files
+find . -type f \( -name "*.ts" -o -name "*.tsx" -o -name "*.js" -o -name "*.jsx" -o -name "*.py" -o -name "*.go" \) \
+  -not -path "*/node_modules/*" -not -path "*/.git/*" | head -50
+
+# Check for env files and gitignore
+ls -la .env* 2>/dev/null || true
+grep -E "(env|secret|key)" .gitignore 2>/dev/null || true
+```
+
+### Step 2: Scan for Hardcoded Secrets (A02)
+
+```bash
+# Search for hardcoded secrets
+grep -rn --include="*.ts" --include="*.tsx" --include="*.js" --include="*.py" --include="*.go" \
+  -E "(password|secret|token|api_key|apikey|private_key|credential)\s*[=:]\s*['\"][^'\"]+['\"]" . \
+  --exclude-dir={node_modules,.git,dist,build,vendor}
+
+# Detect high-entropy strings (Base64 encoded keys)
+grep -rn --include="*.ts" --include="*.tsx" --include="*.js" --include="*.py" \
+  -E "['\"][A-Za-z0-9+/=]{32,}['\"]" . \
+  --exclude-dir={node_modules,.git,dist,build,vendor}
+```
+
+### Step 3: Detect Injection Vulnerabilities (A03)
+
+```bash
+# SQL string concatenation
+grep -rn --include="*.ts" --include="*.tsx" --include="*.js" --include="*.py" \
+  -E "(SELECT|INSERT|UPDATE|DELETE|FROM|WHERE).*\+.*\$|\`.*\$\{" . \
+  --exclude-dir={node_modules,.git,dist,build,vendor}
+
+# Command injection patterns
+grep -rn --include="*.ts" --include="*.tsx" --include="*.js" --include="*.py" \
+  -E "(exec|spawn|system|eval|Function\()" . \
+  --exclude-dir={node_modules,.git,dist,build,vendor}
+```
+
+### Step 4: Check Authentication & Authorization (A01, A07)
+
+```bash
+# Find auth-related files
+find . -type f \( -name "*auth*" -o -name "*login*" -o -name "*session*" \) \
+  -not -path "*/node_modules/*" -not -path "*/.git/*"
+
+# Token storage in localStorage (XSS vulnerable)
+grep -rn --include="*.ts" --include="*.tsx" --include="*.js" \
+  -E "localStorage\.(set|get)Item.*token|sessionStorage\.(set|get)Item.*token" . \
+  --exclude-dir={node_modules,.git,dist,build}
+```
+
+### Step 5: Check Dependencies (A06)
+
+```bash
+# npm/yarn
+npm audit --json 2>/dev/null || yarn audit --json 2>/dev/null || true
+
+# Python
+pip-audit 2>/dev/null || safety check 2>/dev/null || true
+```
 
 ## OWASP Top 10 Checklist
 
 ### A01: Broken Access Control
 
-**Authorization & Access**
-- Authorization checks on all endpoints
-- No direct object reference exposure
-- Rate limiting implemented
-- CORS properly configured
-- Directory traversal prevention
+| Check | Method |
+|-------|--------|
+| Authorization on all endpoints | Review API routes |
+| No direct object reference exposure | Check ID parameter usage |
+| Rate limiting implemented | Check middleware |
+| CORS properly configured | Check CORS settings |
+
+```typescript
+// ❌ No authorization check
+app.get('/api/users/:id', async (req, res) => {
+  const user = await db.users.findById(req.params.id)
+  res.json(user)
+})
+
+// ✅ Authorization check before data access
+app.get('/api/users/:id', authenticate, async (req, res) => {
+  if (req.user.id !== req.params.id && req.user.role !== 'admin') {
+    return res.status(403).json({ error: 'Forbidden' })
+  }
+  const user = await db.users.findById(req.params.id)
+  res.json(user)
+})
+```
 
 ### A02: Cryptographic Failures
 
-**Data Protection**
-- Data encrypted in transit (TLS)
-- Data encrypted at rest
-- Strong algorithms (no MD5, SHA1 for security)
-- Proper key management
-- No sensitive data in logs/errors
+| Check | Method |
+|-------|--------|
+| No hardcoded secrets | Search source files |
+| Secrets in environment variables | Check configuration |
+| Strong algorithms (no MD5/SHA1) | Review crypto usage |
+| No sensitive data in logs | Check logging |
+
+```typescript
+// ❌ Hardcoded secret
+const JWT_SECRET = "my-super-secret-key-123"
+
+// ✅ Environment variable
+const JWT_SECRET = process.env.JWT_SECRET
+if (!JWT_SECRET) throw new Error('JWT_SECRET not configured')
+```
 
 ### A03: Injection
 
-**Input Handling**
-- Parameterized queries (SQL)
-- Input validation and sanitization
-- Output encoding
-- Command injection prevention
-- Template injection prevention
+| Check | Method |
+|-------|--------|
+| Parameterized queries | Review SQL statements |
+| Input validation | Check input handling |
+| Output encoding | Review rendering |
+| No command injection | Check exec/spawn usage |
 
-### A04: Insecure Design
+```typescript
+// ❌ SQL Injection
+const query = `SELECT * FROM users WHERE email = '${userEmail}'`
 
-**Architecture Security**
-- Threat modeling performed
-- Security requirements defined
-- Secure architecture patterns
-- Business logic abuse prevention
+// ✅ Parameterized query
+const { data } = await supabase.from('users').select('*').eq('email', userEmail)
+```
+
+```python
+# ❌ SQL Injection
+cursor.execute(f"SELECT * FROM users WHERE email = '{email}'")
+
+# ✅ Parameterized query
+cursor.execute("SELECT * FROM users WHERE email = %s", (email,))
+```
 
 ### A05: Security Misconfiguration
 
-**Configuration Management**
-- Default credentials changed
-- Unnecessary features disabled
-- Error messages don't leak info
-- Security headers configured
-- Dependencies up to date
+| Check | Method |
+|-------|--------|
+| Security headers configured | Check response headers |
+| Error messages don't leak info | Review error handling |
+| Debug mode disabled in production | Check configuration |
 
-### A06: Vulnerable Components
-
-**Dependency Management**
-- Dependencies scanned for CVEs
-- No outdated libraries
-- Minimal dependency footprint
-- License compliance
+**Required Security Headers**:
+```typescript
+const securityHeaders = [
+  { key: 'Content-Security-Policy', value: "default-src 'self'" },
+  { key: 'X-Content-Type-Options', value: 'nosniff' },
+  { key: 'X-Frame-Options', value: 'DENY' },
+  { key: 'Strict-Transport-Security', value: 'max-age=31536000; includeSubDomains' },
+  { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+]
+```
 
 ### A07: Authentication Failures
 
-**Authentication & Sessions**
-- Strong password policy
-- Brute force protection
-- Secure session management
-- MFA support (if applicable)
-- Secure password storage (bcrypt, argon2)
+| Check | Method |
+|-------|--------|
+| Tokens in httpOnly cookies | Check token storage |
+| Strong password hashing | Review auth implementation |
+| Brute force protection | Check rate limiting |
 
-### A08: Data Integrity Failures
+```typescript
+// ❌ localStorage (XSS vulnerable)
+localStorage.setItem('token', token)
 
-**Integrity Verification**
-- Signed updates/downloads
-- CI/CD pipeline security
-- Deserialization safety
-- Integrity verification
+// ✅ httpOnly cookie
+res.setHeader('Set-Cookie',
+  `token=${token}; HttpOnly; Secure; SameSite=Strict; Max-Age=3600`)
+```
 
 ### A09: Logging & Monitoring Failures
 
-**Observability**
-- Security events logged
-- No sensitive data in logs
-- Log integrity protected
-- Alerting configured
+| Check | Method |
+|-------|--------|
+| No sensitive data in logs | Review log statements |
+| Security events logged | Check logging coverage |
+
+```typescript
+// ❌ Sensitive data in logs
+console.log('Login:', { email, password })
+
+// ✅ Redacted sensitive data
+console.log('Login:', { email, userId })
+```
 
 ### A10: Server-Side Request Forgery (SSRF)
 
-**External Request Security**
-- URL validation
-- Allowlist for external requests
-- Internal network access blocked
-- Response handling secured
+| Check | Method |
+|-------|--------|
+| URL validation | Review external requests |
+| Allowlist for external hosts | Check URL handling |
 
-## Common Vulnerability Patterns
+```typescript
+// ❌ Unvalidated URL
+const response = await fetch(req.query.url)
 
-言語非依存で検出すべき一般的なパターン
-
-### Secrets Detection
-
-**Search Patterns**:
-- password, passwd, pwd
-- secret, token, key, api_key
-- credential, auth
-- private_key, ssh_key
-- connectionstring, connection_string
-
-**Detection Regex**:
-```regex
-(?i)(password|secret|token|key|credential)\s*[=:]\s*["'][^"']+["']
+// ✅ Allowlist validation
+const ALLOWED_HOSTS = ['api.example.com']
+const url = new URL(req.query.url)
+if (!ALLOWED_HOSTS.includes(url.hostname)) {
+  return res.status(400).json({ error: 'Host not allowed' })
+}
 ```
 
-### Injection Points
+## Input Validation Patterns
 
-**User Input Sources**:
-- HTTP parameters (query, body, headers)
-- File uploads
-- Database results (second-order injection)
-- External API responses
+### TypeScript (Zod)
 
-**Dangerous Sinks**:
-- Database queries
-- System commands
-- File operations
-- Template rendering
-- Dynamic code execution
+```typescript
+import { z } from 'zod'
 
-### Authentication Weaknesses
+const CreateUserSchema = z.object({
+  email: z.string().email(),
+  name: z.string().min(1).max(100),
+  age: z.number().int().min(0).max(150),
+})
 
-**Check for**:
-- Passwords in plaintext
-- Weak hashing (MD5, SHA1)
-- Missing session expiry
-- Predictable tokens
-- Missing CSRF protection
-
-## Security Headers Checklist
-
-必須のセキュリティヘッダー：
-
-```text
-Content-Security-Policy: default-src 'self'
-X-Content-Type-Options: nosniff
-X-Frame-Options: DENY
-Strict-Transport-Security: max-age=31536000; includeSubDomains
-X-XSS-Protection: 1; mode=block
-Referrer-Policy: strict-origin-when-cross-origin
-Permissions-Policy: geolocation=(), microphone=()
+const validated = CreateUserSchema.parse(input)
 ```
 
-## Output Format
+### Python (Pydantic)
 
-```text
-[SEVERITY] Vulnerability title
-File: path/to/file.ext:line
-Category: OWASP category (e.g., A03:Injection)
-Issue: Description of the vulnerability
-Risk: Potential impact if exploited
-Fix: Remediation steps
-<vulnerable code>  // ❌
-<secure code>      // ✅
+```python
+from pydantic import BaseModel, EmailStr, conint, constr
+
+class CreateUserRequest(BaseModel):
+    email: EmailStr
+    name: constr(min_length=1, max_length=100)
+    age: conint(ge=0, le=150)
 ```
 
-### Severity Levels
+### File Upload Validation
 
-- **CRITICAL**: Actively exploitable, immediate risk
-- **HIGH**: Exploitable with some effort, significant impact
-- **MEDIUM**: Limited exploitability or impact
-- **LOW**: Minor issue, defense in depth
-- **INFO**: Best practice recommendation
+```typescript
+function validateUpload(file: File): boolean {
+  const MAX_SIZE = 5 * 1024 * 1024
+  const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/gif']
 
-### Example Output
-
-```text
-[CRITICAL] SQL Injection vulnerability
-File: src/db/users.ts:34
-Category: A03:Injection
-Issue: User input directly concatenated into SQL query
-Risk: Full database compromise, data theft, data manipulation
-Fix: Use parameterized queries
-query = "SELECT * FROM users WHERE id = " + id  // ❌
-query = "SELECT * FROM users WHERE id = ?", [id]  // ✅
-
-[HIGH] Hardcoded secret in source
-File: src/config/auth.ts:12
-Category: A02:Cryptographic Failures
-Issue: JWT secret hardcoded in source code
-Risk: Token forgery, authentication bypass
-Fix: Move to environment variable or secret manager
-const secret = "super-secret-key-123"  // ❌
-const secret = process.env.JWT_SECRET  // ✅
-
-[MEDIUM] Missing rate limiting
-File: src/routes/login.ts:45
-Category: A07:Authentication Failures
-Issue: No rate limiting on login endpoint
-Risk: Brute force attacks on user accounts
-Fix: Implement rate limiting (e.g., 5 attempts per minute)
-
-[LOW] Verbose error message
-File: src/handlers/api.ts:78
-Category: A05:Security Misconfiguration
-Issue: Stack trace exposed in error response
-Risk: Information disclosure aids attackers
-Fix: Return generic error message, log details server-side
-res.send({ error: err.stack })  // ❌
-res.send({ error: "Internal server error" })  // ✅
-
----
-Summary: 4 issues (1 critical, 1 high, 1 medium, 1 low)
-Priority: Fix SQL injection immediately, then hardcoded secret
+  if (file.size > MAX_SIZE) throw new Error('File too large')
+  if (!ALLOWED_TYPES.includes(file.type)) throw new Error('Invalid type')
+  return true
+}
 ```
 
-## Review Guidelines
+## Pre-Deployment Checklist
 
-セキュリティレビューは網羅的に行い、重大な問題を優先して報告：
+- [ ] No hardcoded secrets
+- [ ] All user inputs validated
+- [ ] SQL queries parameterized
+- [ ] User content sanitized
+- [ ] CSRF protection enabled
+- [ ] Tokens in httpOnly cookies
+- [ ] Authorization checks implemented
+- [ ] Rate limiting enabled
+- [ ] HTTPS enforced
+- [ ] Security headers configured
+- [ ] No sensitive data in error messages
+- [ ] No sensitive data in logs
+- [ ] Dependencies have no known vulnerabilities
 
-1. **Scan systematically** - Check all OWASP categories
-2. **Prioritize by risk** - Critical and High issues first
-3. **Provide context** - Explain why it's a risk
-4. **Give actionable fixes** - Specific remediation steps
-5. **Consider false positives** - Verify before reporting
+## References
+
+- [OWASP Top 10](https://owasp.org/www-project-top-ten/)
+- [OWASP Cheat Sheet Series](https://cheatsheetseries.owasp.org/)
