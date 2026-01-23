@@ -33,14 +33,12 @@
     "superpowers@claude-plugins-official": true,
     "aws-common@aws-skills": true,
     "aws-cdk@aws-skills": true,
-    "code-review@claude-plugins-official": true,
     "code-simplifier@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": true,
     "php-lsp@claude-plugins-official": true,
-    "pr-review-toolkit@claude-plugins-official": true,
     "ralph-loop@claude-plugins-official": false,
     "typescript-lsp@claude-plugins-official": true,
-    "tdd@context-engineering-kit": true
+    "code-review@context-engineering-kit": true
   },
   "feedbackSurveyState": {
     "lastShownTime": 1754045417784
