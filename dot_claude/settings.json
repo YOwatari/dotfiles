@@ -14,13 +14,11 @@
       "Bash(tail:*)",
       "Bash(less:*)",
       "Bash(diff:*)",
-      "Bash(go test:*)",
-      "Bash(go build:*)",
-      "Bash(go fmt:*)",
-      "Bash(gh pr list:*)",
-      "Bash(gh pr view:*)",
-      "Bash(gh pr diff:*)",
-      "mcp__serena"
+      "Bash(tree:*)",
+      "Bash(go:*)",
+      "Bash(gh:*)",
+      "Bash(git:*)",
+      "Bash(jj:*)"
     ],
     "deny": []
   },
