@@ -50,9 +50,9 @@
         "hooks": [
           {
             "type": "command",
-            "command": "~/.claude/hooks/pre-vcs-push.sh",
+            "command": "~/.claude/hooks/pre-vcs-push.sh"
           }
-        ],
+        ]
       },
       {
         "matcher": "Edit|Write",
@@ -61,7 +61,7 @@
             "type": "command",
             "command": "~/.claude/hooks/suggest-compact.sh"
           }
-        ],
+        ]
       }
     ],
     "PreCompact": [
@@ -72,7 +72,7 @@
             "type": "command",
             "command": "~/.claude/hooks/pre-compact.sh"
           }
-        ],
+        ]
       }
     ],
     "SessionStart": [
@@ -83,7 +83,7 @@
             "type": "command",
             "command": "~/.claude/hooks/session-start.sh"
           }
-        ],
+        ]
       }
     ],
     "SessionEnd": [
@@ -94,7 +94,7 @@
             "type": "command",
             "command": "~/.claude/hooks/session-end.sh"
           }
-        ],
+        ]
       }
     ]
   }
