@@ -13,7 +13,9 @@ vendor/
 
 gitignore/
 .claude/agents/.git*
+!.claude/**/*.md
 !.claude/agents/*.md
+!.claude/hooks/*.sh
 
 {{- if ne .profile "Work" }}
 **/*.work
