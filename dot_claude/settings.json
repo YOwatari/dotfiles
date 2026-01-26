@@ -37,7 +37,8 @@
     "gopls-lsp@claude-plugins-official": true,
     "php-lsp@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
-    "code-review@context-engineering-kit": true
+    "code-review@context-engineering-kit": true,
+    "ralph-loop@claude-plugins-official": true
   },
   "feedbackSurveyState": {
     "lastShownTime": 1754045417784
