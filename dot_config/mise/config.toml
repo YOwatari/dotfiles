@@ -29,6 +29,7 @@ node = ["20", "lts"]
 "npm:@openai/codex" = "latest"
 "npm:@ralph-orchestrator/ralph-cli" = "latest"
 "npm:agent-browser" = "latest"
+"npm:cc-sdd" = "latest"
 "npm:ccusage" = "latest"
 "npm:intelephense" = "latest"
 "npm:jsdoc-to-markdown" = "latest"
