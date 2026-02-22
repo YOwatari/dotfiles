@@ -95,3 +95,6 @@ tags
 *.vsix
 ## User settings
 xcuserdata/
+
+.kiro/
+
