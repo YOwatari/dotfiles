@@ -19,7 +19,9 @@ gcloud = "latest"
 ghq = "latest"
 github-cli = "latest"
 go = "latest"
+golangci-lint = "latest"
 gomigrate = "latest"
+"go:github.com/rhysd/actionlint/cmd/actionlint" = "latest"
 "go:golang.org/x/tools/gopls" = "latest"
 jj = "latest"
 jq = "latest"
@@ -70,10 +72,28 @@ bun = true
 [env]
 MISE_FETCH_REMOTE_VERSIONS_TIMEOUT = "120 sec"
 
-[tasks.claude_serena]
-description = "Add Serena MCP to Claude Code"
-run = "claude mcp add serena -- uvx --from git+https://github.com/oraios/serena serena start-mcp-server --context ide-assistant --project $(pwd)"
+[tasks.gpg]
+description = "Test GPG encrypt/decrypt cycle"
+run = """
+#!/bin/bash
+set -euo pipefail
 
-[tasks.serena_index]
-description = "Serena activation & indexing project"
-run = "uvx --from git+https://github.com/oraios/serena serena project index"
+GPG_KEY_ID="0053779137596E59"
+PASSPHRASE=$(op read "op://Personal/GPG Secret Key/vucxzg6pc7x3tgiihxhjdsmeve")
+echo "test" | gpg --encrypt --armor -r "$GPG_KEY_ID" | gpg --pinentry-mode loopback --passphrase "$PASSPHRASE" --default-key "$GPG_KEY_ID" --decrypt)
+"""
+
+[tasks.ralph]
+description = "Run kiro:spec-impl with ralph-loop"
+run = """
+#!/bin/bash
+set -euo pipefail
+FEATURE="${1:?Usage: mise run spec-impl-loop <feature-name>}"
+
+claude --model sonnet "/ralph-loop:ralph-loop \"
+.kiro/specs/${FEATURE}/tasks.md を確認し、未完了タスク(- [ ])があればTDDで実装して。
+参照: requirements.md, design.md
+全タスクが完了(全て - [x])したら <promise>LOOP COMPLETE</promise> を出力。
+\" --completion-promise \"LOOP COMPLETE\" --max-iterations 50"
+"""
+
