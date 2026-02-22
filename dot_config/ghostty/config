@@ -1,2 +1,10 @@
 keybind = global:cmd+backquote=toggle_quick_terminal
 
+keybind = cmd+d=new_split:right
+keybind = cmd+shift+d=new_split:down
+
+keybind = ctrl+h=goto_split:left
+keybind = ctrl+j=goto_split:bottom
+keybind = ctrl+k=goto_split:top
+keybind = ctrl+l=goto_split:right
+
