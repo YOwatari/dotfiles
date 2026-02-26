@@ -48,7 +48,7 @@ Choose the structure based on task type.
 - Modify: `exact/path/to/existing.py:123-145`
 - Test: `tests/exact/path/to/test.py`
 
-**Process:** Follow TDD cycle per `rules/testing.md`
+**Process:** Follow TDD cycle per `~/.claude/rules/testing.md`
 
 1. Write failing test
 2. Run test, confirm failure
@@ -155,7 +155,7 @@ Verify before finalizing the plan:
 - [ ] Verification commands and expected results specified
 - [ ] Task dependencies are clear (reason for ordering)
 - [ ] Prerequisites documented (required packages, env vars, etc.)
-- [ ] TDD tasks reference `rules/testing.md`
+- [ ] TDD tasks reference `~/.claude/rules/testing.md`
 
 ## Good/Bad Examples
 
@@ -180,7 +180,7 @@ Add tests.
 - Create: `src/auth/password.py`
 - Test: `tests/auth/test_password.py`
 
-**Process:** Follow TDD cycle per `rules/testing.md`
+**Process:** Follow TDD cycle per `~/.claude/rules/testing.md`
 
 **Test Code:**
 \`\`\`python
