@@ -43,7 +43,8 @@ duckdb = "latest"
 "npm:ccusage" = "latest"
 "npm:opencommit" = "latest"
 "npm:@openai/codex" = "latest"
-
+"pipx:httpie" = "latest"
+"aqua:GoogleCloudPlatform/cloud-sql-proxy" = "latest"
 
 [settings]
 legacy_version_file = true
