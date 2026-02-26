@@ -23,17 +23,13 @@
     "command": "ccusage statusline"
   },
   "enabledPlugins": {
-    "ddd@context-engineering-kit": true,
-    "sadd@context-engineering-kit": true,
-    "superpowers@claude-plugins-official": true,
     "aws-common@aws-skills": true,
     "aws-cdk@aws-skills": true,
-    "code-simplifier@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": true,
     "php-lsp@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
-    "code-review@context-engineering-kit": true,
-    "ralph-loop@claude-plugins-official": true
+    "ralph-loop@claude-plugins-official": true,
+    "go-skills@golang-skills": true
   },
   "feedbackSurveyState": {
     "lastShownTime": 1754045417784
