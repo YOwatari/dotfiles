@@ -1,13 +1,13 @@
 ---
 name: security-review
-description: Security vulnerability detection and review skill. Use when implementing authentication, handling user input, creating APIs, managing secrets, or implementing payment features.
+description: Security vulnerability detection and review. Use when implementing authentication, handling user input, creating APIs, managing secrets, or implementing payment features.
 ---
 
 # Security Review Skill
 
 Systematically review code for security vulnerabilities based on OWASP Top 10.
 
-## Activation Triggers
+## Trigger Conditions
 
 Use this skill when:
 
@@ -22,11 +22,11 @@ Use this skill when:
 
 ## Execution Procedure
 
-### Step 1: Identify Project Structure
+### Step 1: Identify Scope
 
 ```bash
 # List relevant source files
-find . -type f \( -name "*.ts" -o -name "*.tsx" -o -name "*.js" -o -name "*.jsx" -o -name "*.py" -o -name "*.go" \) \
+find . -type f \( -name "*.ts" -o -name "*.tsx" -o -name "*.js" -o -name "*.py" \) \
   -not -path "*/node_modules/*" -not -path "*/.git/*" | head -50
 
 # Check for env files and gitignore
@@ -38,40 +38,35 @@ grep -E "(env|secret|key)" .gitignore 2>/dev/null || true
 
 ```bash
 # Search for hardcoded secrets
-grep -rn --include="*.ts" --include="*.tsx" --include="*.js" --include="*.py" --include="*.go" \
-  -E "(password|secret|token|api_key|apikey|private_key|credential)\s*[=:]\s*['\"][^'\"]+['\"]" . \
-  --exclude-dir={node_modules,.git,dist,build,vendor}
-
-# Detect high-entropy strings (Base64 encoded keys)
-grep -rn --include="*.ts" --include="*.tsx" --include="*.js" --include="*.py" \
-  -E "['\"][A-Za-z0-9+/=]{32,}['\"]" . \
-  --exclude-dir={node_modules,.git,dist,build,vendor}
+grep -rn --include="*.ts" --include="*.js" --include="*.py" \
+  -E "(password|secret|token|api_key|private_key)\s*[=:]\s*['\"][^'\"]+['\"]" . \
+  --exclude-dir={node_modules,.git,dist,build}
 ```
 
 ### Step 3: Detect Injection Vulnerabilities (A03)
 
 ```bash
 # SQL string concatenation
-grep -rn --include="*.ts" --include="*.tsx" --include="*.js" --include="*.py" \
-  -E "(SELECT|INSERT|UPDATE|DELETE|FROM|WHERE).*\+.*\$|\`.*\$\{" . \
-  --exclude-dir={node_modules,.git,dist,build,vendor}
+grep -rn --include="*.ts" --include="*.js" --include="*.py" \
+  -E "(SELECT|INSERT|UPDATE|DELETE).*\+" . \
+  --exclude-dir={node_modules,.git,dist,build}
 
 # Command injection patterns
-grep -rn --include="*.ts" --include="*.tsx" --include="*.js" --include="*.py" \
-  -E "(exec|spawn|system|eval|Function\()" . \
-  --exclude-dir={node_modules,.git,dist,build,vendor}
+grep -rn --include="*.ts" --include="*.js" --include="*.py" \
+  -E "(exec|spawn|system|eval)\(" . \
+  --exclude-dir={node_modules,.git,dist,build}
 ```
 
-### Step 4: Check Authentication & Authorization (A01, A07)
+### Step 4: Check Authentication (A01, A07)
 
 ```bash
 # Find auth-related files
 find . -type f \( -name "*auth*" -o -name "*login*" -o -name "*session*" \) \
-  -not -path "*/node_modules/*" -not -path "*/.git/*"
+  -not -path "*/node_modules/*"
 
 # Token storage in localStorage (XSS vulnerable)
 grep -rn --include="*.ts" --include="*.tsx" --include="*.js" \
-  -E "localStorage\.(set|get)Item.*token|sessionStorage\.(set|get)Item.*token" . \
+  -E "localStorage\.(set|get)Item.*token" . \
   --exclude-dir={node_modules,.git,dist,build}
 ```
 
@@ -89,142 +84,46 @@ pip-audit 2>/dev/null || safety check 2>/dev/null || true
 
 ### A01: Broken Access Control
 
-| Check | Method |
-|-------|--------|
-| Authorization on all endpoints | Review API routes |
-| No direct object reference exposure | Check ID parameter usage |
-| Rate limiting implemented | Check middleware |
-| CORS properly configured | Check CORS settings |
-
-```typescript
-// ❌ No authorization check
-app.get('/api/users/:id', async (req, res) => {
-  const user = await db.users.findById(req.params.id)
-  res.json(user)
-})
-
-// ✅ Authorization check before data access
-app.get('/api/users/:id', authenticate, async (req, res) => {
-  if (req.user.id !== req.params.id && req.user.role !== 'admin') {
-    return res.status(403).json({ error: 'Forbidden' })
-  }
-  const user = await db.users.findById(req.params.id)
-  res.json(user)
-})
-```
+- [ ] Authorization on all endpoints
+- [ ] No direct object reference exposure
+- [ ] Rate limiting implemented
+- [ ] CORS properly configured
 
 ### A02: Cryptographic Failures
 
-| Check | Method |
-|-------|--------|
-| No hardcoded secrets | Search source files |
-| Secrets in environment variables | Check configuration |
-| Strong algorithms (no MD5/SHA1) | Review crypto usage |
-| No sensitive data in logs | Check logging |
-
-```typescript
-// ❌ Hardcoded secret
-const JWT_SECRET = "my-super-secret-key-123"
-
-// ✅ Environment variable
-const JWT_SECRET = process.env.JWT_SECRET
-if (!JWT_SECRET) throw new Error('JWT_SECRET not configured')
-```
+- [ ] No hardcoded secrets
+- [ ] Secrets in environment variables
+- [ ] Strong algorithms (no MD5/SHA1 for security)
+- [ ] No sensitive data in logs
 
 ### A03: Injection
 
-| Check | Method |
-|-------|--------|
-| Parameterized queries | Review SQL statements |
-| Input validation | Check input handling |
-| Output encoding | Review rendering |
-| No command injection | Check exec/spawn usage |
-
-```typescript
-// ❌ SQL Injection
-const query = `SELECT * FROM users WHERE email = '${userEmail}'`
-
-// ✅ Parameterized query
-const { data } = await supabase.from('users').select('*').eq('email', userEmail)
-```
-
-```python
-# ❌ SQL Injection
-cursor.execute(f"SELECT * FROM users WHERE email = '{email}'")
-
-# ✅ Parameterized query
-cursor.execute("SELECT * FROM users WHERE email = %s", (email,))
-```
+- [ ] Parameterized queries
+- [ ] Input validation
+- [ ] Output encoding
+- [ ] No command injection
 
 ### A05: Security Misconfiguration
 
-| Check | Method |
-|-------|--------|
-| Security headers configured | Check response headers |
-| Error messages don't leak info | Review error handling |
-| Debug mode disabled in production | Check configuration |
-
-**Required Security Headers**:
-```typescript
-const securityHeaders = [
-  { key: 'Content-Security-Policy', value: "default-src 'self'" },
-  { key: 'X-Content-Type-Options', value: 'nosniff' },
-  { key: 'X-Frame-Options', value: 'DENY' },
-  { key: 'Strict-Transport-Security', value: 'max-age=31536000; includeSubDomains' },
-  { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
-]
-```
+- [ ] Security headers configured
+- [ ] Error messages don't leak info
+- [ ] Debug mode disabled in production
 
 ### A07: Authentication Failures
 
-| Check | Method |
-|-------|--------|
-| Tokens in httpOnly cookies | Check token storage |
-| Strong password hashing | Review auth implementation |
-| Brute force protection | Check rate limiting |
+- [ ] Tokens in httpOnly cookies
+- [ ] Strong password hashing
+- [ ] Brute force protection
 
-```typescript
-// ❌ localStorage (XSS vulnerable)
-localStorage.setItem('token', token)
+### A09: Logging Failures
 
-// ✅ httpOnly cookie
-res.setHeader('Set-Cookie',
-  `token=${token}; HttpOnly; Secure; SameSite=Strict; Max-Age=3600`)
-```
+- [ ] No sensitive data in logs
+- [ ] Security events logged
 
-### A09: Logging & Monitoring Failures
+### A10: SSRF
 
-| Check | Method |
-|-------|--------|
-| No sensitive data in logs | Review log statements |
-| Security events logged | Check logging coverage |
-
-```typescript
-// ❌ Sensitive data in logs
-console.log('Login:', { email, password })
-
-// ✅ Redacted sensitive data
-console.log('Login:', { email, userId })
-```
-
-### A10: Server-Side Request Forgery (SSRF)
-
-| Check | Method |
-|-------|--------|
-| URL validation | Review external requests |
-| Allowlist for external hosts | Check URL handling |
-
-```typescript
-// ❌ Unvalidated URL
-const response = await fetch(req.query.url)
-
-// ✅ Allowlist validation
-const ALLOWED_HOSTS = ['api.example.com']
-const url = new URL(req.query.url)
-if (!ALLOWED_HOSTS.includes(url.hostname)) {
-  return res.status(400).json({ error: 'Host not allowed' })
-}
-```
+- [ ] URL validation
+- [ ] Allowlist for external hosts
 
 ## Input Validation Patterns
 
@@ -253,18 +152,25 @@ class CreateUserRequest(BaseModel):
     age: conint(ge=0, le=150)
 ```
 
-### File Upload Validation
+## Output Format
 
-```typescript
-function validateUpload(file: File): boolean {
-  const MAX_SIZE = 5 * 1024 * 1024
-  const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/gif']
-
-  if (file.size > MAX_SIZE) throw new Error('File too large')
-  if (!ALLOWED_TYPES.includes(file.type)) throw new Error('Invalid type')
-  return true
-}
+```text
+[SEVERITY] Vulnerability title
+File: path/to/file.ext:line
+Category: OWASP category (e.g., A03:Injection)
+Issue: Description of the vulnerability
+Risk: Potential impact if exploited
+Fix: Remediation steps
+<vulnerable code>  // BAD
+<secure code>      // GOOD
 ```
+
+### Severity Levels
+
+- **CRITICAL**: Actively exploitable, immediate risk
+- **HIGH**: Exploitable with some effort, significant impact
+- **MEDIUM**: Limited exploitability or impact
+- **LOW**: Minor issue, defense in depth
 
 ## Pre-Deployment Checklist
 
@@ -282,7 +188,6 @@ function validateUpload(file: File): boolean {
 - [ ] No sensitive data in logs
 - [ ] Dependencies have no known vulnerabilities
 
-## References
+## Reference
 
-- [OWASP Top 10](https://owasp.org/www-project-top-ten/)
-- [OWASP Cheat Sheet Series](https://cheatsheetseries.owasp.org/)
+For security standards and detection patterns, see `~/.claude/rules/security.md`.

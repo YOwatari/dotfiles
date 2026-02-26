@@ -1,6 +1,6 @@
 ---
 name: code-review
-description: Autonomous code review for evaluating generated or modified code. Triggers when producing substantial code, completing features, or before finalizing changes. Uses confidence scoring to ensure actionable feedback.
+description: Autonomous code review for evaluating generated or modified code. Triggers when producing substantial code, completing features, or before finalizing changes.
 ---
 
 # Code Review Skill
@@ -43,7 +43,7 @@ Score each issue 0-100:
 | 75 | Verified, impacts functionality or in guidelines |
 | 100 | Certain, frequent, evidence confirms |
 
-**Report only issues ≥80.**
+**Report only issues with confidence >= 80.**
 
 ### False Positives to Exclude
 
@@ -54,7 +54,21 @@ Score each issue 0-100:
 - Silenced with ignore comments
 - Intentional changes related to the task
 
-## Issue Severity
+## Output Format
+
+Report issues in flat format:
+
+```text
+[SEVERITY] Short issue title
+File: path/to/file.ext:line
+Confidence: 85
+Issue: Brief description of the problem
+Fix: How to resolve it
+<bad code>   // BAD
+<good code>  // GOOD
+```
+
+### Severity Levels
 
 | Level | Criteria | Action |
 |-------|----------|--------|
@@ -62,11 +76,20 @@ Score each issue 0-100:
 | Important | Edge case failures, missing validation, test gaps | Should fix |
 | Minor | Style, docs, optimization opportunities | Consider |
 
-## Output
+### Summary Format
 
-Report issues with: file path, line numbers, description, evidence, severity, and fix guidance.
+```text
+---
+Summary: 12 issues (2 critical, 3 important, 5 minor, 2 suggestions)
+Priority: Fix critical issues in auth module first
+Quality Gate: PASS / FAIL (any Critical = FAIL)
+```
 
-**Quality Gate**: Any Critical/High security issue = not ready.
+## Approval Criteria
+
+- **Approve**: No critical or important issues
+- **Conditional**: Important issues with clear mitigation plan
+- **Block**: Any critical issue present
 
 ## Principles
 
@@ -76,3 +99,7 @@ Report issues with: file path, line numbers, description, evidence, severity, an
 4. **Scale**: >500 lines → prioritize architecture/security over style
 5. **Actionable**: Every issue needs clear fix guidance
 6. **Velocity**: Catch real bugs, don't block on minor style
+
+## Reference
+
+For coding standards and thresholds, see `~/.claude/rules/coding-style.md`.

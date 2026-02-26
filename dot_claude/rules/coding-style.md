@@ -1,6 +1,6 @@
 # Coding Style & Quality Standards
 
-コーディングスタイル、コード品質、リファクタリング、パフォーマンス最適化の包括的なガイドライン
+コード品質の基準としきい値。プロセス（レビュー手順、リファクタリングパターン）は対応するスキルを参照。
 
 ## 命名規則
 
@@ -21,7 +21,7 @@
 - Prefix with `is`, `has`, `should`, `can`
 - Examples: `isValid`, `hasPermission`, `shouldRetry`
 
-## 禁止事項とアンチパターン
+## 禁止事項
 
 ### Magic Numbers
 
@@ -37,7 +37,7 @@ if (status === STATUS_APPROVED) { }
 ### Duplicate Code
 
 ```javascript
-// ❌ Don't allow
+// ❌ Don't allow (3+ instances)
 function formatUserName(user) {
   return user.firstName + " " + user.lastName
 }
@@ -76,9 +76,7 @@ if (d) { }
 // ❌ Don't allow classes doing everything
 class UserManager {
   createUser() { }
-  deleteUser() { }
   sendEmail() { }
-  validateInput() { }
   formatDate() { }
   calculateTax() { }
 }
@@ -86,203 +84,65 @@ class UserManager {
 // ✅ Require separated responsibilities
 class UserService { }
 class EmailService { }
-class ValidationService { }
 ```
 
 ## コード品質しきい値
 
-### Function/Method Size
-
-| Lines | Action |
-|-------|--------|
-| > 30 | ⚠️ Consider splitting |
-| > 50 | ❌ Must split |
-
-```javascript
-// ❌ Never allow functions > 50 lines
-function processOrder(order) {
-  // 80 lines of code...
-}
-
-// ✅ Require extraction
-function processOrder(order) {
-  validateOrder(order)
-  calculateTotal(order)
-  applyDiscounts(order)
-  processPayment(order)
-  sendConfirmation(order)
-}
-```
-
-### Cyclomatic Complexity
-
-| Complexity | Action |
-|------------|--------|
-| > 10 | ⚠️ Review needed |
-| > 15 | ❌ Must simplify |
-
-### Class Size
-
-| Methods | Action |
-|---------|--------|
-| > 10 | ⚠️ Review responsibilities |
-| > 15 | ❌ Must split |
-
-### Code Duplication
-
-| Instances | Action |
-|-----------|--------|
-| 2x | ⚠️ Monitor |
-| 3x | ❌ Must extract |
+| Metric | Warning | Must Fix |
+|--------|---------|----------|
+| Function size | > 30 lines | > 50 lines |
+| Cyclomatic complexity | > 10 | > 15 |
+| Class methods | > 10 | > 15 |
+| Code duplication | 2 instances | 3+ instances |
+| Parameter count | > 3 | > 5 |
 
 ## リファクタリング基準
 
-### Tests First
+### 前提条件
+
+- テストカバレッジ 80%+ 必須
+- 全テスト通過状態で開始
+- リファクタリングと機能追加は別コミット
+
+### 禁止事項
 
 ```text
 ❌ Never: Refactor without tests
-✅ Always: Ensure 80%+ test coverage before refactoring
-✅ Always: All tests passing before starting
-```
-
-### Behavior Preservation
-
-```text
-✅ Always: External behavior must not change
-✅ Always: All tests must stay green
 ❌ Never: Mix refactoring with feature changes
+❌ Never: Large, sweeping changes in one commit
 ```
 
-### Small Steps
-
-```text
-✅ Always: One refactoring at a time
-✅ Always: Commit after each small improvement
-❌ Never: Large, sweeping changes
-```
-
-### Never Mix Refactoring with Features
-
-```javascript
-// ❌ Never combine in one commit
-// Commit: "Refactor UserService and add email validation"
-function createUser(data) {
-  // Refactored structure
-  validateUser(data)
-  validateEmail(data.email)  // NEW FEATURE!
-  return saveUser(data)
-}
-
-// ✅ Always separate commits
-// Commit 1: "Refactor: Extract validateUser method"
-// Commit 2: "Feature: Add email validation"
-```
-
-### Refactoring Safety Checklist
-
-#### Before Refactoring
-- [ ] All tests passing
-- [ ] Test coverage > 80%
-- [ ] Understand scope of changes
-- [ ] Can rollback if needed
-- [ ] Not near deadline/release
-
-#### During Refactoring
-- [ ] One change at a time
-- [ ] Run tests after each change
-- [ ] Not mixing with feature work
-- [ ] Committing small increments
-
-#### After Refactoring
-- [ ] All tests still passing
-- [ ] No performance degradation
-- [ ] Code review completed
-- [ ] Documentation updated
-- [ ] No new warnings/errors
+> リファクタリングパターンと手順は `skills/refactoring` を参照
 
 ## コードレビュー基準
 
-### Must Check (必ずチェック)
+### チェック項目
 
-#### 1. Correctness
-- Logic meets requirements
-- Edge cases are handled
-- Error handling is appropriate
-- Boundary conditions are checked
+1. **Correctness** - Logic, edge cases, error handling
+2. **Performance** - N+1, unnecessary loops, data structures
+3. **Maintainability** - Readability, naming, single responsibility
+4. **Documentation** - Complex logic comments, public API docs
 
-#### 2. Performance
-- No N+1 problems
-- No unnecessary loops/calculations
-- Appropriate data structures used
-- No memory leak potential
+### 重大度
 
-#### 3. Maintainability
-- Code is readable
-- Naming is clear and consistent
-- Functions/methods have single responsibility
-- No duplicate code
-- No magic numbers/hardcoded values
+| Level | 基準 | 対応 |
+|-------|------|------|
+| CRITICAL | Production failure, security, data loss | Must fix |
+| HIGH | Bug, performance, best practice violation | Strongly fix |
+| MEDIUM | Code quality, readability | Recommend fix |
+| LOW | Style, minor improvements | Consider |
 
-#### 4. Documentation
-- Complex logic has comments
-- Public APIs are documented
-- TODOs/FIXMEs are trackable
+### 承認基準
 
-### Output Format
+| 重大度 | 承認 |
+|--------|------|
+| CRITICAL/HIGH | ❌ Block |
+| MEDIUM only | ⚠️ Conditional |
+| LOW only | ✅ Approve |
 
-#### Per-Issue Format
+> レビュープロセスと出力フォーマットは `skills/code-review` を参照
 
-```text
-[SEVERITY] Short issue title
-File: path/to/file.ext:line
-Issue: Brief description of the problem
-Fix: How to resolve it
-<bad code>   // ❌
-<good code>  // ✅
-```
-
-#### Severity Levels
-
-- **CRITICAL**: Must fix
-  - Production failure, security vulnerability, data loss risk
-- **HIGH**: Strongly recommend fix
-  - Bug, performance issue, important best practice violation
-- **MEDIUM**: Recommend fix
-  - Code quality, readability, maintainability issues
-- **LOW**: Suggest consideration
-  - Style, minor improvements
-- **SUGGESTION**: Provided as reference
-  - Better approach proposals
-
-#### Summary Format
-
-複数ファイルのレビュー時は末尾にサマリを必ず追加：
-
-```text
----
-Summary: 12 issues (2 critical, 3 high, 5 medium, 2 low)
-Priority: Fix critical issues in auth module first
-```
-
-### Approval Criteria
-
-#### Decision Framework
-
-- ✅ **Approve**: No critical or high-priority issues
-- ⚠️ **Conditional**: Medium-priority issues only
-- ❌ **Block**: Critical or high-priority issues present
-
-#### Thresholds
-
-| Metric | Threshold | Action |
-|--------|-----------|--------|
-| Function size | > 30 lines | Flag as MEDIUM |
-| Cyclomatic complexity | > 10 | Flag as HIGH |
-| Code duplication | 3+ instances | Flag as MEDIUM |
-| Test coverage | < 80% | Flag as HIGH |
-| Security issue | Any | Flag as CRITICAL |
-
-## Immutability (CRITICAL)
+## Immutability
 
 ```text
 ✅ ALWAYS use const by default
@@ -308,41 +168,24 @@ function processUser(user) {
   if (!user || !user.email) {
     throw new Error('Invalid user data')
   }
-  // ... process
 }
 
 // ❌ Never trust input
 function processUser(user) {
-  // Assumes user and email exist
-  sendEmail(user.email)
+  sendEmail(user.email)  // Assumes existence
 }
 ```
 
-## Common Pitfalls
+## 注意事項
 
 ### Over-Refactoring
-
-```text
-❌ Never: Refactor for perfection
-❌ Never: Create abstractions for single use
-✅ Always: Stop when code is clean enough
-✅ Always: Refactor only when needed
-```
+- Refactor for perfection → Stop when clean enough
+- Abstractions for single use → Extract only when reused
 
 ### Premature Optimization
-
-```text
-❌ Never: Optimize without measurements
-❌ Never: Sacrifice readability for performance
-✅ Always: Profile before optimizing
-✅ Always: Readability first, optimize if needed
-```
+- Optimize without measurements → Profile first
+- Sacrifice readability → Readability first
 
 ### Breaking API Compatibility
-
-```text
-❌ Never: Change public APIs without versioning
-❌ Never: Remove public methods without deprecation
-✅ Always: Maintain backward compatibility
-✅ Always: Deprecate before removal
-```
+- Change public APIs without versioning
+- Remove methods without deprecation

@@ -1,8 +1,8 @@
 # Security Standards
 
-セキュリティレビューで守るべき基準（OWASP Top 10ベース）
+セキュリティ基準（OWASP Top 10ベース）。スキャン手順と検証プロセスは `skills/security-review` を参照。
 
-## 必ずチェック (OWASP Top 10)
+## OWASP Top 10 チェックリスト
 
 ### A01: Broken Access Control
 - Authorization checks on all endpoints
@@ -77,24 +77,19 @@
 // ❌ Never allow
 const apiKey = "sk-abc123"
 const password = "password123"
-const token = "Bearer xyz..."
 
 // ✅ Require
 const apiKey = process.env.API_KEY
 const password = process.env.DB_PASSWORD
-const token = process.env.AUTH_TOKEN
 ```
 
 ### Weak Cryptography
 
 ```python
 # ❌ Never allow
-import hashlib
 password_hash = hashlib.md5(password.encode()).hexdigest()
-password_hash = hashlib.sha1(password.encode()).hexdigest()
 
 # ✅ Require
-import bcrypt
 password_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
 ```
 
@@ -127,40 +122,9 @@ app.get('/user/:id', (req, res) => {
 })
 ```
 
-## 出力フォーマット
-
-### Per-Vulnerability Format
-
-```text
-[SEVERITY] Vulnerability title
-File: path/to/file.ext:line
-Category: OWASP category (e.g., A03:Injection)
-Issue: Description of the vulnerability
-Risk: Potential impact if exploited
-Fix: Remediation steps
-<vulnerable code>  // ❌
-<secure code>      // ✅
-```
-
-### Severity Levels
-
-- **CRITICAL**: Actively exploitable, immediate risk
-- **HIGH**: Exploitable with some effort, significant impact
-- **MEDIUM**: Limited exploitability or impact
-- **LOW**: Minor issue, defense in depth
-- **INFO**: Best practice recommendation
-
-### Summary Format
-
-```text
----
-Summary: 4 issues (1 critical, 1 high, 1 medium, 1 low)
-Priority: Fix SQL injection immediately, then hardcoded secret
-```
-
 ## 必須セキュリティヘッダー
 
-すべてのWebアプリケーションで設定必須：
+すべての Web アプリケーションで設定必須：
 
 ```text
 Content-Security-Policy: default-src 'self'
@@ -172,49 +136,18 @@ Referrer-Policy: strict-origin-when-cross-origin
 Permissions-Policy: geolocation=(), microphone=()
 ```
 
-## 検出パターン
-
-### Secrets Detection
-
-検索すべきキーワード：
-
-```regex
-(?i)(password|passwd|pwd|secret|token|key|api_key|credential|auth|private_key|ssh_key|connection_string)\s*[=:]\s*["'][^"']+["']
-```
-
-### Common File Patterns
-
-以下のファイルは必ずチェック：
-
-- `.env*` files
-- `config.json`, `settings.json`
-- `credentials.*`
-- `*secret*`, `*password*`, `*key*`
-
-### Injection Points
-
-ユーザー入力を受け取る場所すべて：
-
-- HTTP parameters (query, body, headers)
-- File uploads
-- Database results (second-order injection)
-- External API responses
-
 ## 承認基準
 
-### Severity-Based Decisions
+### 重大度別判断
 
-| Severity | Count | Action |
-|----------|-------|--------|
-| CRITICAL | Any | ❌ Block deployment |
-| HIGH | Any | ❌ Block deployment |
-| MEDIUM | > 5 | ⚠️ Require plan |
-| LOW | Any | ✅ Can deploy |
-| INFO | Any | ✅ Can deploy |
+| Severity | Action |
+|----------|--------|
+| CRITICAL | ❌ Block deployment |
+| HIGH | ❌ Block deployment |
+| MEDIUM (> 5) | ⚠️ Require plan |
+| LOW | ✅ Can deploy |
 
-### Zero Tolerance Items
-
-以下は1つでもあれば必ずブロック：
+### Zero Tolerance（1つでもあればブロック）
 
 - Hardcoded credentials
 - SQL injection vulnerabilities
@@ -225,9 +158,10 @@ Permissions-Policy: geolocation=(), microphone=()
 
 ## セキュリティ対応プロトコル
 
-If security issue found:
-1. STOP immediately
-2. Use **security-reviewer** agent
-3. Fix CRITICAL issues before continuing
-4. Rotate any exposed secrets
-5. Review entire codebase for similar issues
+セキュリティ問題発見時：
+
+1. **STOP** - 即座に作業停止
+2. **Review** - `skills/security-review` でスキャン
+3. **Fix** - CRITICAL を最優先で修正
+4. **Rotate** - 露出したシークレットをローテーション
+5. **Audit** - 類似問題がないかコードベース全体を確認
