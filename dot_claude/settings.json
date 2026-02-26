@@ -1,26 +1,20 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "env": {
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-opus-4-5-20251101"
+  },
   "includeCoAuthoredBy": false,
   "permissions": {
     "allow": [
       "List(*)",
       "Fetch(https://*)",
       "Bash(ls:*)",
-      "Bash(rg:*)",
-      "Bash(find:*)",
-      "Bash(grep:*)",
-      "Bash(cat:*)",
-      "Bash(head:*)",
-      "Bash(tail:*)",
-      "Bash(less:*)",
       "Bash(diff:*)",
-      "Bash(go test:*)",
-      "Bash(go build:*)",
-      "Bash(go fmt:*)",
-      "Bash(gh pr list:*)",
-      "Bash(gh pr view:*)",
-      "Bash(gh pr diff:*)",
-      "mcp__serena"
+      "Bash(tree:*)",
+      "Bash(go:*)",
+      "Bash(gh:*)",
+      "Bash(git:*)",
+      "Bash(jj:*)"
     ],
     "deny": []
   },
@@ -28,8 +22,20 @@
     "type": "command",
     "command": "ccusage statusline"
   },
+  "enabledPlugins": {
+    "ddd@context-engineering-kit": true,
+    "sadd@context-engineering-kit": true,
+    "superpowers@claude-plugins-official": true,
+    "aws-common@aws-skills": true,
+    "aws-cdk@aws-skills": true,
+    "code-simplifier@claude-plugins-official": true,
+    "gopls-lsp@claude-plugins-official": true,
+    "php-lsp@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true,
+    "code-review@context-engineering-kit": true,
+    "ralph-loop@claude-plugins-official": true
+  },
   "feedbackSurveyState": {
     "lastShownTime": 1754045417784
-  },
-  "model": "opusplan"
+  }
 }

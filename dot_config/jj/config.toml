@@ -1,0 +1,7 @@
+[user]
+name = "Yuta OHWATARI"
+email = "y.ohwatari@cartahd.com"
+
+[signing]
+behavior = "own"
+backend = "gpg"

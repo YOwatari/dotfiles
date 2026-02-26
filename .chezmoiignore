@@ -12,8 +12,8 @@ Makefile
 vendor/
 
 gitignore/
-.claude/agents/.git*
-!.claude/agents/*.md
+
+!.claude/**/*.md
 
 {{- if ne .profile "Work" }}
 **/*.work

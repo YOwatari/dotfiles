@@ -1,50 +1,57 @@
-[alias]
-jsonnet = "asdf:Banno/asdf-jsonnet"
-
 [tools]
-awscli = "latest"
+"aqua:GoogleCloudPlatform/cloud-sql-proxy" = "latest"
+"aqua:kayac/ecspresso" = "latest"
+"aqua:fujiwara/lambroll" = "latest"
+"aqua:suzuki-shunsuke/pinact" = "latest"
+"asdf:Banno/asdf-jsonnet" = "latest"
 aws-vault = "latest"
-gcloud = "latest"
+awscli = "latest"
 bat = "latest"
 buildpack = "latest"
 bun = "latest"
-# chezmoi = "latest"
+"cargo:viu" = "latest"
 delta = "latest"
-deno = "latest"
+duckdb = "latest"
 duf = "latest"
 editorconfig-checker = "latest"
 fd = "latest"
 fzf = "latest"
+gcloud = "latest"
 ghq = "latest"
 github-cli = "latest"
 go = "latest"
+golangci-lint = "latest"
 gomigrate = "latest"
+"go:github.com/rhysd/actionlint/cmd/actionlint" = "latest"
+"go:golang.org/x/tools/gopls" = "latest"
+jj = "latest"
 jq = "latest"
-jsonnet = "latest"
 mkcert = "latest"
-node = ["20", "lts", "latest"]
+node = ["20", "lts"]
+"npm:@anthropic-ai/claude-code" = "latest"
+"npm:@openai/codex" = "latest"
+"npm:@ralph-orchestrator/ralph-cli" = "latest"
+"npm:agent-browser" = "latest"
+"npm:cc-sdd" = "latest"
+"npm:ccusage" = "latest"
+"npm:intelephense" = "latest"
+"npm:jsdoc-to-markdown" = "latest"
+"npm:madge" = "latest"
+"npm:opencommit" = "latest"
+"npm:typescript" = "latest"
+"npm:typescript-language-server" = "latest"
 php = ["8.2"]
+"pipx:httpie" = "latest"
 protoc = "latest"
 python = ["3.12"]
-uv = "latest"
-#racket = "latest"
+racket = ["9.0"]
 ripgrep = "latest"
-#ruby = "2.3.8"
 rust = "latest"
 rye = "latest"
 sqlite = "latest"
 terraform = "latest"
+uv = "latest"
 yq = "latest"
-duckdb = "latest"
-"aqua:fujiwara/lambroll" = "latest"
-"aqua:kayac/ecspresso" = "latest"
-"aqua:suzuki-shunsuke/pinact" = "latest"
-"npm:@anthropic-ai/claude-code" = "latest"
-"npm:ccusage" = "latest"
-"npm:opencommit" = "latest"
-"npm:@openai/codex" = "latest"
-"pipx:httpie" = "latest"
-"aqua:GoogleCloudPlatform/cloud-sql-proxy" = "latest"
 
 [settings]
 legacy_version_file = true
@@ -67,10 +74,37 @@ bun = true
 [env]
 MISE_FETCH_REMOTE_VERSIONS_TIMEOUT = "120 sec"
 
-[tasks.claude_serena]
-description = "Add Serena MCP to Claude Code"
-run = "claude mcp add serena -- uvx --from git+https://github.com/oraios/serena serena start-mcp-server --context ide-assistant --project $(pwd)"
+[tasks.gpg]
+description = "Test GPG encrypt/decrypt cycle"
+run = """
+#!/bin/bash
+set -euo pipefail
 
-[tasks.serena_index]
-description = "Serena activation & indexing project"
-run = "uvx --from git+https://github.com/oraios/serena serena project index"
+GPG_KEY_ID="0053779137596E59"
+PASSPHRASE=$(op read "op://Personal/GPG Secret Key/vucxzg6pc7x3tgiihxhjdsmeve")
+echo "test" | gpg --encrypt --armor -r "$GPG_KEY_ID" | gpg --pinentry-mode loopback --passphrase "$PASSPHRASE" --default-key "$GPG_KEY_ID" --decrypt
+"""
+
+[tasks.ralph-kiro]
+description = "Run kiro:spec-impl with ralph-loop"
+run = """
+#!/bin/bash
+set -euo pipefail
+FEATURE="${1:?Usage: mise run ralph-kiro <feature-name>}"
+
+PROMPT='.kiro/specs/'${FEATURE}'/tasks.md を確認し、未完了タスクがあればTDDで実装して。参照: requirements.md, design.md。全タスクが完了したら <promise>LOOP COMPLETE</promise> を出力。'
+
+claude --model sonnet "/ralph-loop:ralph-loop '$PROMPT' --completion-promise 'LOOP COMPLETE' --max-iterations 50"
+"""
+
+[tasks.ralph-plan]
+description = "Implement plan.md with ralph-loop"
+run = """
+#!/bin/bash
+set -euo pipefail
+
+PROMPT='plan.md を確認し、未完了タスクがあればTDDで実装して。全タスクが完了したら <promise>LOOP COMPLETE</promise> を出力。'
+
+claude --model sonnet "/ralph-loop:ralph-loop '$PROMPT' --completion-promise 'LOOP COMPLETE' --max-iterations 50"
+"""
+
