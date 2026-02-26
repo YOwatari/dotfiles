@@ -80,20 +80,29 @@ set -euo pipefail
 
 GPG_KEY_ID="0053779137596E59"
 PASSPHRASE=$(op read "op://Personal/GPG Secret Key/vucxzg6pc7x3tgiihxhjdsmeve")
-echo "test" | gpg --encrypt --armor -r "$GPG_KEY_ID" | gpg --pinentry-mode loopback --passphrase "$PASSPHRASE" --default-key "$GPG_KEY_ID" --decrypt)
+echo "test" | gpg --encrypt --armor -r "$GPG_KEY_ID" | gpg --pinentry-mode loopback --passphrase "$PASSPHRASE" --default-key "$GPG_KEY_ID" --decrypt
 """
 
-[tasks.ralph]
+[tasks.ralph-kiro]
 description = "Run kiro:spec-impl with ralph-loop"
 run = """
 #!/bin/bash
 set -euo pipefail
-FEATURE="${1:?Usage: mise run spec-impl-loop <feature-name>}"
+FEATURE="${1:?Usage: mise run ralph-kiro <feature-name>}"
 
-claude --model sonnet "/ralph-loop:ralph-loop \"
-.kiro/specs/${FEATURE}/tasks.md を確認し、未完了タスク(- [ ])があればTDDで実装して。
-参照: requirements.md, design.md
-全タスクが完了(全て - [x])したら <promise>LOOP COMPLETE</promise> を出力。
-\" --completion-promise \"LOOP COMPLETE\" --max-iterations 50"
+PROMPT='.kiro/specs/'${FEATURE}'/tasks.md を確認し、未完了タスクがあればTDDで実装して。参照: requirements.md, design.md。全タスクが完了したら <promise>LOOP COMPLETE</promise> を出力。'
+
+claude --model sonnet "/ralph-loop:ralph-loop '$PROMPT' --completion-promise 'LOOP COMPLETE' --max-iterations 50"
+"""
+
+[tasks.ralph-plan]
+description = "Implement plan.md with ralph-loop"
+run = """
+#!/bin/bash
+set -euo pipefail
+
+PROMPT='plan.md を確認し、未完了タスクがあればTDDで実装して。全タスクが完了したら <promise>LOOP COMPLETE</promise> を出力。'
+
+claude --model sonnet "/ralph-loop:ralph-loop '$PROMPT' --completion-promise 'LOOP COMPLETE' --max-iterations 50"
 """
 
