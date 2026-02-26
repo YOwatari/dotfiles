@@ -350,6 +350,14 @@ When adding mocks or test utilities, read @references/testing-anti-patterns.md t
 - Adding test-only methods to production classes
 - Mocking without understanding dependencies
 
+## Property-Based Testing & Fuzzing
+
+Advanced techniques complementing example-based tests. Read @references/property-based-testing.md for:
+
+- Roundtrip properties (encode/decode, serialize/deserialize)
+- Mathematical properties (idempotence, commutativity)
+- Fuzzing at security boundaries
+
 ## Final Rule
 
 ```
