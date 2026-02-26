@@ -119,6 +119,37 @@ test("should calculate total with tax", () => {
 })
 ```
 
+## Property-Based Testing & Fuzzing
+
+Advanced testing techniques that complement example-based tests. Consider applying after TDD Green phase or during integration testing.
+
+### When to Apply
+
+| Technique | Use Case | Examples |
+|-----------|----------|----------|
+| Property-Based | Universal properties exist for inputs/outputs | Parsers, serializers, math functions |
+| Fuzzing | Security boundaries, external input handling | Validators, file parsers, API inputs |
+
+### Decision Guide
+
+| Situation | Recommended |
+|-----------|-------------|
+| Properties that hold for all inputs | Property-Based |
+| Processing untrusted external input | Fuzzing |
+| Near-infinite edge cases | Property-Based + Fuzzing |
+| Simple CRUD operations | Example-based tests sufficient |
+
+### TDD Integration
+
+```text
+1. RED: Verify failure with example-based test
+2. GREEN: Minimal implementation
+3. PROPERTY: Verify generalization with property tests
+4. REFACTOR: Improve code as needed
+```
+
+See `skills/test-driven-development/references/property-based-testing.md` for details.
+
 ## カバレッジ要件
 
 | Type | Minimum | Target |
