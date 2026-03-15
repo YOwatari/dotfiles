@@ -40,8 +40,8 @@ if [[ -x "$HOMEBREW_PREFIX/opt/gnu-which/libexec/gnubin" ]]; then
   alias which="which -a"
 fi
 
-if [[ -x "$HOMEBREW_PREFIX/opt/colordiff/bin" ]]; then
-  alias diff=colordiff
+if command -v delta &>/dev/null; then
+  alias diff=delta
 fi
 
 if [[ -x "$HOMEBREW_PREFIX/opt/openjdk/bin" ]]; then
