@@ -15,7 +15,7 @@ path=(~/.local/bin(N-/) $path)
 fpath=(~/.zsh/completions(N-/) $fpath)
 
 export GPG_TTY=$(tty)
-export EDITOR=vim
+export EDITOR=hx
 
 source $HOME/.zsh/base.rc.zsh
 source $HOME/.zsh/cmd.rc.zsh
