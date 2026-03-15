@@ -40,16 +40,3 @@ fi
 if command -v pack &>/dev/null; then
   source "$(pack completion --shell zsh)"
 fi
-
-if [[ -d $HOME/.deno ]]; then
-  export DENO_INSTALL="$HOME/.deno"
-  path=(~/.deno/bin(N-/) $path)
-fi
-
-if [[ -d $HOME/.rye ]]; then
-  path=(~/.rye/shims(N-/) $path)
-fi
-
-if [[ -f $HOME/.wasmedge/env ]]; then
-  source "$HOME/.wasmedge/env"
-fi

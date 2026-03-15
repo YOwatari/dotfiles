@@ -51,7 +51,6 @@ python = ["3.12"]
 racket = ["9.0"]
 ripgrep = "latest"
 rust = "latest"
-rye = "latest"
 sqlite = "latest"
 terraform = "latest"
 uv = "latest"
