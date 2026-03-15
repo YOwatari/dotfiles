@@ -39,8 +39,6 @@ node = ["20", "lts"]
 "npm:cc-sdd" = "latest"
 "npm:ccusage" = "latest"
 "npm:intelephense" = "latest"
-"npm:jsdoc-to-markdown" = "latest"
-"npm:madge" = "latest"
 "npm:pyright" = "latest"
 "npm:typescript" = "latest"
 "npm:typescript-language-server" = "latest"
@@ -48,7 +46,6 @@ php = ["8.2"]
 "pipx:httpie" = "latest"
 protoc = "latest"
 python = ["3.12"]
-racket = ["9.0"]
 ripgrep = "latest"
 rust = "latest"
 sqlite = "latest"
@@ -59,15 +56,7 @@ yq = "latest"
 [settings]
 legacy_version_file = true
 legacy_version_file_disable_tools = ["python"]
-
 plugin_autoupdate_last_check_duration = "1 week"
-
-verbose = false
-asdf_compat = false
-http_timeout = "30s"
-jobs = 4
-raw = false
-yes = false
 idiomatic_version_file_enable_tools = ["go"]
 experimental = true
 
