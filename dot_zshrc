@@ -30,5 +30,13 @@ if [[ "$(uname)" = "Darwin" ]]; then
     source $HOME/.zsh/macos.rc.zsh
 fi
 
-PROMPT=$PROMPT'
-\$ '
+# Override lime render to add newline before symbol
+prompt_lime_render() {
+  echo -n "${prompt_lime_rendered_user}"
+  echo -n ' '
+  prompt_lime_dir
+  echo -n ' '
+  prompt_lime_git
+  echo -n $'\n'
+  echo -n "${prompt_lime_rendered_symbol} "
+}
