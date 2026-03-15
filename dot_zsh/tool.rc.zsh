@@ -1,5 +1,25 @@
+# Modern tool aliases
 if command -v nvim &>/dev/null; then
   alias vim=nvim
+fi
+
+if command -v eza &>/dev/null; then
+  alias ls="eza -aF"
+  alias ll="eza -laF"
+  alias la="eza -aF"
+  alias lla="eza -laF"
+fi
+
+if command -v bat &>/dev/null; then
+  alias cat="bat --paging=never"
+fi
+
+if command -v delta &>/dev/null; then
+  alias diff=delta
+fi
+
+if command -v duf &>/dev/null; then
+  alias du=duf
 fi
 
 if command -v sheldon &>/dev/null; then
