@@ -1,3 +1,0 @@
-main:
-  shell: zsh
-  filter_command: fzf --ansi --no-preview --height=50% --reverse

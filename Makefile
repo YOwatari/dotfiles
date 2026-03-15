@@ -13,10 +13,8 @@ else
 	$(MAKE) -f $(OS_MAKEFILE)
 endif
 	$(MAKE) chezmoi
+	$(MAKE) mise
 	@echo "1. launch zsh"
-	@echo "2. afx install"
-	@echo "2. make mise"
-	@echo "3. launch vim"
 
 mise:
 	$(MAKE) -f mise.mk
