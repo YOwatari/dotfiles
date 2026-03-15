@@ -1,0 +1,37 @@
+shell = "zsh"
+
+[plugins.zsh-completions]
+github = "zsh-users/zsh-completions"
+proto = "git"
+apply = ["fpath"]
+
+[plugins.oh-my-zsh-git]
+github = "ohmyzsh/oh-my-zsh"
+proto = "git"
+use = ["plugins/git/*.plugin.zsh"]
+
+[plugins.git-extras]
+github = "tj/git-extras"
+proto = "git"
+use = ["etc/*.zsh"]
+
+[plugins.lime]
+github = "yous/lime"
+proto = "git"
+use = ["*.plugin.zsh"]
+
+[plugins.fzf]
+github = "junegunn/fzf"
+proto = "git"
+use = ["shell/*.zsh"]
+
+[plugins.local-plugins]
+local = "~/.zsh/plugins"
+use = ["*.zsh"]
+
+[plugins.zsh-syntax-highlighting]
+github = "zsh-users/zsh-syntax-highlighting"
+proto = "git"
+
+[templates]
+fpath = 'fpath=("{{ dir }}/src" $fpath)'

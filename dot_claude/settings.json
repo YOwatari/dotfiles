@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "env": {
-    "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-opus-4-5-20251101"
+    "ENABLE_LSP_TOOL": "1"
   },
   "includeCoAuthoredBy": false,
   "permissions": {
@@ -29,7 +29,19 @@
     "php-lsp@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
     "ralph-loop@claude-plugins-official": true,
-    "go-skills@golang-skills": true
+    "go-skills@golang-skills": true,
+    "slack@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true,
+    "opentelemetry-instrumentation@cedricziel-claude-otel-plugin": true,
+    "pyright-lsp@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "cedricziel-claude-otel-plugin": {
+      "source": {
+        "source": "github",
+        "repo": "cedricziel/claude-otel-plugin"
+      }
+    }
   },
   "feedbackSurveyState": {
     "lastShownTime": 1754045417784

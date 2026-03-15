@@ -1,9 +1,19 @@
 OS := $(shell uname | tr "[:upper:]" "[:lower:]")
+MISE_BIN := $(HOME)/.local/bin/mise
 
-all: install aws-session-manager-plugin
+all: bootstrap install aws-session-manager-plugin
+
+bootstrap:
+	@if [ ! -x "$(MISE_BIN)" ]; then \
+		echo "Installing mise..."; \
+		curl https://mise.run | sh; \
+	else \
+		echo "mise already installed, running self-update..."; \
+		$(MISE_BIN) self-update; \
+	fi
 
 install:
-	mise install
+	$(MISE_BIN) install
 
 ifeq ($(OS),darwin)
 aws-session-manager-plugin: vendor/session-manager-plugin.pkg

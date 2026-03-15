@@ -1,11 +1,44 @@
+# Modern tool aliases
 if command -v nvim &>/dev/null; then
   alias vim=nvim
 fi
 
-if command -v afx &>/dev/null; then
-  source <(afx init)
-  source <(afx completion zsh)
+if command -v eza &>/dev/null; then
+  alias ls="eza -aF"
+  alias ll="eza -laF"
+  alias la="eza -aF"
+  alias lla="eza -laF"
 fi
+
+if command -v bat &>/dev/null; then
+  alias cat="bat --paging=never"
+fi
+
+if command -v delta &>/dev/null; then
+  alias diff=delta
+fi
+
+if command -v duf &>/dev/null; then
+  alias du=duf
+fi
+
+if command -v sheldon &>/dev/null; then
+  eval "$(sheldon source)"
+fi
+
+# fzf
+export FZF_DEFAULT_COMMAND="fd --type f"
+export FZF_DEFAULT_OPTS="--height 50% --reverse"
+export FZF_CTRL_T_COMMAND="rg --files --hidden --follow --glob '!.git/*'"
+export FZF_CTRL_T_OPTS="--preview 'bat --color=always --style=header,grid --line-range :100 {}'"
+export FZF_ALT_C_COMMAND="fd --type d"
+
+# lime prompt
+export LIME_SHOW_HOSTNAME=1
+export LIME_DIR_DISPLAY_COMPONENTS=3
+export LIME_USER_COLOR=109
+export LIME_DIR_COLOR=143
+export LIME_GIT_COLOR=109
 
 if command -v mise &>/dev/null; then
     eval "$($HOME/.local/bin/mise activate zsh)"
@@ -26,17 +59,4 @@ fi
 
 if command -v pack &>/dev/null; then
   source "$(pack completion --shell zsh)"
-fi
-
-if [[ -d $HOME/.deno ]]; then
-  export DENO_INSTALL="$HOME/.deno"
-  path=(~/.deno/bin(N-/) $path)
-fi
-
-if [[ -d $HOME/.rye ]]; then
-  path=(~/.rye/shims(N-/) $path)
-fi
-
-if [[ -f $HOME/.wasmedge/env ]]; then
-  source "$HOME/.wasmedge/env"
 fi

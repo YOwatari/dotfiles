@@ -1,7 +1,3 @@
-if [[ $HOME/.zshrc -nt ~/.zshrc.zwc ]]; then
-    zcompile ~/.zshrc
-fi
-
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 
@@ -18,9 +14,8 @@ path=(~/bin(N-/) $path)
 path=(~/.local/bin(N-/) $path)
 fpath=(~/.zsh/completions(N-/) $fpath)
 
-export TERM=xterm-256color
 export GPG_TTY=$(tty)
-export EDITOR=vim
+export EDITOR=hx
 
 source $HOME/.zsh/base.rc.zsh
 source $HOME/.zsh/cmd.rc.zsh
@@ -35,6 +30,13 @@ if [[ "$(uname)" = "Darwin" ]]; then
     source $HOME/.zsh/macos.rc.zsh
 fi
 
-#PROMPT='$(kube_ps1)'' '$PROMPT'
-PROMPT=$PROMPT'
-\$ '
+# Override lime render to add newline before symbol
+prompt_lime_render() {
+  echo -n "${prompt_lime_rendered_user}"
+  echo -n ' '
+  prompt_lime_dir
+  echo -n ' '
+  prompt_lime_git
+  echo -n $'\n'
+  echo -n "${prompt_lime_rendered_symbol} "
+}
