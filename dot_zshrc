@@ -38,5 +38,5 @@ prompt_lime_render() {
   echo -n ' '
   prompt_lime_git
   echo -n $'\n'
-  echo -n "${prompt_lime_rendered_symbol} "
+  echo -n "${prompt_lime_rendered_symbol}"
 }
