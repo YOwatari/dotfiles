@@ -60,3 +60,11 @@ fi
 if command -v pack &>/dev/null; then
   source "$(pack completion --shell zsh)"
 fi
+
+# homebrew packages
+if command -v brew &>/dev/null; then
+  local brew_prefix="$(brew --prefix)"
+  if [[ -d "$brew_prefix/opt/mysql-client/bin" ]]; then
+    export PATH="$brew_prefix/opt/mysql-client/bin:$PATH"
+  fi
+fi
