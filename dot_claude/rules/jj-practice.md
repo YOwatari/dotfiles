@@ -29,14 +29,20 @@ jj squash          # Merge into child
 
 ## GitHub PR Workflow
 
+### Bookmark Naming Convention
+
+- Issue-driven: `issue-<number>-<short-description>` (e.g., `issue-123-add-redirect`)
+- Without Issue: `<type>/<short-description>` (e.g., `fix/null-pointer`, `chore/update-deps`)
+- Always use kebab-case, no non-ASCII characters
+
 ### Create bookmark and push
 
 ```bash
 # Option 1: Auto-generated name (push-xxxx)
 jj git push -c @-
 
-# Option 2: Explicit naming
-jj bookmark create feature-name -r @-
+# Option 2: Explicit naming (recommended)
+jj bookmark create issue-123-add-redirect -r @-
 jj git push
 ```
 
