@@ -34,6 +34,7 @@ jq = "latest"
 mkcert = "latest"
 node = ["20", "lts"]
 "npm:@anthropic-ai/claude-code" = "latest"
+"npm:@github/copilot" = "latest"
 "npm:@openai/codex" = "latest"
 "npm:@ralph-orchestrator/ralph-cli" = "latest"
 "npm:agent-browser" = "latest"
